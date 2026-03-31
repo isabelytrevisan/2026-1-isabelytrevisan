@@ -72,11 +72,11 @@ header {
 
 .menu-aside {
     background-color: gray;
-    padding: 1rem;
+    padding: 2rem;
     width: 250px;
     display: flex;
     flex-direction: column;
-    line-height: 2rem;
+    line-height: 3rem;
 }
 
 .menu-aside a {
@@ -89,7 +89,7 @@ header {
 }
 
 .menu-aside a:hover {
-    font-weight: 600;
+    font-weight: 300;
     color: black;
     background-color: #e0e0e0;
 }
