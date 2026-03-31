@@ -2,7 +2,7 @@
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;  
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 html, body {
@@ -57,10 +57,14 @@ body {
 
 header {
     color: #fff;
-    background: linear-gradient(135deg, gray, black);
+    background: linear-gradient(135deg, gray, rgb(255, 0, 0));
     text-align: center;
     padding: 1rem;
     letter-spacing: 1px;
+}
+
+header h1 {
+    font-size: 24pt;
 }
 
 .main {
@@ -104,20 +108,20 @@ header {
     padding: 2rem;
 }
 
-.tabela-vendas {
+.tabela {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
 }
 
-.tabela-vendas th,
-.tabela-vendas td {
+.tabela th,
+.tabela td {
     border: 1px solid #999;
     padding: 10px;
     text-align: center;
 }
 
-.tabela-vendas th {
+.tabela th {
     background-color: #333;
     color: white;
 }
@@ -144,4 +148,23 @@ header {
 
 .botao-deletar:hover {
     color: rgb(255, 0, 0);
+}
+
+.botao-adicionar {
+    padding: 15px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    border-radius: 50px;
+    background: linear-gradient(130deg, #573dff, rgb(144, 65, 155));
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.3s ease;
+    margin: 10px auto;
+    color: white;
+}
+
+.botao-adicionar:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+
 }
