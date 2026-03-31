@@ -1,0 +1,122 @@
+/*CSS do index*/
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;  
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* MENU HORIZONTAL DO INDEX */
+.menu-topo ul {
+    list-style: none;
+    padding-left: 30px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.menu-topo a {
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.menu-topo a:hover {
+    background-color: white;
+    color: black;
+}
+
+/*CSS do caixa */
+
+/*CSS dos clientes */
+
+/*CSS do estoque*/
+
+/*CSS dos funcionarios*/
+
+/*CSS dos logins*/
+
+/*CSS das vendas*/
+
+header {
+    color: #fff;
+    background: linear-gradient(135deg, gray, black);
+    text-align: center;
+    padding: 1rem;
+    letter-spacing: 1px;
+}
+
+.main {
+    display: flex;
+    flex: 1;           
+    min-height: 100vh;    
+    background-color: #f4f4f4;
+}
+
+.menu-aside {
+    background-color: gray;
+    padding: 1rem;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
+}
+
+.menu-aside a {
+    text-decoration: none;
+    color: #f4f4f4;
+    margin-left: 12px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.menu-aside a:hover {
+    font-weight: 600;
+    color: black;
+    background-color: #e0e0e0;
+}
+
+.menu-aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+.conteudo {
+    flex: 1;
+    padding: 2rem;
+}
+
+.tabela-vendas {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.tabela-vendas th,
+.tabela-vendas td {
+    border: 1px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabela-vendas th {
+    background-color: #333;
+    color: white;
+}
