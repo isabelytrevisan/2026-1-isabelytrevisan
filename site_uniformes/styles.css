@@ -30,7 +30,7 @@ body {
 .menu-topo a {
     text-decoration: none;
     color: white;
-    background-color: gray;
+    background-color: rgb(128, 128, 128);
     padding: 8px 14px;
     border-radius: 4px;
     transition: 0.3s;
@@ -57,7 +57,7 @@ body {
 
 header {
     color: #fff;
-    background: linear-gradient(135deg, gray, rgb(255, 0, 0));
+    background: linear-gradient(135deg, #844dea, #596031);
     text-align: center;
     padding: 1rem;
     letter-spacing: 1px;
@@ -71,11 +71,11 @@ header h1 {
     display: flex;
     flex: 1;           
     min-height: 100vh;    
-    background-color: #f4f4f4;
+    background-color: #f9eec3;
 }
 
 .menu-aside {
-    background-color: gray;
+    background-color: #596031;
     padding: 2rem;
     width: 250px;
     display: flex;
@@ -111,7 +111,7 @@ header h1 {
 .tabela {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    background-color: #FFF0F5;
 }
 
 .tabela th,
@@ -121,8 +121,9 @@ header h1 {
     text-align: center;
 }
 
+
 .tabela th {
-    background-color: #333;
+    background-color: #8470FF;
     color: white;
 }
 
