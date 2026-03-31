@@ -52,6 +52,7 @@ body {
 
 /*CSS dos logins*/
 
+
 /*CSS das vendas*/
 
 header {
@@ -119,4 +120,28 @@ header {
 .tabela-vendas th {
     background-color: #333;
     color: white;
+}
+
+.botao-editar {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.botao-deletar {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.botao-editar:hover {
+    color: rgb(255, 140, 0);
+}
+
+.botao-deletar:hover {
+    color: rgb(255, 0, 0);
 }
