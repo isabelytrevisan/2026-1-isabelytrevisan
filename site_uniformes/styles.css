@@ -57,7 +57,7 @@ body {
 
 header {
     color: #fff;
-    background: linear-gradient(135deg, #844dea, #596031);
+    background: linear-gradient(135deg, #363d0c);
     text-align: center;
     padding: 1rem;
     letter-spacing: 1px;
@@ -77,7 +77,7 @@ header h1 {
 .menu-aside {
     background-color: #596031;
     padding: 2rem;
-    width: 250px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     line-height: 3rem;
@@ -123,7 +123,7 @@ header h1 {
 
 
 .tabela th {
-    background-color: #8470FF;
+    background-color: #7a44ad;
     color: white;
 }
 
