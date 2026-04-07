@@ -44,23 +44,8 @@
                         <th>Data</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabela-vendas">
                     <tr><td>23</td><td>Rufo Scrimgeour</td><td>297,00</td><td>23/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
-                    <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-
-                    <tr><td>41</td><td>Regulus Black</td><td>512,90</td><td>24/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
-                    <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-
-                    <tr><td>58</td><td>Andromeda Tonks</td><td>189,50</td><td>25/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
-                    <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-
-                    <tr><td>77</td><td>Aberforth Dumbledore</td><td>643,20</td><td>26/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
-                    <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-
-                    <tr><td>86</td><td>Marlene McKinnon</td><td>458,75</td><td>27/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
-                    <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-
-                    <tr><td>99</td><td>Bathilda Bagshot</td><td>732,10</td><td>28/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
                     <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
                 </tbody>
             </table>
@@ -73,7 +58,7 @@
         linha.remove();
     }
 
-    function editar(botao) {
+     function editar(botao) {
         let linha = botao.parentElement.parentElement;
         let colunas = linha.querySelectorAll("td");
 
@@ -86,6 +71,43 @@
         if (data) colunas[3].innerText = data;
     }
     </script> 
+
+    <script>
+        function carregarVendas() {
+            let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+            let tabela = document.getElementById("tabela-vendas");
+
+            tabela.innerHTML = "";
+
+            vendas.forEach(venda => {
+                let linha = `
+                <tr>
+                    <td>${venda.id}</td>
+                    <td>${venda.cliente}</td>
+                    <td>${venda.valor}</td>
+                    <td>${venda.data}</td>
+                    <td>
+                        <button onclick="editar(this)">✏️</button>
+                        <button onclick="deletar(this, ${venda.id})">🗑️</button>
+                    </td>
+                </tr>
+                `;
+                tabela.innerHTML += linha;
+            });
+        }
+
+        function deletar(botao, id) {
+            let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+
+            vendas = vendas.filter(v => v.id !== id);
+
+            localStorage.setItem("vendas", JSON.stringify(vendas));
+
+            carregarVendas();
+        }
+
+        window.onload = carregarVendas;
+    </script>
 
 </body>
 </html>
