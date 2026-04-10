@@ -38,9 +38,11 @@
             <table class="tabela">
                 <thead>
                     <tr>
-                        <th>Cód. venda</th><!--arrumar os dados pra bater com os da criar-venda-->
-                        <th>Nome do cliente</th>
+                        <th>Código</th><!--arrumar os dados pra bater com os da criar-venda-->
+                        <th>Produto</th>
+                        <th>Estoque</th>
                         <th>Valor pago</th>
+                        <th>Quantidade</th>
                         <th>Data</th>
                     </tr>
                 </thead>
@@ -52,27 +54,7 @@
         </main>
     </div>
 
-    <script>
-    function deletar(botao) {
-        let linha = botao.parentElement.parentElement;
-        linha.remove();
-    }
-
-     function editar(botao) {
-        let linha = botao.parentElement.parentElement;
-        let colunas = linha.querySelectorAll("td");
-
-        let nome = prompt("Novo nome do cliente:", colunas[1].innerText);
-        let valor = prompt("Novo valor:", colunas[2].innerText);
-        let data = prompt("Nova data:", colunas[3].innerText);
-
-        if (nome) colunas[1].innerText = nome;
-        if (valor) colunas[2].innerText = valor;
-        if (data) colunas[3].innerText = data;
-    }
-    </script> 
-
-    <script>
+   <script>
         function carregarVendas() {
             let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
             let tabela = document.getElementById("tabela-vendas");
@@ -82,13 +64,14 @@
             vendas.forEach(venda => {
                 let linha = `
                 <tr>
-                    <td>${venda.id}</td>
-                    <td>${venda.cliente}</td>
-                    <td>${venda.valor}</td>
+                    <td>${venda.codigo}</td>
+                    <td>${venda.produto}</td>
+                    <td>${venda.estoque}</td>
+                    <td>R$ ${venda.valor}</td>
+                    <td>${venda.quantidade}</td>
                     <td>${venda.data}</td>
                     <td>
-                        <button onclick="editar(this)">✏️</button>
-                        <button onclick="deletar(this, ${venda.id})">🗑️</button>
+                        <button onclick="deletar(${venda.id})">🗑️</button>
                     </td>
                 </tr>
                 `;
@@ -96,13 +79,10 @@
             });
         }
 
-        function deletar(botao, id) {
+        function deletar(id) {
             let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
-
             vendas = vendas.filter(v => v.id !== id);
-
             localStorage.setItem("vendas", JSON.stringify(vendas));
-
             carregarVendas();
         }
 

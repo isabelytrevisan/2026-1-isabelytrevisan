@@ -30,19 +30,20 @@
                 </ul>
             </aside>
 
-            <main class="conteudo">
+           <main class="conteudo">
                 <div class="container">
-                    <h2>Entrada de Produtos</h2>
+                    <h2>Saída de Produtos</h2>
 
                     <div class="form-top">
                         <div class="field">
                         <label>Data</label>
-                        <input type="date" value="2020-04-28">
+                        <input type="date" id="data">
                         </div>
 
+
                         <div class="field">
-                        <label>Número</label>
-                        <input type="text">
+                        <label>Código</label>
+                        <input type="text" id="codigo">
                         </div>
                     </div>
 
@@ -50,30 +51,32 @@
                         <thead>
                         <tr>
                             <th>Produto</th>
-                            <th>Estoque</th>
-                            <th>Quantidade</th>
+                            <th>Tamanho</th>
+                            <th>Cor</th>
+                            <th>Quantidade</th>                   
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                            <select>
-                                <option>Camisa</option>
-                                <option>Regata</option>
-                                <option>Camiseta</option>
-                                <option>Baby look</option>
-                            </select>
-                            </td>
-                            <td>3</td>
-                            <td>
-                            <input type="number">
-                            </td>
-                            <td>
-                            </button>
-                            <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <select id="produto"> 
+                                        <option>Camisa</option>
+                                        <option>Regata</option>
+                                        <option>Camiseta</option>
+                                        <option>Baby look</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" id="tamanho">
+                                </td>
+                                <td>
+                                    <input type="text" id="cor">
+                                </td>
+                                <td>
+                                    <input type="number" id="quantidade">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -82,6 +85,27 @@
                         <button class="btn-save">✔ Salvar</button>
                     </div>
                 </div>
+
+                <script>
+                    document.querySelector(".btn-save").addEventListener("click", function() {
+
+                        let item = {
+                            id: Date.now(),
+                            data: document.getElementById("data").value,
+                            codigo: document.getElementById("codigo").value,
+                            produto: document.getElementById("produto").value,
+                            tamanho: document.getElementById("tamanho").value,
+                            cor: document.getElementById("cor").value,
+                            quantidade: document.getElementById("quantidade").value
+                        };
+
+                        let estoque = JSON.parse(localStorage.getItem("estoque")) || [];
+                        estoque.push(item);
+                        localStorage.setItem("estoque", JSON.stringify(estoque));
+
+                        alert("Produto salvo no estoque!");
+                    });
+                </script>
 
             </main>
             

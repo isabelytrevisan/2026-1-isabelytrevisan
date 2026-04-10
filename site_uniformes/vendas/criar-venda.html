@@ -37,11 +37,11 @@
                     <div class="form-top">
                         <div class="field">
                         <label>Data</label>
-                        <input type="date" value="2020-04-28">
+                        <input type="date" value="2026-04-28">
                         </div>
 
                         <div class="field">
-                        <label>Número</label>
+                        <label>Código</label>
                         <input type="text">
                         </div>
                     </div>
@@ -51,6 +51,7 @@
                         <tr>
                             <th>Produto</th>
                             <th>Estoque</th>
+                            <th>Valor pago</th>
                             <th>Quantidade</th>
                             <th></th>
                         </tr>
@@ -58,7 +59,7 @@
                         <tbody>
                         <tr>
                             <td>
-                            <select> <!--arrumar os dados pra bater com os da lista-vendas-->
+                            <select> 
                                 <option>Camisa</option>
                                 <option>Regata</option>
                                 <option>Camiseta</option>
@@ -70,8 +71,7 @@
                             <input type="number">
                             </td>
                             <td>
-                            </button>
-                            <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
+                            <input type="number">
                             </td>
                         </tr>
                         </tbody>
@@ -85,26 +85,30 @@
 
                 <script>
                     document.querySelector(".btn-save").addEventListener("click", function() {
-                        
-                        let cliente = prompt("Nome do cliente:");
-                        let valor = prompt("Valor pago:");
+
                         let data = document.querySelector('input[type="date"]').value;
+                        let codigo = document.querySelectorAll("input[type='text']")[0].value;
+                        let produto = document.querySelector("select").value;
+                        let valor = document.querySelectorAll("input[type='number']")[0].value;
+                        let quantidade = document.querySelectorAll("input[type='number']")[1].value;
+                        let estoque = document.querySelector("td:nth-child(2)").innerText;
 
                         let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
 
                         let novaVenda = {
                             id: Date.now(),
-                            cliente: cliente,
+                            codigo: codigo,
+                            produto: produto,
+                            estoque: estoque,
                             valor: valor,
+                            quantidade: quantidade,
                             data: data
                         };
 
                         vendas.push(novaVenda);
-
                         localStorage.setItem("vendas", JSON.stringify(vendas));
 
                         alert("Venda registrada com sucesso!");
-
                     });
                 </script>
 

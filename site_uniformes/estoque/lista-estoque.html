@@ -31,11 +31,63 @@
             </aside>
 
             <main class="conteudo">
+                <section class="inputs">
 
+                </section>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Produto</th>
+                            <th>Tamanho</th>
+                            <th>Cor</th>
+                            <th>Quantidade</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-estoque">
+                        <tr><td>23</td><td>Rufo Scrimgeour</td><td>297,00</td><td>23/03/2026</td><td><button class="botao-editar"><i class="fas fa-edit"></i></button>
+                        <button class="botao-deletar"><i class="fa-solid fa-trash"></i></button></td></tr>
+                    </tbody>
+                </table>
             </main>
-            
-        </main>
+        </div>
 
-        
-    </body>
+        <script>
+            function carregarEstoque() {
+                let estoque = JSON.parse(localStorage.getItem("estoque")) || [];
+                let tabela = document.getElementById("tabela-estoque");
+
+                tabela.innerHTML = "";
+
+                estoque.forEach(item => {
+                    let linha = `
+                    <tr>
+                        <td>${item.codigo}</td>
+                        <td>${item.produto}</td>
+                        <td>${item.tamanho}</td>
+                        <td>${item.cor}</td>
+                        <td>${item.quantidade}</td>
+                        <td>${item.data}</td>
+                        <td>
+                            <button onclick="deletar(${item.id})">🗑️</button>
+                        </td>
+                    </tr>
+                    `;
+                    tabela.innerHTML += linha;
+                });
+            }
+
+            function deletar(id) {
+                let estoque = JSON.parse(localStorage.getItem("estoque")) || [];
+                estoque = estoque.filter(item => item.id !== id);
+                localStorage.setItem("estoque", JSON.stringify(estoque));
+                carregarEstoque();
+            }
+
+            window.onload = carregarEstoque;
+        </script>
+
+</body>
 </html>
