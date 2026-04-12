@@ -1,3 +1,4 @@
+Lista estoque :
 <?php
 include(__DIR__ . "/../conexao.php");
 
@@ -25,8 +26,8 @@ $resultado = mysqli_query($conexao, $sql);
         <nav>
             <ul>
                 <li><a href="../index.html">Início</a></li>
-                <li><a href="../estoque/criar-estoque.php">Cadastro de estoque</a></li>
-                <li><a href="../estoque/lista-estoque.php">Lista de estoque</a></li>
+                <li><a href="criar-estoque.php">Cadastro de estoque</a></li>
+                <li><a href="lista-estoque.php">Lista de estoque</a></li>
             </ul>
         </nav>
     </aside>
@@ -69,6 +70,7 @@ $resultado = mysqli_query($conexao, $sql);
         </table>
 
     </main>
+
 </div>
 
 </body>

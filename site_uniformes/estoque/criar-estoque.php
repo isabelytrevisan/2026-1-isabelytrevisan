@@ -1,5 +1,5 @@
 <?php
-include("../conexao.php");
+include(__DIR__ . "/../conexao.php");
 
 $msg = "";
 
@@ -43,40 +43,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav>
             <ul>
                 <li><a href="../index.html">Início</a></li>
-                <li><a href="../estoque/criar-estoque.php">Cadastro de estoque</a></li>
-                <li><a href="../estoque/lista-estoque.php">Lista de estoque</a></li>
+                <li><a href="criar-estoque.php">Cadastro de estoque</a></li>
+                <li><a href="lista-estoque.php">Lista de estoque</a></li>
             </ul>
         </nav>
     </aside>
 
-<main class="conteudo">
+    <main class="conteudo">
 
-<h2>Cadastro de Estoque</h2>
+        <h2>Cadastro de Estoque</h2>
 
-<p><?= $msg ?></p>
+        <?php if ($msg != "") { ?>
+            <p><?= $msg ?></p>
+        <?php } ?>
 
-<form method="POST">
-    <input type="date" name="data" required>
-    <input type="text" name="codigo" placeholder="Código" required>
+        <form method="POST">
+            <input type="date" name="data" required>
+            <input type="text" name="codigo" placeholder="Código" required>
 
-    <select name="produto">
-        <option>Camisa</option>
-        <option>Camiseta</option>
-        <option>Regata</option>
-        <option>Baby look</option>
-    </select>
+            <select name="produto">
+                <option>Camisa</option>
+                <option>Camiseta</option>
+                <option>Regata</option>
+                <option>Baby look</option>
+            </select>
 
-    <input type="text" name="tamanho" placeholder="Tamanho" required>
-    <input type="text" name="cor" placeholder="Cor" required>
-    <input type="number" name="quantidade" placeholder="Qtd" required>
+            <input type="text" name="tamanho" placeholder="Tamanho" required>
+            <input type="text" name="cor" placeholder="Cor" required>
+            <input type="number" name="quantidade" placeholder="Qtd" required>
 
-    <button class="botao-adicionar" type="submit">Salvar</button>
-</form>
+            <button class="botao-adicionar" type="submit">Salvar</button>
+        </form>
 
-<br>
-<a href="lista-estoque.php">Ver estoque</a>
+    </main>
 
-</main>
 </div>
 
 </body>
