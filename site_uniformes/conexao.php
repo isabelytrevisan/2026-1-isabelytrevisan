@@ -7,6 +7,8 @@ $banco = "uniformes";
 $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 
 if (!$conexao) {
-    die("Erro na conexão: " . mysqli_connect_error());
+    die("Falha na conexão.");
 }
+
+mysqli_set_charset($conexao, "utf8");
 ?>

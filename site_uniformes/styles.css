@@ -274,20 +274,20 @@ header h1 {
 }
 
 .botao-adicionar {
-    padding: 15px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    border-radius: 50px;
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 10px;
     background: linear-gradient(130deg, #573dff, rgb(144, 65, 155));
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transition: 0.3s ease;
-    margin: 10px auto;
     color: white;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+    transition: all 0.25s ease;
 }
 
 .botao-adicionar:hover {
     cursor: pointer;
-    transform: scale(1.05);
-
+    transform: scale(1.06);
+    opacity: 0.9;
 }
