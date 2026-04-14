@@ -1,183 +1,225 @@
-/*CSS do index*/
+/* ESTILO: CORES & PADRÕES 
+   Estética: Orgânica, Artesanal e Elegante
+*/
+
+/* 1. IMPORTAÇÃO DE FONTES (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap');
+
+/* 2. VARIÁVEIS DE CORES (Extraídas da Logo) */
+:root {
+    --cor-primaria: #4b5320;      /* Verde oliva profundo das folhas */
+    --cor-secundaria: #7b4fb6;    /* Roxo floral das pétalas */
+    --cor-fundo: #ddddc7;         /* Off-white estilo papel/tecido */
+    --cor-menu: #4b5320;          /*#dadad0;   Creme suave para o menu lateral */
+    --cor-texto: #1a1a1a;         /* Cinza quase preto para legibilidade */
+    --cor-texto-claro: #ffffff;
+    --transicao: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* 3. RESET E ESTRUTURA GLOBAL */
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-html, body {
-    height: 100%;
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    line-height: 1.6;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* MENU HORIZONTAL */
-.menu-topo ul {
-    list-style: none;
-    padding-left: 30px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.menu-topo a {
-    text-decoration: none;
-    color: white;
-    background-color: rgb(128, 128, 128);
-    padding: 8px 14px;
-    border-radius: 4px;
-    transition: 0.3s;
-    font-size: 14px;
-}
-
-.menu-topo a:hover {
-    background-color: white;
-    color: black;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
+/* 4. HEADER (Mais limpo e editorial) */
 header {
-  text-align: center;
-  padding: 20px;
-  background-color: #f5f5f5;
-}
-
-.logo {
-  width: 200px; /* ajusta o tamanho */
-  height: auto;
-}
-
-.logo {
-  width: 500px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-/*CSS do caixa */
-
-/*CSS dos clientes */
-
-/******CSS do estoque***********************/
-.botao-adicionar {
-    display: inline-block;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 10px;
-    background: linear-gradient(130deg, #573dff, rgb(144, 65, 155));
-    color: white;
-    text-decoration: none;
+    background: rgb(210, 188, 236);
+    color: var(--cor-primaria);
+    padding: 2.5rem 1rem;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
-    transition: all 0.25s ease;
-}
-
-.botao-adicionar:hover {
-    cursor: pointer;
-    transform: scale(1.06);
-    opacity: 0.9;
-}
-
-input, select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-header {
-    color: #fff;
-    background: linear-gradient(135deg, #363d0c);
-    text-align: center;
-    padding: 1rem;
-    letter-spacing: 1px;
+    border-bottom: 2px solid var(--cor-primaria);
 }
 
 header h1 {
-    font-size: 24pt;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+
 }
 
+.logo {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    margin-top: 15px;
+    transition: transform var(--transicao);
+}
+
+.logo:hover {
+    transform: scale(1.03);
+}
+
+/* 5. LAYOUT PRINCIPAL */
 .main {
     display: flex;
-    flex: 1;           
-    min-height: 100vh;    
-    background-color: #f9eec3;
+    flex: 1;
 }
 
+/* 6. MENU LATERAL (Estilo Ateliê) */
 .menu-aside {
-    background-color: #596031;
-    padding: 2rem;
-    width: 260px;
+    background-color: var(--cor-menu);
+    width: 280px;
+    padding: 3rem 1.5rem;
     display: flex;
     flex-direction: column;
-    line-height: 3rem;
-}
-
-.menu-aside a {
-    text-decoration: none;
-    color: #f4f4f4;
-    margin-left: 12px;
-    padding: 10px;
-    border-radius: 4px;
-    transition: 0.3s;
-}
-
-.menu-aside a:hover {
-    font-weight: 300;
-    color: black;
-    background-color: #e0e0e0;
+    border-right: 1px solid #e0e0d0;
 }
 
 .menu-aside ul {
     list-style: none;
-    padding: 0;
 }
 
+.menu-aside li {
+    margin-bottom: 12px;
+}
+
+.menu-aside a {
+    text-decoration: none;
+    color: white;
+    background-color: #707554;
+    padding: 12px 18px;
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid transparent;
+    transition: var(--transicao);
+    border-left: 3px solid var(--cor-secundaria);
+}
+
+.menu-aside a:hover {
+    background-color: white;
+    color: var(--cor-secundaria);
+    border-left: 3px solid var(--cor-secundaria);
+    transform: translateX(5px);
+}
+
+/* 7. ÁREA DE CONTEÚDO */
 .conteudo {
     flex: 1;
-    padding: 2rem;
+    padding: 3rem;
 }
 
-.tabela {
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* Linha decorativa abaixo do título */
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: var(--cor-secundaria);
+    margin: 10px auto 0;
+}
+
+/* 8. BOTÕES (Sólidos e Elegantes) */
+.botao-adicionar {
+    display: inline-block;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 2px; /* Bordas retas passam*/
+}
+    /* --- AJUSTES NO HEADER --- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #d2bcec; /* O roxo claro que você escolheu */
+}
+
+.header-logo {
+    max-width: 80px; /* Ajuste o tamanho conforme sua logo */
+    height: auto;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));
+}
+
+header h1 {
+    font-size: 1.8rem; /* Reduzi um pouco para dar destaque à logo */
+    margin-bottom: 10px;
+}
+
+/* --- MOLDURAS CIRCULARES --- */
+.galeria-uniformes {
+    display: flex;
+    flex-direction: row; /* Força a ficarem lado a lado */
+    justify-content: center; /* Centraliza o grupo no meio da tela */
+    flex-wrap: wrap; /* Se a tela for pequena (celular), eles pulam linha automaticamente */
+    gap: 20px; /* Espaço entre os círculos */
+    margin-top: 40px;
+}
+
+.moldura-circular {
+    width: 250px;  /* Reduzi para caberem os 4 confortavelmente */
+    height: 250px; 
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white; 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.moldura-circular:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+    border-color: var(--cor-secundaria); /* Muda a cor da borda no hover */
+}
+
+.moldura-circular img {
     width: 100%;
-    border-collapse: collapse;
-    background-color: #FFF0F5;
+    height: 100%;
+    object-fit: cover; /* Garante que a foto preencha o círculo sem esticar */
 }
 
-.tabela th,
-.tabela td {
-    border: 1px solid #999;
-    padding: 10px;
-    text-align: center;
+/* --- AJUSTE DA LOGO NO HEADER --- */
+.header-logo {
+    width: 100px;           /* Tamanho um pouco maior para destaque */
+    height: 100px;          /* Altura igual à largura para ser um círculo perfeito */
+    object-fit: cover;      /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 50%;     /* Deixa a logo circular */
+    border: 3px solid white;/* Uma bordinha branca para destacar do roxo */
+    background-color: white;/* Garante fundo branco se a imagem for transparente */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave para dar profundidade */
+    margin-bottom: 5px;     /* Espaço entre a imagem e o texto 'Cores & Padrões' */
+    transition: transform var(--transicao);
 }
 
-
-.tabela th {
-    background-color: #7a44ad;
-    color: white;
+.header-logo:hover {
+    transform: scale(1.1);  /* Efeito de zoom sutil ao passar o mouse */
 }
 
-/*CSS dos funcionarios*/
-
-/*CSS dos logins*/
-
-
-/*********CSS das vendas**********************/
+/* Ajuste opcional no Header para centralizar tudo melhor */
+header {
+    padding: 1.5rem 1rem;   /* Reduzi um pouco o padding para não ocupar tanto espaço vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
