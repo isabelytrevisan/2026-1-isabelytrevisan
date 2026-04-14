@@ -2,7 +2,7 @@
 include(__DIR__ . "/../conexao.php");
 
 $produtos = mysqli_query($conexao, "SELECT * FROM estoque WHERE quantidade > 0");
-?>
+
 $msg = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
