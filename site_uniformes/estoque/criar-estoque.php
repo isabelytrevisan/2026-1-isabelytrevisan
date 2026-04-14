@@ -5,15 +5,14 @@ $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $data = $_POST["data"];
-    $codigo = $_POST["codigo"];
-    $produto = $_POST["produto"];
-    $tamanho = $_POST["tamanho"];
-    $cor = $_POST["cor"];
+    $nomeProduto = $_POST["nomeProduto"];
     $quantidade = $_POST["quantidade"];
+    $valor_unitario = $_POST["valor_unitario"];
+    $data_compra = $_POST["data_compra"];
+    $data_prox_compra = $_POST["data_prox_compra"];
 
-    $sql = "INSERT INTO estoque (data, codigo, produto, tamanho, cor, quantidade)
-            VALUES ('$data', '$codigo', '$produto', '$tamanho', '$cor', '$quantidade')";
+    $sql = "INSERT INTO estoque (nomeProduto, quantidade, valor_unitario, data_compra, data_prox_compra)
+            VALUES ('$nomeProduto', '$quantidade', '$valor_unitario', '$data_compra', '$data_prox_compra')";
 
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Produto cadastrado com sucesso!";
@@ -54,24 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h2>Cadastro de Estoque</h2>
 
-        <?php if ($msg != "") { ?>
+        <?php if ($msg != "")?>
             <p><?= $msg ?></p>
-        <?php } ?>
+        <?php?>
 
         <form method="POST">
-            <input type="date" name="data" required>
-            <input type="text" name="codigo" placeholder="Código" required>
+            <input type="text" name="nomeProduto" placeholder="Nome do Produto" required>
+            <input type="number" name="quantidade" placeholder="Quantidade" required>
 
-            <select name="produto">
-                <option>Camisa</option>
-                <option>Camiseta</option>
-                <option>Regata</option>
-                <option>Baby look</option>
-            </select>
-
-            <input type="text" name="tamanho" placeholder="Tamanho" required>
-            <input type="text" name="cor" placeholder="Cor" required>
-            <input type="number" name="quantidade" placeholder="Qtd" required>
+            <input type="number" name="valor_unitario" placeholder="Valor Unitário" required>
+            <input type="date" name="data_compra" placeholder="Data Última Compra" required>
+            <input type="date" name="data_prox_compra" placeholder="Data Próxima Compra" required>
 
             <button class="botao-adicionar" type="submit">Salvar</button>
         </form>

@@ -1,34 +1,27 @@
 <?php
 include(__DIR__ . "/../conexao.php");
 
-$produtos = mysqli_query($conexao, "SELECT * FROM estoque WHERE quantidade > 0");
-
 $msg = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $id_estoque = $_POST['id_estoque'];
-    $qtd = $_POST['quantidade_vendida'];
+    $Cliente_idCliente = $_POST["Cliente_idCliente"];
+    $ident_produto = $_POST["ident_produto"];
+    $venda_data = $_POST["venda_data"];
+    $valor = $_POST["valor"];
+    $forma_pag = $_POST["forma_pag"];
+    $quantidade = $_POST["quantidade"];
+    $desconto = $_POST["desconto"];
 
-    // Pega dados do produto escolhido
-    $busca = mysqli_query($conexao, "SELECT * FROM estoque WHERE id = $id_estoque");
-    $produto = mysqli_fetch_assoc($busca);
 
-    // Salva na tabela vendas
-    mysqli_query($conexao, "INSERT INTO vendas 
-        (data_venda, codigo, produto, tamanho, cor, quantidade_vendida)
-        VALUES (NOW(),
-        '{$produto['codigo']}',
-        '{$produto['produto']}',
-        '{$produto['tamanho']}',
-        '{$produto['cor']}',
-        '$qtd'
-    )");
+    $sql = "INSERT INTO estoque (Cliente_idCliente, ident_produto, venda_data, valor, forma_pag, quantidade, desconto)
+            VALUES ('$Cliente_idCliente', '$ident_produto', '$venda_data', '$valor', '$forma_pag', 'quantidade', 'desconto')";
 
-    // Dá baixa no estoque
-    mysqli_query($conexao, "UPDATE estoque 
-        SET quantidade = quantidade - $qtd 
-        WHERE id = $id_estoque");
+    if (mysqli_query($conexao, $sql)) {
+        $msg = "✔ Produto cadastrado com sucesso!";
+    } else {
+        $msg = "✖ Erro ao salvar.";
+    }
 }
 ?>
 
@@ -36,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro Venda</title>
+<title>Cadastro Vendas</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -61,32 +54,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <main class="conteudo">
 
-        <h2>Cadastro de Venda</h2>
+        <h2>Cadastro de Vendas</h2>
 
-        <?php if ($msg != "") { ?>
+        <?php if ($msg != "")?>
             <p><?= $msg ?></p>
-        <?php } ?>
+        <?php?>
 
         <form method="POST">
-
-            <input type="date" name="data" required>
-            <input type="text" name="codigo" placeholder="Código" required>
-            <input type="text" name="nomeCliente" placeholder="Nome do Cliente" required>
-            <label>Produto</label>
-            <select name="id_estoque" required>
-                <option value="">Selecione um produto</option>
-
-                <?php while($p = mysqli_fetch_assoc($produtos)) { ?>
-                    <option value="<?= $p['id'] ?>">
-                        <?= $p['codigo'] ?> - <?= $p['produto'] ?> - <?= $p['tamanho'] ?> - <?= $p['cor'] ?> (<?= $p['quantidade'] ?> em estoque)
-                    </option>
-                <?php } ?>
-
+            <!-- arrumar -->
+            <input type="text" name="Cliente_idCliente" placeholder="Nome do Produto" required>
+            <input type="number" name="ident_produto" placeholder="Quantidade" required>
+            <input type="number" name="venda_data" placeholder="Valor Unitário" required>
+            <input type="date" name="valor" placeholder="Data Última Compra" required>
+            <select name="forma_pag">
+                <option value=1>Cartão de Crédito</option>
+                <option value=2>Débito</option>
+                <option value=3>PIX</option>
+                <option value=4>Boleto</option>
             </select>
+            <input type="date" name="quantidade" placeholder="Quantidade" required>
+            <input type="date" name="desconto" placeholder="Desconto" required>
 
-            <input type="number" name="quantidade_vendida" placeholder="Quantidade" required>
-
-            <button type="submit" class="botao-adicionar">Vender</button>
+            <button class="botao-adicionar" type="submit">Salvar</button>
         </form>
 
     </main>

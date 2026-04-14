@@ -1,7 +1,7 @@
 <?php
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM estoque ORDER BY idEstoque ASC";
+$sql = "SELECT * FROM vendas ORDER BY idVendas ASC";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -43,23 +43,27 @@ $resultado = mysqli_query($conexao, $sql);
         <table class="tabela">
             <tr>
                 <th>Id</th>
-                <th>Produto</th>
+                <th>Cliente</th>
+                <th>Id. Produto</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Forma Pag.</th>
                 <th>Quantidade</th>
-                <th>Valor Unit.</th>
-                <th>Data Última Compra</th>
-                <th>Data Próxima Compra</th>
+                <th>Desconto</th>
             </tr>
 
             <?php
             if (mysqli_num_rows($resultado) > 0) {
                 while ($item = mysqli_fetch_assoc($resultado)) {
                     echo "<tr>
-                        <td>{$item['idEstoque']}</td>
-                        <td>{$item['nomeProduto']}</td>
+                        <td>{$item['idVendas']}</td>
+                        <td>{$item['Cliente_idCliente']}</td>
+                        <td>{$item['ident_produto']}</td>
+                        <td>{$item['venda_data']}</td>
+                        <td>{$item['valor']}</td>
+                        <td>{$item['forma_pag']}</td>
                         <td>{$item['quantidade']}</td>
-                        <td>{$item['valor_unitario']}</td>
-                        <td>{$item['data_compra']}</td>
-                        <td>{$item['data_prox_compra']}</td>
+                        <td>{$item['desconto']}</td>
                     </tr>";
                 }
             } else {
