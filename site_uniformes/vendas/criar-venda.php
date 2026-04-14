@@ -51,9 +51,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <aside class="menu-aside">
         <nav>
             <ul>
-                <li><a href="../index.html">Início</a></li>
-                <li><a href="criar-estoque.php">Cadastro de estoque</a></li>
-                <li><a href="lista-estoque.php">Lista de estoque</a></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="estoque/criar-estoque.php">Cadastro de estoque</a></li>
+                <li><a href="estoque/lista-estoque.php">Lista de estoque</a></li>
+                <li><a href="vendas/criar-venda.php">Cadastro de vendas</a></li>
             </ul>
         </nav>
     </aside>
