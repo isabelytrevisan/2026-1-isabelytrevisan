@@ -1,4 +1,3 @@
-Lista estoque :
 <?php
 include(__DIR__ . "/../conexao.php");
 
