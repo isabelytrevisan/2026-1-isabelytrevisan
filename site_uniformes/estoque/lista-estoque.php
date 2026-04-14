@@ -10,7 +10,7 @@ $resultado = mysqli_query($conexao, $sql);
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Lista Estoque</title>
+<title></title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 
