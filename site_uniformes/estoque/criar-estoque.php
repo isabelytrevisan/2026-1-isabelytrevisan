@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <?php if ($msg != "")?>
             <p><?= $msg ?></p>
-        <?php?>
+        php?>
 
         <form method="POST">
             <input type="text" name="nomeProduto" placeholder="Nome do Produto" required>
