@@ -54,6 +54,7 @@ CREATE TABLE Vendas (
   desconto INTEGER UNSIGNED NULL,
   PRIMARY KEY(idVendas),
   INDEX Vendas_FKIndex1(Cliente_idCliente)
+  FOREIGN KEY (idEstoque) REFERENCES Estoque(idEstoque)
 );
 
 

@@ -1,26 +1,39 @@
 <?php
 include(__DIR__ . "/../conexao.php");
 
+$sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
+$produtos = mysqli_query($conexao, $sql_produtos);
+
 $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $Cliente_idCliente = $_POST["Cliente_idCliente"];
-    $ident_produto = $_POST["ident_produto"];
+    $idEstoque = $_POST["idEstoque"];
     $venda_data = $_POST["venda_data"];
     $valor = $_POST["valor"];
     $forma_pag = $_POST["forma_pag"];
     $quantidade = $_POST["quantidade"];
     $desconto = $_POST["desconto"];
 
+    // 1) Salva a venda
+    $sql_venda = "INSERT INTO Vendas (idEstoque, venda_data, quantidade, valor, forma_pag, desconto)
+                  VALUES ('$idEstoque', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
 
-    $sql = "INSERT INTO estoque (Cliente_idCliente, ident_produto, venda_data, valor, forma_pag, quantidade, desconto)
-            VALUES ('$Cliente_idCliente', '$ident_produto', '$venda_data', '$valor', '$forma_pag', 'quantidade', 'desconto')";
+    if (mysqli_query($conexao, $sql_venda)) {
 
-    if (mysqli_query($conexao, $sql)) {
-        $msg = "✔ Produto cadastrado com sucesso!";
+        // 2) Dá baixa no estoque
+        $sql_estoque = "UPDATE Estoque
+                        SET quantidade = quantidade - $quantidade
+                        WHERE idEstoque = $idEstoque";
+
+        mysqli_query($conexao, $sql_estoque);
+
+        $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
+        $produtos = mysqli_query($conexao, $sql_produtos);
+
+        $msg = "✔ Venda registrada e estoque atualizado!";
     } else {
-        $msg = "✖ Erro ao salvar.";
+        $msg = "✖ Erro ao salvar venda.";
     }
 }
 ?>
@@ -56,26 +69,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h2>Cadastro de Vendas</h2>
 
-        <?php if ($msg != "")?>
+        <?php if ($msg != "") { ?>
             <p><?= $msg ?></p>
-        <?php?>
+        <?php } ?>
 
         <form method="POST">
-            <!-- arrumar -->
-            <input type="text" name="Cliente_idCliente" placeholder="Nome do Produto" required>
-            <input type="number" name="ident_produto" placeholder="Quantidade" required>
-            <input type="number" name="venda_data" placeholder="Valor Unitário" required>
-            <input type="date" name="valor" placeholder="Data Última Compra" required>
+
+            <label>Produto:</label>
+            <select name="idEstoque" required>
+                <?php while($p = mysqli_fetch_assoc($produtos)) { ?>
+                    <option value="<?= $p['idEstoque'] ?>">
+                        <?= $p['nomeProduto'] ?> (<?= $p['quantidade'] ?> em estoque)
+                    </option>
+                <?php } ?>
+            </select>
+
+            <input type="number" name="quantidade" placeholder="Quantidade vendida" required>
+
+            <input type="date" name="venda_data" required>
+
+            <input type="number" step="0.01" name="valor" placeholder="Valor total" required>
+
             <select name="forma_pag">
                 <option value=1>Cartão de Crédito</option>
                 <option value=2>Débito</option>
                 <option value=3>PIX</option>
                 <option value=4>Boleto</option>
             </select>
-            <input type="date" name="quantidade" placeholder="Quantidade" required>
-            <input type="date" name="desconto" placeholder="Desconto" required>
+
+            <input type="number" name="desconto" placeholder="Desconto">
 
             <button class="botao-adicionar" type="submit">Salvar</button>
+
         </form>
 
     </main>
