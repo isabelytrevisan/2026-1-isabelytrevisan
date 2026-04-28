@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
 
+    $sql = "INSERT INTO funcionario (nome, carga_horaria, cpf, data_nasc, endereco, email, telefone)
+            VALUES ('$nome', '$carga_horaria', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone')";
+
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Funcionário cadastrado com sucesso!";
     } else {
