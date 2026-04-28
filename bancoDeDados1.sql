@@ -43,17 +43,17 @@ CREATE TABLE Logins (
   PRIMARY KEY(idLogins)
 );
 
+DROP TABLE Vendas;
+
 CREATE TABLE Vendas (
   idVendas INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  Cliente_idCliente INTEGER UNSIGNED NOT NULL,
-  ident_produto VARCHAR(50) NULL,
-  venda_data DATE NULL,
-  valor REAL NULL,
-  forma_pag INTEGER UNSIGNED NULL,
-  quantidade INTEGER UNSIGNED NULL,
+  idEstoque INTEGER UNSIGNED NOT NULL,
+  venda_data DATE NOT NULL,
+  quantidade INTEGER UNSIGNED NOT NULL,
+  valor REAL NOT NULL,
+  forma_pag INTEGER UNSIGNED NOT NULL,
   desconto INTEGER UNSIGNED NULL,
   PRIMARY KEY(idVendas),
-  INDEX Vendas_FKIndex1(Cliente_idCliente)
   FOREIGN KEY (idEstoque) REFERENCES Estoque(idEstoque)
 );
 
