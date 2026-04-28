@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql_venda = "INSERT INTO Vendas (idEstoque, venda_data, quantidade, valor, forma_pag, desconto)
                   VALUES ('$idEstoque', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
 
-    if (mysqli_query($conexao, $sql_vendas)) {
+    if (mysqli_query($conexao, $sql_venda)) {
 
         $sql_estoque = "UPDATE Estoque
                         SET quantidade = quantidade - $quantidade
