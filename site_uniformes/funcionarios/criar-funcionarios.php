@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="POST">
             <input type="text" name="nome" placeholder="Nome" required>
-            <input type="date time" name="carga_horaria" placeholder="Carga horaria" required>
+            <input type="datetime" name="carga_horaria" placeholder="Carga horaria" required>
             <input type="number" name="cpf" placeholder="CPF" required>
             <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
             <input type="text" name="endereco" placeholder="Endereço" required>
