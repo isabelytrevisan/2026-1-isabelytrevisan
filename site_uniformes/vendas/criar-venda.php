@@ -14,17 +14,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $forma_pag = $_POST["forma_pag"];
     $quantidade = $_POST["quantidade"];
     $desconto = $_POST["desconto"];
+    $Cliente_idCliente = $_POST["Cliente_idCliente"];
 
     // 1) Salva a venda
     $sql_venda = "INSERT INTO Vendas (idEstoque, venda_data, quantidade, valor, forma_pag, desconto)
-                  VALUES ('$idEstoque', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
+                  VALUES ('$idEstoque', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto', '$Cliente_idCliente')";
 
     if (mysqli_query($conexao, $sql_venda)) {
 
         // 2) Dá baixa no estoque
         $sql_estoque = "UPDATE Estoque
                         SET quantidade = quantidade - $quantidade
-                        WHERE idEstoque = $idEstoque";
+                        WHERE idEstoque = $idEstoque
+                        AND Cliente_idCliente = $Cliente_idCliente";
 
         mysqli_query($conexao, $sql_estoque);
 
@@ -61,6 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="../estoque/criar-estoque.php">Cadastro de estoque</a></li>
                 <li><a href="../estoque/lista-estoque.php">Lista de estoque</a></li>
                 <li><a href="../vendas/criar-venda.php">Cadastro de vendas</a></li>
+                <li><a href="../vendas/lista-vendas.php">Lista de vendas</a></li>
+                <li><a href="../clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                <li><a href="../clientes/lista-clientes.php">Lista de clientes</a></li>
             </ul>
         </nav>
     </aside>
@@ -98,6 +103,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
 
             <input type="number" name="desconto" placeholder="Desconto">
+
+            <label>Cliente:</label>
+            <select name="Cliente_idCliente" required>
+                <?php while($p = mysqli_fetch_assoc($produtos)) { ?>
+                    <option value="<?= $p['Cliente_idCliente'] ?>">
+                        <?= $p['nome'] ?>
+                    </option>
+                <?php } ?>
+            </select>
 
             <button class="botao-adicionar" type="submit">Salvar</button>
 

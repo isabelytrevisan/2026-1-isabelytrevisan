@@ -28,6 +28,9 @@ $resultado = mysqli_query($conexao, $sql);
                 <li><a href="../estoque/criar-estoque.php">Cadastro de estoque</a></li>
                 <li><a href="../estoque/lista-estoque.php">Lista de estoque</a></li>
                 <li><a href="../vendas/criar-venda.php">Cadastro de vendas</a></li>
+                <li><a href="../vendas/lista-vendas.php">Lista de vendas</a></li>
+                <li><a href="../clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                <li><a href="../clientes/lista-clientes.php">Lista de clientes</a></li>
             </ul>
         </nav>
     </aside>

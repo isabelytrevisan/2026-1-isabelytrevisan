@@ -5,14 +5,17 @@ $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nomeProduto = $_POST["nomeProduto"];
-    $quantidade = $_POST["quantidade"];
-    $valor_unitario = $_POST["valor_unitario"];
-    $data_compra = $_POST["data_compra"];
-    $data_prox_compra = $_POST["data_prox_compra"];
+    $nome = $_POST["nome"];
+    $cpf = $_POST["cpf"];
+    $data_nasc = $_POST["data_nasc"];
+    $endereco = $_POST["endereco"];
+    $email = $_POST["email"];
+    $telefone = $_POST["telefone"];
+    $tipo_acesso = $_POST[1];
+    $login = $_POST["login"];
 
-    $sql = "INSERT INTO estoque (nomeProduto, quantidade, valor_unitario, data_compra, data_prox_compra)
-            VALUES ('$nomeProduto', '$quantidade', '$valor_unitario', '$data_compra', '$data_prox_compra')";
+    $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login)
+            VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login')";
 
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Produto cadastrado com sucesso!";
@@ -26,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro Estoque</title>
+<title>Cadastro de Cliente</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -54,18 +57,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="conteudo">
 
-        <h2>Cadastro de Estoque</h2>
+        <h2>Cadastro de Cliente</h2>
 
         <?php if ($msg != "")?>
             <p><?= $msg ?></p>
 
         <form method="POST">
-            <input type="text" name="nomeProduto" placeholder="Nome do Produto" required>
-            <input type="number" name="quantidade" placeholder="Quantidade" required>
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="cpf" placeholder="CPF" required>
 
-            <input type="number" name="valor_unitario" placeholder="Valor Unitário" required>
-            <input type="date" name="data_compra" placeholder="Data Última Compra" required>
-            <input type="date" name="data_prox_compra" placeholder="Data Próxima Compra" required>
+            <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
+            <input type="text" name="endereco" placeholder="Endereço" required>
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="login" placeholder="Login" required>
 
             <button class="botao-adicionar" type="submit">Salvar</button>
         </form>
