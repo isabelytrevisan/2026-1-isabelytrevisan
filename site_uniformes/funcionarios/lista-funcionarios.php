@@ -58,7 +58,7 @@ $resultado = mysqli_query($conexao, $sql);
             if (mysqli_num_rows($resultado) > 0) {
                 while ($item = mysqli_fetch_assoc($resultado)) {
                     echo "<tr>
-                        <td>{$item['idFuncionarios']}</td>
+                        <td>{$item['idFuncionario']}</td>
                         <td>{$item['nome']}</td>
                         <td>{$item['carga_horaria']}</td>
                         <td>{$item['cpf']}</td>
