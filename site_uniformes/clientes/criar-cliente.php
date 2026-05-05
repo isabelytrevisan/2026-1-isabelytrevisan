@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
-    $tipo_acesso = $_POST[1];
+    $tipo_acesso = 1;
     $login = $_POST["login"];
 
     $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login)
             VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login')";
 
     if (mysqli_query($conexao, $sql)) {
-        $msg = "✔ Produto cadastrado com sucesso!";
+        $msg = "✔ Cliente cadastrado com sucesso!";
     } else {
         $msg = "✖ Erro ao salvar.";
     }
