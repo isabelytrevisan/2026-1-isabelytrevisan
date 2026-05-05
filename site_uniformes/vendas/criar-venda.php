@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><?= $msg ?></p>
         <?php } ?>
 
-        <form method="POST">
+        <form method="POST" class="form-clean">
 
             <label>Produto:</label>
             <select name="idEstoque" required>

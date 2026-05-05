@@ -64,7 +64,6 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "<tr>
                         <td>{$item['idVendas']}</td>
                         <td>{$item['Cliente_idCliente']}</td>
-                        <td>{$item['ident_produto']}</td>
                         <td>{$item['venda_data']}</td>
                         <td>{$item['valor']}</td>
                         <td>{$item['forma_pag']}</td>
