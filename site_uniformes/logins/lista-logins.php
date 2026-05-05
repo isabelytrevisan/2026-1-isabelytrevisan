@@ -1,7 +1,6 @@
 <?php
 include(__DIR__ . "/../conexao.php");
-
-$sql = "SELECT * FROM vendas ORDER BY idVendas ASC";
+$sql = "SELECT * FROM cliente ORDER BY idCliente asc";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -9,7 +8,7 @@ $resultado = mysqli_query($conexao, $sql);
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Lista de Clientes</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -40,39 +39,26 @@ $resultado = mysqli_query($conexao, $sql);
 
     <main class="conteudo">
 
-        <h2>Lista de Estoque</h2>
-
-        <div style="margin-bottom: 15px;">
-            <a href="criar-estoque.php" class="botao-adicionar">+ Novo Produto</a>
-        </div>
+        <h2>Lista de Logins</h2>
 
         <table class="tabela">
             <tr>
                 <th>Id</th>
-                <th>Cliente</th>
-                <th>Id. Produto</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Forma Pag.</th>
-                <th>Quantidade</th>
-                <th>Desconto</th>
+                <th>Nome</th>
+                <th>Login</th>
             </tr>
 
             <?php
             if (mysqli_num_rows($resultado) > 0) {
                 while ($item = mysqli_fetch_assoc($resultado)) {
                     echo "<tr>
-                        <td>{$item['idVendas']}</td>
-                        <td>{$item['Cliente_idCliente']}</td>
-                        <td>{$item['venda_data']}</td>
-                        <td>{$item['valor']}</td>
-                        <td>{$item['forma_pag']}</td>
-                        <td>{$item['quantidade']}</td>
-                        <td>{$item['desconto']}</td>
+                        <td>{$item['idCliente']}</td>
+                        <td>{$item['nome']}</td>
+                        <td>{$item['login']}</td>
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>Nenhum produto cadastrado</td></tr>";
+                echo "<tr><td colspan='6'>Nenhum cliente cadastrado</td></tr>";
             }
             ?>
 

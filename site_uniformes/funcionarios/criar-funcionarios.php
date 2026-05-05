@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
             </ul>
         </nav>
     </aside>
@@ -63,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($msg != "")?>
             <p><?= $msg ?></p>
 
-        <form method="POST">
+        <form method="POST" class="form-clean">
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="time" name="carga_horaria" placeholder="Carga horaria" required>
             <input type="number" name="cpf" placeholder="CPF" required>

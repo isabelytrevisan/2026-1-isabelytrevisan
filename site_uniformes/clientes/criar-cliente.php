@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
-    $tipo_acesso = $_POST[1];
+    $tipo_acesso = 1;
     $login = $_POST["login"];
 
     $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login)
             VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login')";
 
     if (mysqli_query($conexao, $sql)) {
-        $msg = "✔ Produto cadastrado com sucesso!";
+        $msg = "✔ Cliente cadastrado com sucesso!";
     } else {
         $msg = "✖ Erro ao salvar.";
     }
@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
             </ul>
         </nav>
     </aside>
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($msg != "")?>
             <p><?= $msg ?></p>
 
-        <form method="POST">
+        <form method="POST" class="form-clean">
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="text" name="cpf" placeholder="CPF" required>
 
