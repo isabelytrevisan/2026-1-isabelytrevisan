@@ -1,35 +1,14 @@
 <?php
 include(__DIR__ . "/../conexao.php");
-
-$msg = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $nome = $_POST["nome"];
-    $cpf = $_POST["cpf"];
-    $data_nasc = $_POST["data_nasc"];
-    $endereco = $_POST["endereco"];
-    $email = $_POST["email"];
-    $telefone = $_POST["telefone"];
-    $tipo_acesso = $_POST[1];
-    $login = $_POST["login"];
-
-    $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login)
-            VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login')";
-
-    if (mysqli_query($conexao, $sql)) {
-        $msg = "✔ Produto cadastrado com sucesso!";
-    } else {
-        $msg = "✖ Erro ao salvar.";
-    }
-}
+$sql = "SELECT * FROM cliente ORDER BY idCliente asc";
+$resultado = mysqli_query($conexao, $sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de Cliente</title>
+<title>Lista de Clientes</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -60,23 +39,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="conteudo">
 
-        <h2>Cadastro de Cliente</h2>
+        <h2>Lista de Logins</h2>
 
-        <?php if ($msg != "")?>
-            <p><?= $msg ?></p>
+        <table class="tabela">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Login</th>
+            </tr>
 
-        <form method="POST">
-            <input type="text" name="nome" placeholder="Nome" required>
-            <input type="text" name="cpf" placeholder="CPF" required>
+            <?php
+            if (mysqli_num_rows($resultado) > 0) {
+                while ($item = mysqli_fetch_assoc($resultado)) {
+                    echo "<tr>
+                        <td>{$item['idCliente']}</td>
+                        <td>{$item['nome']}</td>
+                        <td>{$item['login']}</td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>Nenhum cliente cadastrado</td></tr>";
+            }
+            ?>
 
-            <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
-            <input type="text" name="endereco" placeholder="Endereço" required>
-            <input type="text" name="email" placeholder="Email" required>
-            <input type="text" name="telefone" placeholder="Telefone" required>
-            <input type="text" name="login" placeholder="Login" required>
-
-            <button class="botao-adicionar" type="submit">Salvar</button>
-        </form>
+        </table>
 
     </main>
 
