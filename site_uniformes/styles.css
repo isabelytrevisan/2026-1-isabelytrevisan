@@ -195,3 +195,32 @@ h2::after {
 }
 
 
+.login-box {
+    background: #aec59dbb;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+
+    width: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
