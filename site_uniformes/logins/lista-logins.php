@@ -1,22 +1,28 @@
+<?php
+include(__DIR__ . "/../conexao.php");
+$sql = "SELECT * FROM cliente ORDER BY idCliente asc";
+$resultado = mysqli_query($conexao, $sql);
+?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Site uniformes</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>Lista de Clientes</title>
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
 
-    <header>
-        <img src="img\logotp.png" class="header-logo" alt="Logo Cores & Padrões">
-        <h1>Cores & Padrões</h1>
-    </header>
-    
-    <div class="main">
-        <aside class="menu-aside">
-            <nav>
-                <ul>
+<header>
+    <h1>Sistema de Uniformes</h1>
+</header>
+
+<div class="main">
+
+    <aside class="menu-aside">
+        <nav>
+            <ul>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.html">Início</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
@@ -27,34 +33,40 @@
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
-                </ul>
-            </nav>
-        </aside>
-    
-        <main class="conteudo">
-            <h2>Bem-vindo ao sistema de uniformes</h2>
-            <p>A seguir exemplos de uniformes confeccionados pela loja:</p>
-    
-            <div class="galeria-uniformes">
-                <div class="moldura-circular">
-                    <img src="img/1.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/2.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/3.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/4.png" alt="Exemplo de Uniforme">
-                </div>
-            </div>
+            </ul>
+        </nav>
+    </aside>
 
-        </main>
-    </div>
+    <main class="conteudo">
+
+        <h2>Lista de Logins</h2>
+
+        <table class="tabela">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Login</th>
+            </tr>
+
+            <?php
+            if (mysqli_num_rows($resultado) > 0) {
+                while ($item = mysqli_fetch_assoc($resultado)) {
+                    echo "<tr>
+                        <td>{$item['idCliente']}</td>
+                        <td>{$item['nome']}</td>
+                        <td>{$item['login']}</td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>Nenhum cliente cadastrado</td></tr>";
+            }
+            ?>
+
+        </table>
+
+    </main>
+
+</div>
 
 </body>
 </html>
