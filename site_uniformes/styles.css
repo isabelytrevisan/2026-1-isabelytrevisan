@@ -223,3 +223,7 @@ header {
     align-items: center;
     justify-content: center;
 }
+
+.tabela{
+    border: 1px;
+}
