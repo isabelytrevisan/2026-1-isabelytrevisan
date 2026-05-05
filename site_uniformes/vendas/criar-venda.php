@@ -3,10 +3,13 @@ include(__DIR__ . "/../conexao.php");
 
 $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
 $produtos = mysqli_query($conexao, $sql_produtos);
+$sql_clientes = "SELECT idCliente, nome FROM cliente";
+$clientes = mysqli_query($conexao, $sql_clientes);
 
 $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 
     $idEstoque = $_POST["idEstoque"];
     $venda_data = $_POST["venda_data"];
@@ -14,28 +17,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $forma_pag = $_POST["forma_pag"];
     $quantidade = $_POST["quantidade"];
     $desconto = $_POST["desconto"];
-    $Cliente_idCliente = $_POST["Cliente_idCliente"];
+    $idCliente = $_POST["idCliente"];
 
-    $sql_venda = "INSERT INTO Vendas (idEstoque, venda_data, quantidade, valor, forma_pag, desconto)
-                  VALUES ('$idEstoque', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto', '$Cliente_idCliente')";
+    $sql_check = "SELECT quantidade FROM Estoque WHERE idEstoque = $idEstoque";
+    $res_check = mysqli_query($conexao, $sql_check);
+    $estoque_atual = mysqli_fetch_assoc($res_check)['quantidade'];
 
-    if (mysqli_query($conexao, $sql_venda)) {
-
-        $sql_estoque = "UPDATE Estoque
-                        SET quantidade = quantidade - $quantidade
-                        WHERE idEstoque = $idEstoque
-                        AND Cliente_idCliente = $Cliente_idCliente";
-
-        mysqli_query($conexao, $sql_estoque);
-
-        $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
-        $produtos = mysqli_query($conexao, $sql_produtos);
-
-        $msg = "✔ Venda registrada e estoque atualizado!";
+    if ($quantidade > $estoque_atual) {
+        $msg = "✖ Erro: Estoque insuficiente! Você só tem $estoque_atual unidades.";
     } else {
-        $msg = "✖ Erro ao salvar venda.";
+        $sql_venda = "INSERT INTO Vendas (idEstoque, Cliente_idCliente, venda_data, quantidade, valor, forma_pag, desconto)
+                    VALUES ('$idEstoque', '$idCliente', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
+
+        if (mysqli_query($conexao, $sql_venda)) {
+
+            $sql_estoque = "UPDATE Estoque
+                            SET quantidade = quantidade - $quantidade
+                            WHERE idEstoque = $idEstoque";
+
+            mysqli_query($conexao, $sql_estoque);
+
+            $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
+            $produtos = mysqli_query($conexao, $sql_produtos);
+
+            $msg = "✔ Venda registrada e estoque atualizado!";
+        } else {
+            $msg = "✖ Erro ao salvar venda.";
+        }
+}   
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><?= $msg ?></p>
         <?php } ?>
 
-        <form method="POST">
+        <form method="POST" class="form-clean">
 
             <label>Produto:</label>
             <select name="idEstoque" required>
@@ -106,10 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" name="desconto" placeholder="Desconto">
 
             <label>Cliente:</label>
-            <select name="Cliente_idCliente" required>
-                <?php while($p = mysqli_fetch_assoc($produtos)) { ?>
-                    <option value="<?= $p['Cliente_idCliente'] ?>">
-                        <?= $p['nome'] ?>
+            <select name="idCliente" required>
+                <?php while($p = mysqli_fetch_assoc($clientes)) { ?>
+                    <option value="<?= $p['idCliente'] ?>">
+                        <?= $p['idCliente'] ?> - <?= $p['nome'] ?>
                     </option>
                 <?php } ?>
             </select>
