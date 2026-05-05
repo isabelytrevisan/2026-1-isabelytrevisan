@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($msg != "")?>
             <p><?= $msg ?></p>
 
-        <form method="POST">
+        <form method="POST" class="form-clean">
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="time" name="carga_horaria" placeholder="Carga horaria" required>
             <input type="number" name="cpf" placeholder="CPF" required>

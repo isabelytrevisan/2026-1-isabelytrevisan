@@ -43,7 +43,7 @@ $resultado = mysqli_query($conexao, $sql);
         <h2>Lista de Estoque</h2>
 
         <div style="margin-bottom: 15px;">
-            <a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php" class="botao-adicionar">+ Novo Produto</a>
+            <a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php" class="botao-adicionar">+ Novo Produto</a>
         </div>
 
         <table class="tabela">

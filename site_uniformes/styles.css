@@ -9,9 +9,9 @@
 :root {
     --cor-primaria: #4b5320;      /* Verde oliva profundo das folhas */
     --cor-secundaria: #7b4fb6;    /* Roxo floral das pétalas */
-    --cor-fundo: #ddddc7;         /* Off-white estilo papel/tecido */
+    --cor-fundo: rgb(207, 209, 209);        /* Off-white estilo papel/tecido */
     --cor-menu: #4b5320;          /*#dadad0;   Creme suave para o menu lateral */
-    --cor-texto: #1a1a1a;         /* Cinza quase preto para legibilidade */
+    --cor-texto: #1a1a1adc;         /* Cinza quase preto para legibilidade */
     --cor-texto-claro: #ffffff;
     --transicao: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -34,32 +34,46 @@ body {
 }
 
 /* 4. HEADER (Mais limpo e editorial) */
-header {
-    background: rgb(210, 188, 236);
-    color: var(--cor-primaria);
-    padding: 2.5rem 1rem;
-    text-align: center;
-    border-bottom: 2px solid var(--cor-primaria);
-}
 
+header {
+    background:  #aec59dbb;
+    color: var(--cor-primaria);
+    padding: 0.5rem 0.75rem; /* Reduzi um pouco o padding para não ficar alto demais */
+    border-bottom: 2px solid var(--cor-primaria);
+    
+    /* AJUSTES PARA FICAR LADO A LADO: */
+    display: flex;          /* Ativa o Flexbox */
+    align-items: center;    /* Alinha verticalmente no centro */
+    justify-content: center; /* Centraliza o conjunto no meio da tela */
+    gap: 20px;              /* Espaçamento horizontal entre a logo e o título */
+}
+#subtitulo{
+    color: #452f63d3;
+}
 header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 4px;
 
 }
 
-.logo {
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-    margin-top: 15px;
+/* --- AJUSTE DA LOGO NO HEADER --- */
+.header-logo {
+    width: 130px;           /* Tamanho um pouco maior para destaque */
+    height: 130px;          /* Altura igual à largura para ser um círculo perfeito */
+    object-fit: contain;      /* Garante que a imagem preencha o espaço sem distorcer */
+    margin-bottom: 0px;     /* Espaço entre a imagem e o texto 'Cores & Padrões' */
     transition: transform var(--transicao);
 }
 
-.logo:hover {
-    transform: scale(1.03);
+
+.header-logo:hover {
+    transform: scale(1.1);  /* Efeito de zoom sutil ao passar o mouse */
+}
+
+.logoTitulo{
+    display: block;
 }
 
 /* 5. LAYOUT PRINCIPAL */
@@ -143,25 +157,7 @@ h2::after {
     letter-spacing: 2px;
     border-radius: 2px; /* Bordas retas passam*/
 }
-    /* --- AJUSTES NO HEADER --- */
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background: #d2bcec; /* O roxo claro que você escolheu */
-}
 
-.header-logo {
-    max-width: 80px; /* Ajuste o tamanho conforme sua logo */
-    height: auto;
-    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));
-}
-
-header h1 {
-    font-size: 1.8rem; /* Reduzi um pouco para dar destaque à logo */
-    margin-bottom: 10px;
-}
 
 /* --- MOLDURAS CIRCULARES --- */
 .galeria-uniformes {
@@ -198,26 +194,94 @@ header h1 {
     object-fit: cover; /* Garante que a foto preencha o círculo sem esticar */
 }
 
-/* --- AJUSTE DA LOGO NO HEADER --- */
-.header-logo {
-    width: 100px;           /* Tamanho um pouco maior para destaque */
-    height: 100px;          /* Altura igual à largura para ser um círculo perfeito */
-    object-fit: cover;      /* Garante que a imagem preencha o espaço sem distorcer */
-    border-radius: 50%;     /* Deixa a logo circular */
-    border: 3px solid white;/* Uma bordinha branca para destacar do roxo */
-    background-color: white;/* Garante fundo branco se a imagem for transparente */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave para dar profundidade */
-    margin-bottom: 5px;     /* Espaço entre a imagem e o texto 'Cores & Padrões' */
-    transition: transform var(--transicao);
+/* --- 7. ÁREA DE CONTEÚDO GLOBAL --- */
+.conteudo {
+    flex: 1;
+    padding: 3rem;
+    background-color: #ffffff; /* Fundo branco para tudo */
+    display: block; /* Importante: Mantém o fluxo normal para a tabela respirar */
 }
 
-.header-logo:hover {
-    transform: scale(1.1);  /* Efeito de zoom sutil ao passar o mouse */
+.login-box {
+    background: #aec59dbb;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+
+    width: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Ajuste opcional no Header para centralizar tudo melhor */
-header {
-    padding: 1.5rem 1rem;   /* Reduzi um pouco o padding para não ocupar tanto espaço vertical */
+input {
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Títulos centralizados em todas as páginas */
+.conteudo h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 30px;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--cor-secundaria);
+    margin: 10px auto 0;
+}
+
+/* --- 8. TABELA (Larga e Editorial) --- */
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela th {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    text-align: left;
+    padding: 15px 10px;
+    border-bottom: 2px solid var(--cor-primaria);
+}
+
+.tabela td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--cor-texto);
+}
+
+.tabela tr:hover td {
+    background-color: rgba(123, 79, 182, 0.03);
+}
+
+/* --- 9. FORMULÁRIO (Centralizado e Fino) --- */
+.form-clean {
+    width: 100%;
+    max-width: 550px; 
+    margin: 40px auto; /* Centraliza o bloco do form sem afetar a tabela */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -293,4 +357,63 @@ header {
     text-align: center;
 }
 
+.form-clean input,
+.form-clean select {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    outline: none;
+}
 
+/* Seta customizada para o Select */
+.form-clean select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.form-clean label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    font-weight: 600;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.form-clean input:focus {
+    border-bottom: 1px solid var(--cor-secundaria);
+}
+
+/* --- 10. BOTÕES --- */
+.botao-adicionar {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--cor-primaria);
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicao);
+    border-radius: 2px;
+}
+
+/* No form, o botão centraliza */
+.form-clean .botao-adicionar {
+    align-self: center;
+    margin-top: 20px;
+}
+
+.botao-adicionar:hover {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-2px);
+}
