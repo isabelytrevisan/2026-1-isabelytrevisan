@@ -1,4 +1,5 @@
 <?php
+include(__DIR__ . "/../loginCheck.php");
 include(__DIR__ . "/../conexao.php");
 
 $msg = "";
@@ -30,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta charset="UTF-8">
 <title>Cadastro Estoque</title>
 <link rel="stylesheet" href="../styles.css">
+<link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
 </head>
 
 <body>
@@ -65,12 +67,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><?= $msg ?></p>
 
         <form method="POST" class="form-clean">
+            <label>Nome:</label>
             <input type="text" name="nome" placeholder="Nome" required>
+
+            <label>Carga Horária (horas por semana):</label>
             <input type="time" name="carga_horaria" placeholder="Carga horaria" required>
+
+            <label>CPF:</label>
             <input type="number" name="cpf" placeholder="CPF" required>
+
+            <label>Data de Nascimento:</label>
             <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
+
+            <label>Endereço</label>
             <input type="text" name="endereco" placeholder="Endereço" required>
+
+            <label>Email:</label>
             <input type="text" name="email" placeholder="Email" required>
+
+            <label>Telefone:</label>
             <input type="number" name="telefone" placeholder="Telefone" required>
 
             <button class="botao-adicionar" type="submit">Salvar</button>

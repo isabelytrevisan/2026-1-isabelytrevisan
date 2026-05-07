@@ -278,83 +278,26 @@ h2::after {
 }
 
 /* --- 9. FORMULÁRIO (Centralizado e Fino) --- */
+/* --- 9. FORMULÁRIO (Totalmente Centralizado) --- */
 .form-clean {
     width: 100%;
-    max-width: 550px; 
-    margin: 40px auto; /* Centraliza o bloco do form sem afetar a tabela */
+    max-width: 500px; /* Reduzi levemente para ficar mais elegante */
+    margin: 40px auto; 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    gap: 15px; /* Espaçamento uniforme entre os campos */
 }
 
-
-
-
-
-
-
-.moda-container{
-    border: 2px solid #5c2781;
-    padding: 10px;
-    width: fit-content;
-    margin: 20px auto;
-    border-radius: 8px;
-    background-color: #442758;
-    text-align: center;
-    color: blanchedalmond;
-}
-
-.moda-button {
-  background-color: rgb(135, 23, 216);
-  color: white;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.moda-button:hover {
-  background-color: #7b4fb6;
-  color: #1f0030;
-}
-
-/*Galeria e item(imagens) da página sobre*/
-
-.galeria {
-  display: none;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.galeria.ativa {
-  display: grid;
-}
-
-.item {
-  background-color: #6d4b86;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.item img {
-  max-width: 50%;
-  border-radius: 50px;
-  display: block;
-  margin: 0 auto;
-}
-
-.item p {
-    margin-top: 30px;
-    font-size: 1.2em;
-    color: #fff;
-    border:#482163 2px solid;
-    border-radius: 10px;
-    text-align: center;
+.form-clean label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+    font-weight: 600;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center; /* Centraliza o texto da label */
+    letter-spacing: 1px;
 }
 
 .form-clean input,
@@ -368,52 +311,45 @@ h2::after {
     font-size: 0.95rem;
     color: var(--cor-texto);
     outline: none;
+    text-align: center; /* Centraliza o texto digitado e placeholder */
+    transition: var(--transicao);
 }
 
-/* Seta customizada para o Select */
+/* Ajuste da Seta customizada para não sobrepor o texto centralizado */
 .form-clean select {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 10px center;
+    background-position: right 15px center; /* Afastei um pouco da borda */
+    cursor: pointer;
 }
 
-.form-clean label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--cor-primaria);
-    font-weight: 600;
-    margin-top: 10px;
-    align-self: flex-start;
+.form-clean input:focus, 
+.form-clean select:focus {
+    border-bottom: 2px solid var(--cor-secundaria);
+    background-color: rgba(123, 79, 182, 0.02); /* Um toque sutil de cor no foco */
 }
 
-.form-clean input:focus {
-    border-bottom: 1px solid var(--cor-secundaria);
-}
-
-/* --- 10. BOTÕES --- */
-.botao-adicionar {
-    display: inline-block;
-    padding: 12px 30px;
+/* --- 10. BOTÃO SALVAR --- */
+.form-clean .botao-adicionar {
+    margin-top: 30px;
+    min-width: 200px; /* Garante um tamanho substancial */
+    padding: 15px 40px;
     background-color: var(--cor-primaria);
     color: white;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
     transition: var(--transicao);
-    border-radius: 2px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* No form, o botão centraliza */
-.form-clean .botao-adicionar {
-    align-self: center;
-    margin-top: 20px;
-}
-
-.botao-adicionar:hover {
+.form-clean .botao-adicionar:hover {
     background-color: var(--cor-secundaria);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
