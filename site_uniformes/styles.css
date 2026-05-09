@@ -354,7 +354,7 @@ h2::after {
 }
 
 /* LADO ESQUERDO (VERDE BONITO) */
-/* .login-left{
+.login-left{
     width: 40%;
     background: linear-gradient(160deg, #4b5320, #3e461a);
     color: white;
@@ -363,12 +363,13 @@ h2::after {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-} */
+} 
 
 .login-left h2{
     font-size: 3.2rem;
     font-family: 'Playfair Display', serif;
     margin-bottom: 25px;
+    color: white;
 }
 
 .login-left p{
