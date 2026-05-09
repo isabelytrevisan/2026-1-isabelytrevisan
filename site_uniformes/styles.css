@@ -202,34 +202,6 @@ h2::after {
     display: block; /* Importante: Mantém o fluxo normal para a tabela respirar */
 }
 
-.login-box {
-    background: #aec59dbb;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-
-    width: 300px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-input {
-    padding: 10px;
-    width: 200px;
-    margin-bottom: 10px;
-}
-
-button {
-    margin: 10px;
-    padding: 10px 20px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 
 /* Títulos centralizados em todas as páginas */
 .conteudo h2 {
@@ -358,117 +330,110 @@ h2::after {
 
 /**parte inicial de login**/
 
-.bodylogin{
-    background: #f4f6f3;
-    height: 100vh;
-}
-
-/* Esconde o header só na tela de login */
 .bodylogin header{
     display: none;
 }
 
+.bodylogin{
+    background: #f3f5f2;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CAIXA PRINCIPAL */
 .login-box{
-    width: 900px;
-    height: 480px;
+    width: 1000px;
+    height: 520px;
     background: white;
-    border-radius: 18px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.08);
     display: flex;
     overflow: hidden;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-/* LADO ESQUERDO */
-.login-box::before{
-    content: "";
+/* LADO ESQUERDO (VERDE BONITO) */
+/* .login-left{
     width: 40%;
-    background: var(--cor-menu);
-    display: block;
-}
-
-.login-box h2{
-    position: absolute;
-    left: 7%;
-    top: 18%;
+    background: linear-gradient(160deg, #4b5320, #3e461a);
     color: white;
+    padding: 70px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+} */
+
+.login-left h2{
+    font-size: 3.2rem;
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    letter-spacing: 2px;
+    margin-bottom: 25px;
 }
 
-/* Texto lateral */
-.login-box::after{
-    content: "Digite seu usuário para entrar no sistema.\A\A Cores & Padrões";
-    white-space: pre;
-    position: absolute;
-    left: 6%;
-    top: 38%;
-    width: 28%;
-    color: white;
-    font-size: 1rem;
-    line-height: 1.6;
-    font-family: 'Montserrat', sans-serif;
-    opacity: 0.9;
+.login-left p{
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.95;
 }
 
-/* FORMULÁRIO */
-.login-box form{
-    margin-left: 45%;
-    margin-top: 140px;
-    width: 45%;
-    text-align: left;
+/* LADO DIREITO */
+.login-right{
+    width: 60%;
+    padding: 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.login-box input{
+/* FORM */
+.login-right form{
     width: 100%;
-    padding: 14px 10px;
-    margin-bottom: 30px;
+}
+
+.login-right input{
+    width: 100%;
+    padding: 16px 10px;
     border: none;
-    border-bottom: 1px solid #ccc;
-    font-size: 1rem;
-    background: transparent;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 50px;
+    font-size: 1.05rem;
     outline: none;
+    background: transparent;
     transition: 0.3s;
 }
 
-.login-box input:focus{
+.login-right input:focus{
     border-bottom: 2px solid var(--cor-secundaria);
 }
 
-.login-box button{
-    width: 100%;
-    padding: 15px;
+/* BOTÃO ENTRAR */
+.login-right button{
+    width: 70%;
+    padding: 16px;
     background: var(--cor-secundaria);
     color: white;
-    border-radius: 6px;
+    border: none;
+    border-radius: 10px;
     font-weight: 600;
-    letter-spacing: 1px;
+    font-size: 1.1rem;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.login-box button:hover{
-    opacity: 0.9;
+.login-right button:hover{
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
-/* CADASTRO */
-.login-box p{
-    position: absolute;
-    bottom: 70px;
-    right: 90px;
-    font-size: 0.9rem;
+/* Rodapé */
+.rodape-login{
+    margin-top: 60px;
+    font-size: 1rem;
 }
 
-.cadastro-btn{
-    background: transparent;
+.rodape-login a{
     color: var(--cor-secundaria);
-    border: none;
+    text-decoration: none;
     font-weight: 600;
-    cursor: pointer;
-    margin-top: 5px;
 }
