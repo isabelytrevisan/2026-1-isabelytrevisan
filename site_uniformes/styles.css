@@ -353,3 +353,122 @@ h2::after {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
+
+
+
+/**parte inicial de login**/
+
+.bodylogin{
+    background: #f4f6f3;
+    height: 100vh;
+}
+
+/* Esconde o header só na tela de login */
+.bodylogin header{
+    display: none;
+}
+
+.login-box{
+    width: 900px;
+    height: 480px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    display: flex;
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* LADO ESQUERDO */
+.login-box::before{
+    content: "";
+    width: 40%;
+    background: var(--cor-menu);
+    display: block;
+}
+
+.login-box h2{
+    position: absolute;
+    left: 7%;
+    top: 18%;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+/* Texto lateral */
+.login-box::after{
+    content: "Digite seu usuário para entrar no sistema.\A\A Cores & Padrões";
+    white-space: pre;
+    position: absolute;
+    left: 6%;
+    top: 38%;
+    width: 28%;
+    color: white;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.9;
+}
+
+/* FORMULÁRIO */
+.login-box form{
+    margin-left: 45%;
+    margin-top: 140px;
+    width: 45%;
+    text-align: left;
+}
+
+.login-box input{
+    width: 100%;
+    padding: 14px 10px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 1rem;
+    background: transparent;
+    outline: none;
+    transition: 0.3s;
+}
+
+.login-box input:focus{
+    border-bottom: 2px solid var(--cor-secundaria);
+}
+
+.login-box button{
+    width: 100%;
+    padding: 15px;
+    background: var(--cor-secundaria);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.login-box button:hover{
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* CADASTRO */
+.login-box p{
+    position: absolute;
+    bottom: 70px;
+    right: 90px;
+    font-size: 0.9rem;
+}
+
+.cadastro-btn{
+    background: transparent;
+    color: var(--cor-secundaria);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 5px;
+}
