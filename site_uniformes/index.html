@@ -36,73 +36,96 @@
             <h2 id="subtitulo">Bem-vindo ao sistema de uniformes</h2>
             <p >A seguir exemplos de uniformes confeccionados pela loja:</p>
     
-            <div class="galeria-uniformes">
-                <div class="moldura-circular">
-                    <img src="img/1.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/2.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/3.png" alt="Exemplo de Uniforme">
-                </div>
-            
-                <div class="moldura-circular">
-                    <img src="img/4.png" alt="Exemplo de Uniforme">
-                </div>
-            </div>
+            <div class="carrossel">
 
+                <div class="slides fade">
+                    <img src="img/calçaMoletomPreta.png" alt="">
+                </div>
+
+                <div class="slides fade">
+                    <img src="img/jaquetaPreta.png" alt="">
+                </div>
+
+                <div class="slides fade">
+                    <img src="img/banner3.png" alt="">
+                </div>
+
+                <button class="anterior" onclick="mudarSlide(-1)">❮</button>
+                <button class="proximo" onclick="mudarSlide(1)">❯</button>
+
+            </div>
         </main>
     </div>
 
 
 
-    <h2 class="subtitulo">Moda:</h2>
-        <nav class="hobbies-container">
+<section class="categorias">
 
-            <button class="hobbies-button" onclick="mostrarGaleria('Feminina')">Moda Feminina</button>
-            <button class="hobbies-button" onclick="mostrarGaleria('Masculina')">Moda Masculina</button>
-            <button class="hobbies-button" onclick="mostrarGaleria('Infantil')">Moda Infantil</button>
+    <h2>Moda</h2>
 
-        </nav>
+    <div class="categoria-botoes">
 
-          <!-- Galeria: Gato -->
-        <nav id="Gato" class="galeria">
-            <div class="item">
-            <img src="img/3.png" alt="Gato dormindo">
-            <p>Hora do soninho</p>
-            </div>
-            <div class="item">
-            <img src="img/4.png" alt="Gato posando">
-            <p>Pose para foto</p>
-            </div>
-        </nav>
+        <button>Esporte</button>
+        <button>Casual</button>
+        <button>Pijamas</button>
+        <button>Empresarial</button>
+        <button>Escolar</button>
+        <button>Infantil</button>
 
-        <!-- Galeria: Terreiro -->
-        <nav id="Terreiro" class="galeria">
-            <div class="item">
-            <img src="img/1.png" alt="Axé e conexão">
-            <p>Conexão espiritual no terreiro</p>
-            </div>
-            <div class="item">
-            <img src="img/2.png" alt="Ritual no terreiro">
-            <p>Ritual de luz e energia</p>
-            </div>
-        </nav>
+    </div>
 
-        <!-- Galeria: Paisagem -->
-        <nav id="Paisagem" class="galeria">
-            <div class="item">
-            <img src="img/1.png" alt="IFSC">
-            <p>Paisagem com o ifsc de fundo</p>
-            </div>
-            <div class="item">
-            <img src="img/2.png" alt="Campo">
-            <p>Campo de futebol com céu rosa</p>
-            </div>
-        </nav>
+</section>
 
+
+<section class="produtos">
+
+    <div class="card-produto">
+        <img src="img/jaqueta.png" alt="">
+        <h3>Conjunto Moletom</h3>
+        <p>Jaqueta + calça personalizada</p>
+    </div>
+
+    <div class="card-produto">
+        <img src="img/camiseta.png" alt="">
+        <h3>Camiseta Casual</h3>
+        <p>Modelo confortável para equipes</p>
+    </div>
+
+    <div class="card-produto">
+        <img src="img/regata.png" alt="">
+        <h3>Uniforme Esportivo</h3>
+        <p>Ideal para times e academias</p>
+    </div>
+
+</section>
+        <script>
+
+        let slideIndex = 1;
+        mostrarSlides(slideIndex);
+
+        function mudarSlide(n){
+            mostrarSlides(slideIndex += n);
+        }
+
+        function mostrarSlides(n){
+
+            let slides = document.getElementsByClassName("slides");
+
+            if(n > slides.length){
+                slideIndex = 1;
+            }
+
+            if(n < 1){
+                slideIndex = slides.length;
+            }
+
+            for(let i = 0; i < slides.length; i++){
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        </script>
 </body>
 </html>

@@ -438,3 +438,133 @@ h2::after {
     text-decoration: none;
     font-weight: 600;
 }
+
+/* =========================
+   CARROSSEL
+========================= */
+
+.carrossel{
+    position: relative;
+    max-width: 1000px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.slides{
+    display: none;
+}
+
+.slides img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.fade{
+    animation: fade 0.5s;
+}
+
+@keyframes fade{
+    from{opacity: .4}
+    to{opacity: 1}
+}
+
+.anterior,
+.proximo{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.anterior{
+    left: 15px;
+}
+
+.proximo{
+    right: 15px;
+}
+
+.anterior:hover,
+.proximo:hover{
+    background: var(--cor-secundaria);
+}
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+.categorias{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.categoria-botoes{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.categoria-botoes button{
+    padding: 12px 25px;
+    border: none;
+    background: var(--cor-primaria);
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.categoria-botoes button:hover{
+    background: var(--cor-secundaria);
+    transform: translateY(-3px);
+}
+
+/* =========================
+   PRODUTOS
+========================= */
+
+.produtos{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card-produto{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card-produto:hover{
+    transform: translateY(-5px);
+}
+
+.card-produto img{
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.card-produto h3{
+    margin: 15px;
+    color: var(--cor-primaria);
+}
+
+.card-produto p{
+    margin: 0 15px 20px;
+}
