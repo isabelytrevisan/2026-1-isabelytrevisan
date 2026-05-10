@@ -1,9 +1,46 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM cliente ORDER BY idCliente DESC";
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
+
+$sql = "SELECT * FROM cliente";
 $resultado = mysqli_query($conexao, $sql);
+
+if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    mysqli_query($conexao, "DELETE FROM cliente WHERE idCliente = $id");
+    header("Location: lista-clientes.php");
+    exit();
+}
+
+if (isset($_POST['salvar'])) {
+    $id = $_POST['id'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+
+    mysqli_query($conexao, "
+        UPDATE cliente 
+        SET nome='$nome', email='$email', telefone='$telefone'
+        WHERE idCliente = $id
+    ");
+
+    header("Location: lista-clientes.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +85,24 @@ $resultado = mysqli_query($conexao, $sql);
             <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+ Novo Cliente</a>
         </div>
 
+        <?php if (isset($_GET['editar'])):
+            $id = $_GET['editar'];
+            $res = mysqli_query($conexao, "SELECT * FROM cliente WHERE idCliente = $id");
+            $c = mysqli_fetch_assoc($res);
+        ?>
+
+        <h3>Editar Cliente</h3>
+        <form method="POST">
+            <input type="hidden" name="id" value="<?= $c['idCliente'] ?>">
+            <input name="nome" value="<?= $c['nome'] ?>">
+            <input name="email" value="<?= $c['email'] ?>">
+            <input name="telefone" value="<?= $c['telefone'] ?>">
+            <button name="salvar">Salvar</button>
+        </form>
+        <hr>
+
+        <?php endif; ?>
+
         <table class="tabela">
             <tr>
                 <th>Id</th>
@@ -59,6 +114,7 @@ $resultado = mysqli_query($conexao, $sql);
                 <th>Telefone</th>
                 <th>Tipo de acesso</th>
                 <th>Login</th>
+                <th>Ações</th>
             </tr>
 
             <?php
@@ -74,6 +130,11 @@ $resultado = mysqli_query($conexao, $sql);
                         <td>{$item['telefone']}</td>
                         <td>{$item['tipo_acesso']}</td>
                         <td>{$item['login']}</td>
+                        <td>
+                            <a href='?editar={$item['idCliente']}'>Editar</a> |
+                            <a href='?excluir={$item['idCliente']}' 
+                            onclick=\"return confirm('Excluir cliente?')\">Excluir</a>
+                        </td>
                     </tr>";
                 }
             } else {

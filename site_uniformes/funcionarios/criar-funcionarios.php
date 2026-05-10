@@ -1,6 +1,20 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
+
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
 
 $msg = "";
 
@@ -14,13 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
 
-    $sql = "INSERT INTO funcionario (nome, carga_horaria, cpf, data_nasc, endereco, email, telefone)
-            VALUES ('$nome', '$carga_horaria', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone')";
+    $sql = "INSERT INTO funcionario 
+            (nome, carga_horaria, cpf, data_nasc, endereco, email, telefone)
+            VALUES 
+            ('$nome', '$carga_horaria', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone')";
 
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Funcionário cadastrado com sucesso!";
     } else {
-        $msg = "✖ Erro ao salvar.";
+        $msg = "✖ Erro ao salvar: " . mysqli_error($conexao);
     }
 }
 ?>

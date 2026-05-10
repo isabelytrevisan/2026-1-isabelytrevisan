@@ -1,7 +1,6 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
-
 
 $msg = "";
 
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Cliente cadastrado com sucesso!";
     } else {
-        $msg = "✖ Erro ao salvar.";
+        $msg = "Erro: " . mysqli_error($conexao);
     }
 }
 ?>

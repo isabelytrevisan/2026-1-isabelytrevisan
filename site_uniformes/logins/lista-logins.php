@@ -1,8 +1,23 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM cliente ORDER BY idCliente asc";
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
+
+// consulta dos logins
+$sql = "SELECT idCliente, nome, login FROM cliente";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 

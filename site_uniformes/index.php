@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Uniformes</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
     </head>
 
@@ -23,14 +23,14 @@
 
     <div class="login-right">
 
-        <form action="login.php" method="POST">
-            <input type="text" name="usuario" placeholder="Digite seu login" required>
+        <form action="loginCheck.php" method="POST">
+            <input type="text" name="login" placeholder="Digite seu login" required>
             <button type="submit">Entrar</button>
         </form>
 
         <p class="rodape-login">
             Não possui conta? 
-            <a href="../clientes/criar-cliente.php">Cadastre-se aqui</a>
+            <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastre-se aqui</a>
         </p>
     </div>
 

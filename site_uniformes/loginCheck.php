@@ -1,14 +1,27 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+require_once __DIR__ . "/conexao.php";
 
-if (!isset($_SESSION['id_usuario']) || $_SESSION['tipo_acesso'] != 2) {
-    http_response_code(404);
-    
-    // Se o 404.php estiver na mesma pasta que este arquivo:
-    include(__DIR__ . "/404.html"); 
-    
+$login = $_POST["login"];
+
+// procura o login no banco
+$sql = "SELECT * FROM cliente WHERE login = '$login'";
+$resultado = mysqli_query($conexao, $sql);
+
+if (mysqli_num_rows($resultado) > 0) {
+
+    $usuario = mysqli_fetch_assoc($resultado);
+
+    // cria exatamente o que seu verificador precisa
+    $_SESSION['id_usuario'] = $usuario['idCliente'];
+    $_SESSION['tipo_acesso'] = $usuario['tipo_acesso'];
+
+    header("Location: pagina-inicial.html");
     exit();
+
+} else {
+    echo "<script>
+            alert('Login não encontrado! Crie uma conta.');
+            window.location.href='criar-cliente.php';
+          </script>";
 }
-?>

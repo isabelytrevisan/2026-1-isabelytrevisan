@@ -1,8 +1,23 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM estoque ORDER BY idEstoque DESC";
+// precisa estar logado
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar (tipo 1 = cliente)
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
+
+$sql = "SELECT * FROM estoque";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -10,7 +25,7 @@ $resultado = mysqli_query($conexao, $sql);
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Lista de Estoque</title>
 <link rel="stylesheet" href="../styles.css">
 <link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
 </head>
@@ -26,16 +41,16 @@ $resultado = mysqli_query($conexao, $sql);
     <aside class="menu-aside">
         <nav>
             <ul>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html">Início</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/lista-vendas.php">Lista de vendas</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html">Início</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/lista-vendas.php">Lista de vendas</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
+                <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
             </ul>
         </nav>
     </aside>
@@ -74,7 +89,6 @@ $resultado = mysqli_query($conexao, $sql);
                 echo "<tr><td colspan='6'>Nenhum produto cadastrado</td></tr>";
             }
             ?>
-
         </table>
 
     </main>

@@ -1,9 +1,47 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM vendas ORDER BY idVendas DESC";
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
+
+$sql = "SELECT * FROM vendas";
 $resultado = mysqli_query($conexao, $sql);
+
+if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    mysqli_query($conexao, "DELETE FROM vendas WHERE idVendas = $id");
+    header("Location: lista-vendas.php");
+    exit();
+}
+
+if (isset($_POST['salvar'])) {
+    $id = $_POST['id'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+
+    mysqli_query($conexao, "
+        UPDATE vendas 
+        SET nome='$nome', email='$email', telefone='$telefone'
+        WHERE idVendas = $id
+    ");
+
+    header("Location: lista-vendas.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +110,11 @@ $resultado = mysqli_query($conexao, $sql);
                         <td>{$item['forma_pag']}</td>
                         <td>{$item['quantidade']}</td>
                         <td>{$item['desconto']}</td>
+                        <td>
+                            <a href='?editar={$item['idVendas']}'>Editar</a> |
+                            <a href='?excluir={$item['idVendas']}' 
+                            onclick=\"return confirm('Excluir venda?')\">Excluir</a>
+                        </td>
                     </tr>";
                 }
             } else {

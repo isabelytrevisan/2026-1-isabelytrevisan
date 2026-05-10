@@ -1,16 +1,31 @@
 <?php
-include(__DIR__ . "/../loginCheck.php");
+session_start();
 include(__DIR__ . "/../conexao.php");
 
-$sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
+if (!isset($_SESSION["idCliente"])) {
+    header("Location: /2026-1-isabelytrevisan/site_uniformes/index.php");
+    exit();
+}
+
+// cliente não pode acessar
+if ($_SESSION["tipo_acesso"] == 1) {
+    echo "<script>
+            alert('Apenas funcionários podem acessar o estoque!');
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+          </script>";
+    exit();
+}
+
+// carregar produtos e clientes
+$sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM estoque WHERE quantidade > 0";
 $produtos = mysqli_query($conexao, $sql_produtos);
+
 $sql_clientes = "SELECT idCliente, nome FROM cliente";
 $clientes = mysqli_query($conexao, $sql_clientes);
 
 $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 
     $idEstoque = $_POST["idEstoque"];
     $venda_data = $_POST["venda_data"];
@@ -20,33 +35,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $desconto = $_POST["desconto"];
     $idCliente = $_POST["idCliente"];
 
-    $sql_check = "SELECT quantidade FROM Estoque WHERE idEstoque = $idEstoque";
+    $sql_check = "SELECT quantidade FROM estoque WHERE idEstoque = $idEstoque";
     $res_check = mysqli_query($conexao, $sql_check);
     $estoque_atual = mysqli_fetch_assoc($res_check)['quantidade'];
 
     if ($quantidade > $estoque_atual) {
-        $msg = "✖ Erro: Estoque insuficiente! Você só tem $estoque_atual unidades.";
+        $msg = "Estoque insuficiente! Só existem $estoque_atual unidades.";
     } else {
-        $sql_venda = "INSERT INTO Vendas (idEstoque, Cliente_idCliente, venda_data, quantidade, valor, forma_pag, desconto)
-                    VALUES ('$idEstoque', '$idCliente', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
+
+        $sql_venda = "INSERT INTO vendas 
+        (idEstoque, Cliente_idCliente, venda_data, quantidade, valor, forma_pag, desconto)
+        VALUES 
+        ('$idEstoque', '$idCliente', '$venda_data', '$quantidade', '$valor', '$forma_pag', '$desconto')";
 
         if (mysqli_query($conexao, $sql_venda)) {
 
-            $sql_estoque = "UPDATE Estoque
+            $sql_estoque = "UPDATE estoque
                             SET quantidade = quantidade - $quantidade
                             WHERE idEstoque = $idEstoque";
 
             mysqli_query($conexao, $sql_estoque);
 
-            $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
-            $produtos = mysqli_query($conexao, $sql_produtos);
-
-            $msg = "✔ Venda registrada e estoque atualizado!";
+            $msg = "Venda registrada e estoque atualizado!";
         } else {
-            $msg = "✖ Erro ao salvar venda.";
+            $msg = "Erro ao salvar venda: " . mysqli_error($conexao);
         }
-}   
     }
+}
 ?>
 
 <!DOCTYPE html>
