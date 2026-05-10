@@ -26,7 +26,7 @@ $resultado = mysqli_query($conexao, $sql);
     <aside class="menu-aside">
         <nav>
             <ul>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.html">Início</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html">Início</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
