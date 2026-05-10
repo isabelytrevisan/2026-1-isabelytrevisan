@@ -1,4 +1,5 @@
 <?php
+include(__DIR__ . "/../loginCheck.php");
 include(__DIR__ . "/../conexao.php");
 
 $sql_produtos = "SELECT idEstoque, nomeProduto, quantidade FROM Estoque WHERE quantidade > 0";
@@ -54,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta charset="UTF-8">
 <title>Cadastro Vendas</title>
 <link rel="stylesheet" href="../styles.css">
+<link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
 </head>
 
 <body>
@@ -100,12 +102,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php } ?>
             </select>
 
+            <label>Quantidade vendida:</label>
             <input type="number" name="quantidade" placeholder="Quantidade vendida" required>
 
+            <label>Data da venda:</label>
             <input type="date" name="venda_data" required>
 
+            <label>Valor total:</label>
             <input type="number" step="0.01" name="valor" placeholder="Valor total" required>
 
+            <label>Forma de Pagamento:</label>
             <select name="forma_pag">
                 <option value=1>Cartão de Crédito</option>
                 <option value=2>Débito</option>
@@ -113,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value=4>Boleto</option>
             </select>
 
+            <label>Desconto (em %):</label>
             <input type="number" name="desconto" placeholder="Desconto">
 
             <label>Cliente:</label>

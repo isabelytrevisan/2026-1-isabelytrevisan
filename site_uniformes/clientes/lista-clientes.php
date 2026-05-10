@@ -1,6 +1,8 @@
 <?php
+include(__DIR__ . "/../loginCheck.php");
 include(__DIR__ . "/../conexao.php");
-$sql = "SELECT * FROM cliente ORDER BY idCliente asc";
+
+$sql = "SELECT * FROM cliente ORDER BY idCliente DESC";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -10,6 +12,7 @@ $resultado = mysqli_query($conexao, $sql);
 <meta charset="UTF-8">
 <title>Lista de Clientes</title>
 <link rel="stylesheet" href="../styles.css">
+<link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
 </head>
 
 <body>

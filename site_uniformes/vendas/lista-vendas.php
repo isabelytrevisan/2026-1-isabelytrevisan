@@ -1,7 +1,8 @@
 <?php
+include(__DIR__ . "/../loginCheck.php");
 include(__DIR__ . "/../conexao.php");
 
-$sql = "SELECT * FROM vendas ORDER BY idVendas ASC";
+$sql = "SELECT * FROM vendas ORDER BY idVendas DESC";
 $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -11,6 +12,7 @@ $resultado = mysqli_query($conexao, $sql);
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="../styles.css">
+<link rel="icon" type="image/x-icon" href="/2026-1-isabelytrevisan/site_uniformes/img/logotp.png">
 </head>
 
 <body>
@@ -40,22 +42,22 @@ $resultado = mysqli_query($conexao, $sql);
 
     <main class="conteudo">
 
-        <h2>Lista de Estoque</h2>
+        <h2>Lista de Vendas</h2>
 
         <div style="margin-bottom: 15px;">
-            <a href="criar-estoque.php" class="botao-adicionar">+ Novo Produto</a>
+            <a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php" class="botao-adicionar">+ Nova Venda</a>
         </div>
 
         <table class="tabela">
             <tr>
                 <th>Id</th>
                 <th>Cliente</th>
-                <th>Id. Produto</th>
+                <th>Id. Produto</th>    
                 <th>Data</th>
                 <th>Valor</th>
                 <th>Forma Pag.</th>
                 <th>Quantidade</th>
-                <th>Desconto</th>
+                <th>Desconto (%)</th>
             </tr>
 
             <?php
@@ -64,6 +66,7 @@ $resultado = mysqli_query($conexao, $sql);
                     echo "<tr>
                         <td>{$item['idVendas']}</td>
                         <td>{$item['Cliente_idCliente']}</td>
+                        <td>{$item['idEstoque']}</td>
                         <td>{$item['venda_data']}</td>
                         <td>{$item['valor']}</td>
                         <td>{$item['forma_pag']}</td>
