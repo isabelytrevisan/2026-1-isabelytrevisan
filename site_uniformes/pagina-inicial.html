@@ -39,20 +39,19 @@
     
         <main class="conteudo">
             <h2 id="subtitulo">Bem-vindo ao sistema de uniformes</h2>
-            <p >A seguir exemplos de uniformes confeccionados pela loja:</p>
     
             <div class="carrossel">
 
                 <div class="slides fade">
-                    <img src="img/calçaMoletomPreta.png" alt="">
+                    <img src="img/primeiraFotoCarrossel.png" alt="">
                 </div>
 
                 <div class="slides fade">
-                    <img src="img/jaquetaPreta.png" alt="">
+                    <img src="img/segundaFotoCarrossel.png" alt="">
                 </div>
 
                 <div class="slides fade">
-                    <img src="img/banner3.png" alt="">
+                    <img src="img/terceiraFotoCarrossel.png" alt="">
                 </div>
 
                 <button class="anterior" onclick="mudarSlide(-1)">❮</button>
@@ -64,85 +63,72 @@
 
 
 
-<section class="categorias">
+    <section class="secao-moda">
 
-    <h2>Moda</h2>
+        <h2>Conheça algumas categorias confeccionadas pela loja:</h2>
 
-    <div class="categoria-botoes">
+        <div class="cards-categorias">
 
-        <button>Esporte</button>
-        <button>Casual</button>
-        <button>Pijamas</button>
-        <button>Empresarial</button>
-        <button>Escolar</button>
-        <button>Infantil</button>
+            <div class="card-categoria">
+                <img src="img/MoletomLilas.png">
+                <div class="card-info">
+                    <h3>Moletom</h3>
+                    <p>Conforto e identidade para sua equipe.</p>
+                </div>
+            </div>
 
-    </div>
+            <div class="card-categoria">
+                <img src="img/CamisetaCasual.png">
+                <div class="card-info">
+                    <h3>Moda Casual</h3>
+                    <p>Peças versáteis e personalizadas.</p>
+                </div>
+            </div>
 
-</section>
+            <div class="card-categoria">
+                <img src="img/CalcaPretaMoletom.png">
+                <div class="card-info">
+                    <h3>Esportivo</h3>
+                    <p>Uniformes leves e modernos.</p>
+                </div>
+            </div>
 
+        </div>   
 
-<section class="produtos">
+    </section>
+        
+    <footer class="footer-site">
 
-    <div class="card-produto">
-        <img src="img/jaqueta.png" alt="">
-        <h3>Conjunto Moletom</h3>
-        <p>Jaqueta + calça personalizada</p>
-    </div>
+        <div class="footer-container">
 
-    <div class="card-produto">
-        <img src="img/camiseta.png" alt="">
-        <h3>Camiseta Casual</h3>
-        <p>Modelo confortável para equipes</p>
-    </div>
+            <div class="footer-coluna">
+                <h3>Cores & Padrões</h3>
+                <p>
+                    Uniformes que vestem identidades, histórias e conexões.
+                </p>
+            </div>
 
-    <div class="card-produto">
-        <img src="img/regata.png" alt="">
-        <h3>Uniforme Esportivo</h3>
-        <p>Ideal para times e academias</p>
-    </div>
+            <div class="footer-coluna">
+                <h3>Contato</h3>
+                <p>(49) 99999-9999</p>
+                <p>contato@coresepadroes.com</p>
+                <p>Chapecó - SC</p>
+            </div>
 
-</section>
-        <script>
+            <div class="footer-coluna">
+                <h3>Horários</h3>
+                <p>Segunda a Sexta</p>
+                <p>08h às 18h</p>
+            </div>
 
-        let slideIndex = 1;
-        mostrarSlides(slideIndex);
+            </div>
 
-        function mudarSlide(n){
-            mostrarSlides(slideIndex += n);
-        }
+            <div class="footer-bottom">
+                Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
+                isabely.ot@aluno.ifsc.edu.br
+            </div>
 
-        function mostrarSlides(n){
-
-            let slides = document.getElementsByClassName("slides");
-
-            if(n > slides.length){
-                slideIndex = 1;
-            }
-
-            if(n < 1){
-                slideIndex = slides.length;
-            }
-
-            for(let i = 0; i < slides.length; i++){
-                slides[i].style.display = "none";
-            }
-
-            slides[slideIndex - 1].style.display = "block";
-        }
-
-        // menu
-        document.addEventListener('DOMContentLoaded', () => {
-        const btnToggle = document.getElementById('toggleMenu');
-        const menuAside = document.querySelector('.menu-aside');
-
-        if (btnToggle && menuAside) {
-            btnToggle.addEventListener('click', () => {
-                menuAside.classList.toggle('collapsed');
-            });
-        }
-    });
-
-        </script>
+    </footer>
+ <script src="ScriptIndex.js"></script>
 </body>
 </html>

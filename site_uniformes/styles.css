@@ -1,22 +1,29 @@
-/* ESTILO: CORES & PADRÕES 
-   Estética: Orgânica, Artesanal e Elegante
-*/
+/* CORES & PADRÕES */
 
-/* 1. IMPORTAÇÃO DE FONTES (Google Fonts) */
+/* 1. FONTES */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap');
 
-/* 2. VARIÁVEIS DE CORES (Extraídas da Logo) */
+/* =========================================
+   2. VARIÁVEIS
+========================================= */
+
 :root {
-    --cor-primaria: #4b5320;      /* Verde oliva profundo das folhas */
-    --cor-secundaria: #7b4fb6;    /* Roxo floral das pétalas */
-    --cor-fundo: rgb(207, 209, 209);        /* Off-white estilo papel/tecido */
-    --cor-menu: #4b5320;          /*#dadad0;   Creme suave para o menu lateral */
-    --cor-texto: #1a1a1adc;         /* Cinza quase preto para legibilidade */
+    --cor-primaria: #4b5320;
+    --cor-secundaria: #7b4fb6;
+    --cor-fundo: #ffffff;
+    --cor-menu: #4b5320;
+
+    --cor-texto: #1a1a1adc;
     --cor-texto-claro: #ffffff;
+
     --transicao: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* 3. RESET E ESTRUTURA GLOBAL */
+/* =========================================
+   3. RESET GLOBAL
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -28,110 +35,143 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
+
     line-height: 1.6;
 }
 
-/* 4. HEADER (Mais limpo e editorial) */
+/* =========================================
+   4. HEADER
+========================================= */
 
 header {
-    background:  #aec59dbb;
+    background: #aec59dbb;
     color: var(--cor-primaria);
-    padding: 0.5rem 0.75rem; /* Reduzi um pouco o padding para não ficar alto demais */
+
+    padding: 0.5rem 0.75rem;
+
     border-bottom: 2px solid var(--cor-primaria);
-    
-    /* AJUSTES PARA FICAR LADO A LADO: */
-    display: flex;          /* Ativa o Flexbox */
-    align-items: center;    /* Alinha verticalmente no centro */
-    justify-content: center; /* Centraliza o conjunto no meio da tela */
-    gap: 20px;              /* Espaçamento horizontal entre a logo e o título */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
     position: relative;
 }
 
-/* BOTÃO DE TOGGLE DO MENU */
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+#subtitulo {
+    color: #452f63d3;
+}
+
+/* LOGO */
+
+.logoTitulo {
+    display: block;
+}
+
+.header-logo {
+    width: 130px;
+    height: 130px;
+
+    object-fit: contain;
+
+    transition: transform var(--transicao);
+}
+
+.header-logo:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   5. MENU TOGGLE
+========================================= */
+
 .menu-toggle {
     position: absolute;
     left: 15px;
+
     background: none;
     border: none;
+
     cursor: pointer;
+
     display: flex;
     flex-direction: column;
     gap: 6px;
+
     padding: 10px;
+
     z-index: 1000;
 }
 
 .menu-toggle span {
     width: 25px;
     height: 3px;
+
     background-color: var(--cor-primaria);
-    transition: var(--transicao);
+
     display: block;
+
+    transition: var(--transicao);
 }
 
 .menu-toggle:hover span {
     transform: translateX(5px);
 }
 
-.menu-toggle:onclick span {
-    color: var(--cor-secundaria);
-}
+/* =========================================
+   6. LAYOUT PRINCIPAL
+========================================= */
 
-#subtitulo{
-    color: #452f63d3;
-}
-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-
-}
-
-/* --- AJUSTE DA LOGO NO HEADER --- */
-.header-logo {
-    width: 130px;           /* Tamanho um pouco maior para destaque */
-    height: 130px;          /* Altura igual à largura para ser um círculo perfeito */
-    object-fit: contain;      /* Garante que a imagem preencha o espaço sem distorcer */
-    margin-bottom: 0px;     /* Espaço entre a imagem e o texto 'Cores & Padrões' */
-    transition: transform var(--transicao);
-}
-
-
-.header-logo:hover {
-    transform: scale(1.1);  /* Efeito de zoom sutil ao passar o mouse */
-}
-
-.logoTitulo{
-    display: block;
-}
-
-/* 5. LAYOUT PRINCIPAL */
 .main {
     display: flex;
     flex: 1;
 }
 
-/* 6. MENU LATERAL (Estilo Ateliê) */
+/* =========================================
+   7. MENU LATERAL
+========================================= */
+
 .menu-aside {
-    background-color: var(--cor-menu);
     width: 280px;
+
+    background-color: var(--cor-menu);
+
     padding: 3rem 1.5rem;
+
     display: flex;
     flex-direction: column;
+
     border-right: 1px solid #e0e0d0;
-    transition: transform var(--transicao), width var(--transicao);
+
+    transition:
+        transform var(--transicao),
+        width var(--transicao);
 }
 
-/* ESTADO COLAPSADO DO MENU */
+/* MENU COLAPSADO */
+
 .menu-aside.collapsed {
-    transform: translateX(-100%);
     width: 0;
+
     padding: 0;
+
     overflow: hidden;
+
+    transform: translateX(-100%);
 }
+
+/* LISTA */
 
 .menu-aside ul {
     list-style: none;
@@ -141,177 +181,159 @@ header h1 {
     margin-bottom: 12px;
 }
 
+/* LINKS */
+
 .menu-aside a {
+    display: block;
+
+    padding: 12px 18px;
+
     text-decoration: none;
+
     color: white;
     background-color: #707554;
-    padding: 12px 18px;
-    display: block;
-    font-weight: 600;
+
     font-size: 0.9rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-left: 3px solid transparent;
-    transition: var(--transicao);
+
     border-left: 3px solid var(--cor-secundaria);
+
+    transition: var(--transicao);
 }
 
 .menu-aside a:hover {
     background-color: white;
     color: var(--cor-secundaria);
-    border-left: 3px solid var(--cor-secundaria);
+
     transform: translateX(5px);
 }
 
-/* 7. ÁREA DE CONTEÚDO */
+/* =========================================
+   8. CONTEÚDO
+========================================= */
+
 .conteudo {
     flex: 1;
+
     padding: 3rem;
+
+    background-color: #ffffff;
 }
 
+/* =========================================
+   9. TÍTULOS
+========================================= */
+
 h2 {
+    text-align: center;
+
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
+
     color: var(--cor-primaria);
+
     margin-bottom: 30px;
+
     position: relative;
 }
 
-/* Linha decorativa abaixo do título */
+/* LINHA DECORATIVA */
+
 h2::after {
     content: "";
+
     display: block;
-    width: 50px;
-    height: 2px;
+
+    width: 60px;
+    height: 3px;
+
     background: var(--cor-secundaria);
+
     margin: 10px auto 0;
 }
 
-/* 8. BOTÕES (Sólidos e Elegantes) */
+/* =========================================
+   10. BOTÕES
+========================================= */
+
 .botao-adicionar {
     display: inline-block;
+
     padding: 15px 30px;
+
+    border: none;
+    border-radius: 4px;
+
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
+
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-radius: 2px; /* Bordas retas passam*/
 }
 
 
-/* --- MOLDURAS CIRCULARES --- */
-.galeria-uniformes {
-    display: flex;
-    flex-direction: row; /* Força a ficarem lado a lado */
-    justify-content: center; /* Centraliza o grupo no meio da tela */
-    flex-wrap: wrap; /* Se a tela for pequena (celular), eles pulam linha automaticamente */
-    gap: 20px; /* Espaço entre os círculos */
-    margin-top: 40px;
-}
+/* =========================================
+   12. TABELAS
+========================================= */
 
-.moldura-circular {
-    width: 250px;  /* Reduzi para caberem os 4 confortavelmente */
-    height: 250px; 
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid white; 
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    transition: transform 0.3s ease;
-}
-
-.moldura-circular:hover {
-    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
-    border-color: var(--cor-secundaria); /* Muda a cor da borda no hover */
-}
-
-.moldura-circular img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a foto preencha o círculo sem esticar */
-}
-
-/* --- 7. ÁREA DE CONTEÚDO GLOBAL --- */
-.conteudo {
-    flex: 1;
-    padding: 3rem;
-    background-color: #ffffff; /* Fundo branco para tudo */
-    display: block; /* Importante: Mantém o fluxo normal para a tabela respirar */
-}
-
-
-/* Títulos centralizados em todas as páginas */
-.conteudo h2 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--cor-primaria);
-    margin-bottom: 30px;
-}
-
-h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--cor-secundaria);
-    margin: 10px auto 0;
-}
-
-/* --- 8. TABELA (Larga e Editorial) --- */
 .tabela {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
+    border-collapse: collapse;
 }
 
 .tabela th {
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 15px 10px;
+    text-align: left;
     font-size: 0.85rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--cor-primaria);
-    text-align: left;
-    padding: 15px 10px;
     border-bottom: 2px solid var(--cor-primaria);
 }
 
 .tabela td {
     padding: 12px 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     color: var(--cor-texto);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .tabela tr:hover td {
     background-color: rgba(123, 79, 182, 0.03);
 }
 
-/* --- 9. FORMULÁRIO (Centralizado e Fino) --- */
-/* --- 9. FORMULÁRIO (Totalmente Centralizado) --- */
+/* =========================================
+   13. FORMULÁRIOS
+========================================= */
+
 .form-clean {
     width: 100%;
-    max-width: 500px; /* Reduzi levemente para ficar mais elegante */
-    margin: 40px auto; 
+    max-width: 500px;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza os itens horizontalmente */
-    gap: 15px; /* Espaçamento uniforme entre os campos */
+    align-items: center;
+    gap: 15px;
 }
 
+/* LABEL */
+
 .form-clean label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--cor-primaria);
-    font-weight: 600;
-    margin-top: 10px;
     width: 100%;
-    text-align: center; /* Centraliza o texto da label */
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
     letter-spacing: 1px;
+    color: var(--cor-primaria);
 }
+
+/* INPUTS E SELECT */
 
 .form-clean input,
 .form-clean select {
@@ -320,45 +342,44 @@ h2::after {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     background-color: transparent;
+    outline: none;
+    text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.95rem;
     color: var(--cor-texto);
-    outline: none;
-    text-align: center; /* Centraliza o texto digitado e placeholder */
     transition: var(--transicao);
 }
 
-/* Ajuste da Seta customizada para não sobrepor o texto centralizado */
-.form-clean select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px center; /* Afastei um pouco da borda */
-    cursor: pointer;
-}
+/* FOCUS */
 
-.form-clean input:focus, 
+.form-clean input:focus,
 .form-clean select:focus {
     border-bottom: 2px solid var(--cor-secundaria);
-    background-color: rgba(123, 79, 182, 0.02); /* Um toque sutil de cor no foco */
+    background-color: rgba(123, 79, 182, 0.02);
 }
 
-/* --- 10. BOTÃO SALVAR --- */
+/* SELECT */
+
+.form-clean select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+/* BOTÃO FORM */
+
 .form-clean .botao-adicionar {
+    min-width: 200px;
     margin-top: 30px;
-    min-width: 200px; /* Garante um tamanho substancial */
     padding: 15px 40px;
     background-color: var(--cor-primaria);
     color: white;
     text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 2px;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
-    transition: var(--transicao);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: var(--transicao);
 }
 
 .form-clean .botao-adicionar:hover {
@@ -367,58 +388,63 @@ h2::after {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/**parte inicial de login**/
+/* =========================================
+   14. LOGIN
+========================================= */
 
-.bodylogin header{
-    display: none;
-}
-
-.bodylogin{
-    background: #f3f5f2;
+.bodylogin {
     height: 100vh;
+    background: #f3f5f2;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* CAIXA PRINCIPAL */
-.login-box{
+.bodylogin header {
+    display: none;
+}
+
+/* CAIXA LOGIN */
+
+.login-box {
     width: 1000px;
     height: 520px;
     background: white;
     border-radius: 20px;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.08);
-    display: flex;
     overflow: hidden;
+    display: flex;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.08);
 }
 
-/* LADO ESQUERDO (VERDE BONITO) */
-.login-left{
+/* ESQUERDA */
+
+.login-left {
     width: 40%;
+    padding: 70px 50px;
     background: linear-gradient(160deg, #4b5320, #3e461a);
     color: white;
-    padding: 70px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-} 
+}
 
-.login-left h2{
+.login-left h2 {
     font-size: 3.2rem;
-    font-family: 'Playfair Display', serif;
     margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
     color: white;
 }
 
-.login-left p{
+.login-left p {
     font-size: 1.05rem;
     line-height: 1.7;
     opacity: 0.95;
 }
 
-/* LADO DIREITO */
-.login-right{
+/* DIREITA */
+
+.login-right {
     width: 60%;
     padding: 80px 100px;
     display: flex;
@@ -426,184 +452,287 @@ h2::after {
     justify-content: center;
 }
 
-/* FORM */
-.login-right form{
+.login-right form {
     width: 100%;
 }
 
-.login-right input{
+/* INPUTS */
+
+.login-right input {
     width: 100%;
     padding: 16px 10px;
+    margin-bottom: 50px;
     border: none;
     border-bottom: 2px solid #ccc;
-    margin-bottom: 50px;
-    font-size: 1.05rem;
-    outline: none;
     background: transparent;
+    outline: none;
+    font-size: 1.05rem;
     transition: 0.3s;
 }
 
-.login-right input:focus{
+.login-right input:focus {
     border-bottom: 2px solid var(--cor-secundaria);
 }
 
-/* BOTÃO ENTRAR */
-.login-right button{
+/* BOTÃO */
+
+.login-right button {
     width: 70%;
     padding: 16px;
     background: var(--cor-secundaria);
     color: white;
     border: none;
     border-radius: 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
     cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-.login-right button:hover{
+.login-right button:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
-/* Rodapé */
-.rodape-login{
+/* RODAPÉ LOGIN */
+
+.rodape-login {
     margin-top: 60px;
     font-size: 1rem;
 }
 
-.rodape-login a{
+.rodape-login a {
     color: var(--cor-secundaria);
     text-decoration: none;
     font-weight: 600;
 }
 
-/* =========================
-   CARROSSEL
-========================= */
+/* =========================================
+   15. CARROSSEL
+========================================= */
 
-.carrossel{
+.carrossel {
     position: relative;
-    max-width: 1000px;
+    max-width: 1500px;
     margin: 40px auto;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.slides{
+.slides {
     display: none;
 }
 
-.slides img{
+.slides img {
     width: 100%;
     height: 420px;
     object-fit: cover;
 }
 
-.fade{
+/* ANIMAÇÃO */
+
+.fade {
     animation: fade 0.5s;
 }
 
-@keyframes fade{
-    from{opacity: .4}
-    to{opacity: 1}
+@keyframes fade {
+    from { opacity: .4; }
+    to { opacity: 1; }
 }
 
+/* SETAS */
+
 .anterior,
-.proximo{
-    cursor: pointer;
+.proximo {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    padding: 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     background: rgba(0,0,0,0.4);
     color: white;
-    border: none;
-    padding: 15px;
     font-size: 20px;
-    border-radius: 50%;
 }
 
-.anterior{
+.anterior {
     left: 15px;
 }
 
-.proximo{
+.proximo {
     right: 15px;
 }
 
 .anterior:hover,
-.proximo:hover{
+.proximo:hover {
     background: var(--cor-secundaria);
 }
 
-/* =========================
-   CATEGORIAS
-========================= */
+/* =========================================
+   16. CATEGORIAS
+========================================= */
 
-.categorias{
-    margin-top: 60px;
+.categorias {
+    margin-top: 20px;
     text-align: center;
 }
 
-.categoria-botoes{
+.categoria-botoes {
     display: flex;
     justify-content: center;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 15px;
     margin-top: 30px;
 }
 
-.categoria-botoes button{
+.categoria-botoes button {
     padding: 12px 25px;
     border: none;
+    border-radius: 30px;
     background: var(--cor-primaria);
     color: white;
-    border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s;
     font-weight: 600;
+    transition: 0.3s;
 }
 
-.categoria-botoes button:hover{
+.categoria-botoes button:hover {
     background: var(--cor-secundaria);
     transform: translateY(-3px);
 }
 
-/* =========================
-   PRODUTOS
-========================= */
+/* =========================================
+   17. PRODUTOS
+========================================= */
 
-.produtos{
+.produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
 
-.card-produto{
+/* CARD */
+
+.card-produto,
+.card-categoria {
     background: white;
-    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transition: 0.3s;
 }
 
-.card-produto:hover{
-    transform: translateY(-5px);
+.card-produto:hover,
+.card-categoria:hover {
+    transform: translateY(-8px);
 }
 
-.card-produto img{
+/* IMAGENS */
+
+.card-produto img,
+.card-categoria img {
     width: 100%;
-    height: 280px;
     object-fit: cover;
 }
 
-.card-produto h3{
-    margin: 15px;
+.card-produto img {
+    height: 280px;
+}
+
+.card-categoria img {
+    height: 300px;
+}
+
+/* TEXTO */
+
+.card-produto h3,
+.card-info h3 {
     color: var(--cor-primaria);
 }
 
-.card-produto p{
+.card-produto h3 {
+    margin: 15px;
+}
+
+.card-produto p {
     margin: 0 15px 20px;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info p {
+    color: #666;
+}
+
+/* =========================================
+   18. SEÇÃO MODA
+========================================= */
+
+.secao-moda {
+    margin-top: 50px;
+    padding-top: 0px;
+}
+
+.cards-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.descricao-secao{
+    align-items: center;
+    justify-content: center;
+}
+/* =========================================
+   19. FOOTER
+========================================= */
+
+.footer-site {
+    margin-top: 80px;
+    padding-top: 50px;
+    background: var(--cor-primaria);
+    color: white;
+}
+
+/* CONTAINER */
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0 40px 40px;
+}
+
+/* COLUNAS */
+
+.footer-coluna {
+    max-width: 300px;
+}
+
+.footer-coluna h3 {
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    color: #d9c8f0;
+}
+
+.footer-coluna p {
+    margin-bottom: 8px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.08);
+    border-top: 1px solid rgba(255,255,255,0.15);
 }
