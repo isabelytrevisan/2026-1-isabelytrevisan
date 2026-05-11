@@ -18,6 +18,41 @@ if ($_SESSION["tipo_acesso"] == 1) {
 
 $sql = "SELECT * FROM funcionario";
 $resultado = mysqli_query($conexao, $sql);
+
+if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    mysqli_query($conexao, "DELETE FROM funcionario WHERE idFuncionario = $id");
+    header("Location: lista-funcionarios.php");
+    exit();
+}
+
+if (isset($_POST['salvar'])) {
+    $id = $_POST['id'];
+    $nome = $_POST['nome'];
+    $carga = $_POST['carga_horaria'];
+    $cpf = $_POST['cpf'];
+    $data = $_POST['data_nasc'];
+    $endereco = $_POST['endereco'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+
+    mysqli_query($conexao, "
+        UPDATE Funcionario
+        SET 
+            nome = '$nome',
+            carga_horaria = '$carga',
+            cpf = '$cpf',
+            data_nasc = '$data',
+            endereco = '$endereco',
+            email = '$email',
+            telefone = '$telefone'
+        WHERE idFuncionario = $id
+    ");
+
+    header("Location: lista-funcionarios.php");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -86,10 +121,15 @@ $resultado = mysqli_query($conexao, $sql);
                         <td>{$item['endereco']}</td>
                         <td>{$item['email']}</td>
                         <td>{$item['telefone']}</td>
+                        <td>
+                            <a href='?editar={$item['idFuncionario']}'>Editar</a> |
+                            <a href='?excluir={$item['idFuncionario']}' 
+                            onclick=\"return confirm('Excluir funcionário?')\">Excluir</a>
+                        </td>
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>Nenhum funcionario cadastrado</td></tr>";
+                echo "<tr><td colspan='6'>Nenhum funcionário cadastrado</td></tr>";
             }
             ?>
 

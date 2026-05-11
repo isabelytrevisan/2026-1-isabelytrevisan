@@ -28,13 +28,24 @@ if (isset($_GET['excluir'])) {
 
 if (isset($_POST['salvar'])) {
     $id = $_POST['id'];
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
+    $cliente = $_POST['Cliente_idCliente'];
+    $produto = $_POST['idEstoque'];
+    $data = $_POST['venda_data'];
+    $valor = $_POST['valor'];
+    $forma = $_POST['forma_pag'];
+    $quantidade = $_POST['quantidade'];
+    $desconto = $_POST['desconto'];
 
     mysqli_query($conexao, "
-        UPDATE vendas 
-        SET nome='$nome', email='$email', telefone='$telefone'
+        UPDATE Vendas 
+        SET 
+            Cliente_idCliente = '$cliente',
+            idEstoque = '$produto',
+            venda_data = '$data',
+            valor = '$valor',
+            forma_pag = '$forma',
+            quantidade = '$quantidade',
+            desconto = '$desconto'
         WHERE idVendas = $id
     ");
 
@@ -96,6 +107,7 @@ if (isset($_POST['salvar'])) {
                 <th>Forma Pag.</th>
                 <th>Quantidade</th>
                 <th>Desconto (%)</th>
+                <th>Ações</th>
             </tr>
 
             <?php

@@ -19,6 +19,33 @@ if ($_SESSION["tipo_acesso"] == 1) {
 
 $sql = "SELECT * FROM estoque";
 $resultado = mysqli_query($conexao, $sql);
+
+if (isset($_GET['excluir'])) {
+    $id = $_GET['excluir'];
+    mysqli_query($conexao, "DELETE FROM estoque WHERE idEstoque = $id");
+    header("Location: lista-estoque.php");
+    exit();
+}
+
+if (isset($_POST['salvar'])) {
+    $id = $_POST['id'];
+    $nome = $_POST['nomeProduto'];
+    $quantidade = $_POST['quantidade'];
+
+    mysqli_query($conexao, "
+        UPDATE Estoque
+        SET 
+            nomeProduto = '$nome',
+            quantidade = '$quantidade'
+        WHERE idEstoque = $id
+    ");
+
+    header("Location: lista-estoque.php");
+    exit();
+}
+
+    header("Location: lista-estoque.php");
+    exit();
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +98,7 @@ $resultado = mysqli_query($conexao, $sql);
                 <th>Valor Unit.</th>
                 <th>Data Última Compra</th>
                 <th>Data Próxima Compra</th>
+                <th>Ações</th>
             </tr>
 
             <?php
@@ -83,6 +111,11 @@ $resultado = mysqli_query($conexao, $sql);
                         <td>{$item['valor_unitario']}</td>
                         <td>{$item['data_compra']}</td>
                         <td>{$item['data_prox_compra']}</td>
+                        <td>
+                            <a href='?editar={$item['idEstoque']}'>Editar</a> |
+                            <a href='?excluir={$item['idEstoque']}' 
+                            onclick=\"return confirm('Excluir produto?')\">Excluir</a>
+                        </td>
                     </tr>";
                 }
             } else {
