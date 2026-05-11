@@ -99,29 +99,21 @@ header h1 {
 .menu-toggle {
     position: absolute;
     left: 15px;
-
     background: none;
     border: none;
-
     cursor: pointer;
-
     display: flex;
     flex-direction: column;
     gap: 6px;
-
     padding: 10px;
-
     z-index: 1000;
 }
 
 .menu-toggle span {
     width: 25px;
     height: 3px;
-
     background-color: var(--cor-primaria);
-
     display: block;
-
     transition: var(--transicao);
 }
 

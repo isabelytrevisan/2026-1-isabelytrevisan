@@ -26,3 +26,14 @@ function mostrarSlides(n){
     slides[slideIndex - 1].style.display = "block";
 }
 
+ // menu
+        document.addEventListener('DOMContentLoaded', () => {
+        const btnToggle = document.getElementById('toggleMenu');
+        const menuAside = document.querySelector('.menu-aside');
+
+        if (btnToggle && menuAside) {
+            btnToggle.addEventListener('click', () => {
+                menuAside.classList.toggle('collapsed');
+            });
+        }
+    });
