@@ -7,7 +7,7 @@ if (!isset($_SESSION["idCliente"])) {
     exit();
 }
 
-// cliente não pode acessar
+
 if ($_SESSION["tipo_acesso"] == 1) {
     echo "<script>
             alert('Apenas funcionários podem acessar o estoque!');

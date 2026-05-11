@@ -13,7 +13,7 @@ if (mysqli_num_rows($resultado) > 0) {
     $usuario = mysqli_fetch_assoc($resultado);
 
     // cria exatamente o que seu verificador precisa
-    $_SESSION['id_usuario'] = $usuario['idCliente'];
+    $_SESSION['idCliente'] = $usuario['idCliente'];
     $_SESSION['tipo_acesso'] = $usuario['tipo_acesso'];
 
     header("Location: pagina-inicial.html");
