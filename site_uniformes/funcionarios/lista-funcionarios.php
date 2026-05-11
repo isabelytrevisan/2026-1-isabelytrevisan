@@ -138,6 +138,43 @@ if (isset($_POST['salvar'])) {
     </main>
 
 </div>
+     <footer class="footer-site">
 
+        <div class="footer-container">
+
+            <div class="footer-coluna">
+                <h3>Cores & Padrões</h3>
+                <p>
+                    Uniformes que vestem identidades, histórias e conexões.
+                </p>
+            </div>
+
+            <div class="footer-coluna">
+                <div class="footer-coluna-icon">
+                <img src="/site_uniformes/img/iconContato.png">
+                <h3>Contato</h3>
+                </div>
+                <p>(49) 99999-9999</p>
+                <p>contato@coresepadroes.com</p>
+                <p>Chapecó - SC</p>
+            </div>
+
+            <div class="footer-coluna">
+                <div class="footer-coluna-icon">
+                <img src="/site_uniformes/img/iconRelogio.png">
+                <h3>Horários</h3>
+                </div>
+                <p>Segunda a Sexta</p>
+                <p>08h às 18h</p>
+            </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
+                isabely.ot@aluno.ifsc.edu.br
+            </div>
+
+     </footer>
 </body>
 </html>

@@ -390,6 +390,7 @@ h2::after {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #d9c8f0;
 }
 
 .bodylogin header {
@@ -719,6 +720,15 @@ h2::after {
     color: rgba(255,255,255,0.85);
 }
 
+.footer-coluna-icon{
+    display: flex;
+}
+
+.footer-coluna-icon img{
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+}
 /* FOOTER BOTTOM */
 
 .footer-bottom {
