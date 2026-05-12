@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="conteudo">
 
+
         <h2>Cadastro de Estoque</h2>
 
         <?php if ($msg != "")?>
