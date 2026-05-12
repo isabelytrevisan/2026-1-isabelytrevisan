@@ -480,6 +480,7 @@ h2::after {
     font-size: 1.1rem;
     font-weight: 600;
     transition: 0.3s;
+    margin: 0 auto;
 }
 
 .login-right button:hover {
@@ -669,6 +670,7 @@ h2::after {
 .secao-moda {
     margin-top: 50px;
     padding-top: 0px;
+    margin: 0 30px;
 }
 
 .cards-categorias {
@@ -889,4 +891,69 @@ select.campo-filtro{
     header h1 {
         font-size: 2rem;
     }
+}
+
+/*       CONTAINER PILUAS - SELECT VENDAS          */
+
+.select-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+        font-family: sans-serif;
+    }
+
+    .pill {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 25px;
+        background-color: #f0f0f0; /* Cor desmarcada */
+        color: #555;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        transition: all 0.2s ease;
+        user-select: none;
+    }
+
+    /* Estilo quando selecionado (Igual à imagem) */
+    .pill.active {
+        background-color:#6d28d9; /* Vermelho da imagem */
+        color: white;
+        border-color:#7b4fb6;
+    }
+
+    /* O ícone de X */
+    .pill .close-icon {
+        font-weight: bold;
+        display: none;
+    }
+
+    .pill.active .close-icon {
+        display: inline-block;
+    }
+
+    /* Esconde o select original, mas mantém funcional para o PHP */
+    .select-multiplo {
+        display: none;
+    }
+
+.btn-voltar {
+    margin: 10px auto;
+    margin-top: 30px;
+    color: rgb(180, 55, 55);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid rgb(180, 55, 55);
+    box-shadow: 0 4px 8px rgba(180, 55, 55, 0.2);
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+.btn-voltar:hover {
+    color: rgb(255, 0, 0);
+    transform: translateY(-2px);
 }

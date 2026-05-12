@@ -109,7 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="POST" class="form-clean">
 
             <label>Produto:</label>
-            <select name="idEstoque" required>
+            <div id="pill-container" class="select-container"></div>
+
+            <select name="idEstoque[]" id="idEstoque" class="select-multiplo" required multiple>
                 <?php while($p = mysqli_fetch_assoc($produtos)) { ?>
                     <option value="<?= $p['idEstoque'] ?>">
                         <?= $p['nomeProduto'] ?> (<?= $p['quantidade'] ?> em estoque)

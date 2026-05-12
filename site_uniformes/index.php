@@ -25,6 +25,7 @@
 
         <form action="loginCheck.php" method="POST">
             <input type="text" name="login" placeholder="Digite seu login" required>
+            <input type="text" name="senha" placeholder="Digite sua senha" required>
             <button type="submit">Entrar</button>
         </form>
 
@@ -32,7 +33,10 @@
             Não possui conta? 
             <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastre-se aqui</a>
         </p>
-    </div>
 
+        <a class="btn-voltar" href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Voltar</a>
+
+    </div>  
+    
     </body>
 </html>

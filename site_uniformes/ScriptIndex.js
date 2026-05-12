@@ -31,7 +31,6 @@ if(document.getElementsByClassName("slides").length > 0) {
 }
 
 // menu func
-
 document.addEventListener('DOMContentLoaded', () => {
     const btnToggle = document.getElementById('toggleMenu');
     const menuAside = document.querySelector('.menu-aside');
@@ -41,4 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
             menuAside.classList.toggle('collapsed');
         });
     }
+});
+
+// dropdown func
+document.addEventListener("DOMContentLoaded", function() {
+    const selectOriginal = document.getElementById('idEstoque');
+    const container = document.getElementById('pill-container');
+    const options = selectOriginal.options;
+
+    Array.from(options).forEach((option, index) => {
+        const pill = document.createElement('div');
+        pill.classList.add('pill');
+        
+        pill.innerHTML = `<span class="close-icon">✕</span> ${ option.text}`;
+
+        pill.addEventListener('click', () => {
+            option.selected = !option.selected;
+            
+            pill.classList.toggle('active');
+
+            selectOriginal.dispatchEvent(new Event('change'));
+        });
+
+        container.appendChild(pill);
+    });
 });
