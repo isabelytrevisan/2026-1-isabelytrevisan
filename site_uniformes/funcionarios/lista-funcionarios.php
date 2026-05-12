@@ -105,6 +105,38 @@ if (isset($_POST['salvar'])) {
     </aside>
 
     <main class="conteudo">
+        <div class="select-filtro">
+
+            <input type="text"
+                placeholder="Buscar id..."
+                class="campo-filtro">
+
+            <input type="text"
+                placeholder="Nome..."
+                class="campo-filtro">
+
+            <select class="campo-filtro">
+                <option>Carga Horária</option>
+                <option>X horas</option>
+                <option>Y horas</option>
+            </select>
+
+            <input type="text"
+                placeholder="CPF"
+                class="campo-filtro">
+
+            <input type="date"
+                class="campo-filtro">
+
+            <input type="text"
+                placeholder="Email"
+                class="campo-filtro">
+            
+            <button class="btn-filtro">
+                Buscar
+            </button>
+
+        </div>
 
         <h2>Lista de Funcionários</h2>
 

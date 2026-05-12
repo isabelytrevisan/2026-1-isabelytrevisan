@@ -92,6 +92,53 @@ if (isset($_POST['salvar'])) {
 
     <main class="conteudo">
 
+        <div class="select-filtro">
+
+            <input type="text"
+                placeholder="Buscar Id..."
+                class="campo-filtro">
+
+            <input type="text"
+                placeholder="Cliente..."
+                class="campo-filtro">
+
+            <input type="text"
+                placeholder="Id produto..."
+                class="campo-filtro">
+
+            <input type="date"
+                class="campo-filtro">
+
+            <input type="number"
+                step="0.01" 
+                min="0" 
+                placeholder="Valor.."
+                class="campo-filtro">
+
+            <select class="campo-filtro">
+                <option>Forma de Pagamento</option>
+                <option>Pix</option>
+                <option>Cartão crédito</option>
+                <option>Cartão debito</option>
+                <option>Boleto</option>
+            </select>
+
+            <input type="number"
+                placeholder="Quantidade mínima"
+                class="campo-filtro">
+
+            <input type="number"
+                step="0.01" 
+                min="0" 
+                placeholder="Desconto"
+                class="campo-filtro">
+
+            <button class="btn-filtro">
+                Buscar
+            </button>
+
+        </div>
+
         <h2>Lista de Vendas</h2>
 
         <div style="margin-bottom: 15px;">

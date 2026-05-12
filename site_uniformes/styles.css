@@ -741,30 +741,84 @@ h2::after {
 }
 
 /* FILTRO SELECT */
-.select-filtro {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
+.select-filtro{
+    color:#3e461a;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+/* Campos */
+.campo-filtro{
+    flex: 1 1 180px;
+
+    padding: 12px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+
+    font-size: 15px;
     outline: none;
+
+    transition: 0.3s ease;
+    background: #f9f9f9;
+}
+
+/* Efeito ao clicar */
+.campo-filtro:focus{
+    border-color: #7c3aed;
+    background: #fff;
+
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+}
+
+/* Select */
+select.campo-filtro{
     cursor: pointer;
 }
 
-.select-filtro:focus {
-    border-color: #555;
+/* Botão */
+.btn-filtro{
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #8051d2df;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-/* Ajuste no container para não quebrar em telas menores */
-.container-filtro {
-    flex-wrap: wrap; 
+/* Hover do botão */
+.btn-filtro:hover{
+    background: #6d28d9;
+    transform: translateY(-2px);
 }
 
-.campo-filtro{
-    padding: 10px;
-    gap: 10px;
-    font-family: 'Playfair Display', serif;
-    color: #3e461a;
-    box-shadow:  rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+/* Responsividade */
+@media (max-width: 768px){
+
+    .select-filtro{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .campo-filtro,
+    .btn-filtro{
+        width: 100%;
+    }
 }
 
 /* =========================================

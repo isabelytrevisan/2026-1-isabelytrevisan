@@ -58,6 +58,25 @@ $resultado = mysqli_query($conexao, $sql);
 
     <main class="conteudo">
 
+        <div class="select-filtro">
+
+            <input type="text"
+                placeholder="Buscar id..."
+                class="campo-filtro">
+
+            <input type="text"
+                placeholder="Nome..."
+                class="campo-filtro">
+
+            <input type="text"
+                class="Login">
+            
+            <button class="btn-filtro">
+                Buscar
+            </button>
+
+        </div>
+        
         <h2>Lista de Logins</h2>
 
         <table class="tabela">
