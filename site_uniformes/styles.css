@@ -729,6 +729,7 @@ h2::after {
     width: 30px;
     height: 30px;
 }
+
 /* FOOTER BOTTOM */
 
 .footer-bottom {
@@ -737,4 +738,35 @@ h2::after {
     font-size: 0.9rem;
     background: rgba(0,0,0,0.08);
     border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+/* FILTRO SELECT */
+.select-filtro {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-filtro:focus {
+    border-color: #555;
+}
+
+/* Ajuste no container para não quebrar em telas menores */
+.container-filtro {
+    flex-wrap: wrap; 
+}
+
+.campo-filtro{
+    padding: 10px;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #3e461a;
+    box-shadow:  rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn-filtro{
+
 }
