@@ -185,7 +185,7 @@ if (isset($_POST['salvar'])) {
     </main>
 
 </div>
-     <footer class="footer-site">
+    <footer class="footer-site">
 
         <div class="footer-container">
 
@@ -198,7 +198,7 @@ if (isset($_POST['salvar'])) {
 
             <div class="footer-coluna">
                 <div class="footer-coluna-icon">
-                <img src="/site_uniformes/img/iconContato.png">
+                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconContato.png">
                 <h3>Contato</h3>
                 </div>
                 <p>(49) 99999-9999</p>
@@ -208,7 +208,7 @@ if (isset($_POST['salvar'])) {
 
             <div class="footer-coluna">
                 <div class="footer-coluna-icon">
-                <img src="/site_uniformes/img/iconRelogio.png">
+                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconRelogio.png">
                 <h3>Horários</h3>
                 </div>
                 <p>Segunda a Sexta</p>
@@ -222,7 +222,7 @@ if (isset($_POST['salvar'])) {
                 isabely.ot@aluno.ifsc.edu.br
             </div>
 
-     </footer>
+    </footer>
       <script src="../ScriptIndex.js"></script>
 </body>
 </html>
