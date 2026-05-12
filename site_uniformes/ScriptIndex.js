@@ -1,15 +1,15 @@
-
-
 let slideIndex = 1;
-mostrarSlides(slideIndex);
 
 function mudarSlide(n){
     mostrarSlides(slideIndex += n);
 }
 
+// slides func
 function mostrarSlides(n){
 
     let slides = document.getElementsByClassName("slides");
+
+    if(slides.length === 0) return; // Exit if no slides exist
 
     if(n > slides.length){
         slideIndex = 1;
@@ -26,14 +26,19 @@ function mostrarSlides(n){
     slides[slideIndex - 1].style.display = "block";
 }
 
- // menu
-        document.addEventListener('DOMContentLoaded', () => {
-        const btnToggle = document.getElementById('toggleMenu');
-        const menuAside = document.querySelector('.menu-aside');
+if(document.getElementsByClassName("slides").length > 0) {
+    mostrarSlides(slideIndex);
+}
 
-        if (btnToggle && menuAside) {
-            btnToggle.addEventListener('click', () => {
-                menuAside.classList.toggle('collapsed');
-            });
-        }
-    });
+// menu func
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnToggle = document.getElementById('toggleMenu');
+    const menuAside = document.querySelector('.menu-aside');
+
+    if (btnToggle && menuAside) {
+        btnToggle.addEventListener('click', () => {
+            menuAside.classList.toggle('collapsed');
+        });
+    }
+});

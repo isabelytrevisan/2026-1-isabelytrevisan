@@ -42,7 +42,18 @@ if (isset($_POST['salvar'])) {
 <body>
 
 <header>
+    <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <h1>Sistema de Uniformes</h1>
+    <div class="user-info">
+        <?php if (isset($_SESSION['nome'])): ?>
+            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+            <a href="../logoutCheck.php" class="logout-link">Sair</a>
+        <?php endif; ?>
+    </div>
 </header>
 
 <div class="main">
@@ -51,14 +62,17 @@ if (isset($_POST['salvar'])) {
         <nav>
             <ul>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Início</a></li>
+                    <?php if (isset($_SESSION['tipo_acesso']) && $_SESSION['tipo_acesso'] == 2): ?>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/lista-vendas.php">Lista de vendas</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
+                    <?php endif; ?>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.php">Login</a></li>
                     
             </ul>
         </nav>
@@ -134,6 +148,6 @@ if (isset($_POST['salvar'])) {
     </main>
 
 </div>
-
+ <script src="../ScriptIndex.js"></script>
 </body>
 </html>

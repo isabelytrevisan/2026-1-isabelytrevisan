@@ -18,6 +18,7 @@ if (mysqli_num_rows($resultado) > 0) {
     // cria exatamente o que seu verificador precisa
     $_SESSION['idCliente'] = $usuario['idCliente'];
     $_SESSION['tipo_acesso'] = $usuario['tipo_acesso'];
+    $_SESSION['nome'] = $usuario['nome'];
 
     header("Location: pagina-inicial.php");
     exit();
@@ -25,6 +26,6 @@ if (mysqli_num_rows($resultado) > 0) {
 } else {
     echo "<script>
             alert('Login não encontrado! Crie uma conta.');
-            window.location.href='criar-cliente.php';
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php';
           </script>";
 }

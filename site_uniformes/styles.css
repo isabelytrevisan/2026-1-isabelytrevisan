@@ -767,6 +767,72 @@ h2::after {
     box-shadow:  rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.btn-filtro{
+/* =========================================
+   20. USER INFO (HEADER)
+========================================= */
 
+.user-info {
+    position: absolute;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.user-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Pequeno detalhe decorativo antes do nome */
+.user-name::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--cor-secundaria);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.logout-link {
+    text-decoration: none;
+    color: var(--cor-secundaria);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 6px 15px;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 20px;
+    transition: var(--transicao);
+}
+
+.logout-link:hover {
+    background-color: var(--cor-secundaria);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(123, 79, 182, 0.2);
+}
+
+/* Responsividade: Esconde ou ajusta em telas pequenas para não sobrepor o título */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .user-info {
+        position: static; /* Volta para o fluxo normal em telas pequenas */
+        margin-top: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
 }

@@ -1,5 +1,4 @@
 <?php
-include(__DIR__ . "/verifica-login.php");
 include(__DIR__ . "/conexao.php");
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -25,6 +24,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </button>
         <img src="img\logotp.png" class="header-logo" alt="Logo Cores & Padrões">
         <h1>Cores & Padrões</h1>
+        <div class="user-info">
+            <?php if (isset($_SESSION['nome'])): ?>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="logoutCheck.php" class="logout-link">Sair</a>
+            <?php endif; ?>
+        </div>
     </header>
     
     <div class="main">
@@ -41,9 +46,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
                         <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                         <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
-                        
                     <?php endif; ?>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.php">Login</a></li>
                 </ul>
             </nav>
         </aside>
