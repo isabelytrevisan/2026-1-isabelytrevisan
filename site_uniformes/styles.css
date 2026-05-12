@@ -957,3 +957,19 @@ select.campo-filtro{
     color: rgb(255, 0, 0);
     transform: translateY(-2px);
 }
+
+.resumo {
+    width: 300px;
+    border-collapse: collapse;
+}
+
+.resumo th,
+.resumo td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.resumo th {
+    background: #f5f5f5;
+    text-align: left;
+}
