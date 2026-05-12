@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="footer-coluna">
                 <div class="footer-coluna-icon">
-                <img src="../img/iconContato.png">
+                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconContato.png">
                 <h3>Contato</h3>
                 </div>
                 <p>(49) 99999-9999</p>
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="footer-coluna">
                 <div class="footer-coluna-icon">
-                <img src="../img/iconRelogio.png">
+                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconRelogio.png">
                 <h3>Horários</h3>
                 </div>
                 <p>Segunda a Sexta</p>

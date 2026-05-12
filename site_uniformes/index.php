@@ -25,6 +25,7 @@
 
         <form action="loginCheck.php" method="POST">
             <input type="text" name="login" placeholder="Digite seu login" required>
+            <input type="text" name="senha" placeholder="Digite sua senha" required>
             <button type="submit">Entrar</button>
         </form>
 
