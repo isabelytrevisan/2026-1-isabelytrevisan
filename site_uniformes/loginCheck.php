@@ -1,3 +1,5 @@
+<!-- VERIFICACAO DE LOGIN -->
+
 <?php
 session_start();
 require_once __DIR__ . "/conexao.php";
@@ -16,7 +18,7 @@ if (mysqli_num_rows($resultado) > 0) {
     $_SESSION['idCliente'] = $usuario['idCliente'];
     $_SESSION['tipo_acesso'] = $usuario['tipo_acesso'];
 
-    header("Location: pagina-inicial.html");
+    header("Location: pagina-inicial.php");
     exit();
 
 } else {

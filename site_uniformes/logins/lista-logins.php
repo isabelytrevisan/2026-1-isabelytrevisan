@@ -1,5 +1,6 @@
 <?php
 session_start();
+include(__DIR__ . "/../verifica-login.php");
 include(__DIR__ . "/../conexao.php");
 
 if (!isset($_SESSION["idCliente"])) {
@@ -11,7 +12,7 @@ if (!isset($_SESSION["idCliente"])) {
 if ($_SESSION["tipo_acesso"] == 1) {
     echo "<script>
             alert('Apenas funcionários podem acessar o estoque!');
-            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html';
+            window.location.href='/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php';
           </script>";
     exit();
 }
@@ -41,7 +42,7 @@ $resultado = mysqli_query($conexao, $sql);
     <aside class="menu-aside">
         <nav>
             <ul>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.html">Início</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Início</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
@@ -50,7 +51,7 @@ $resultado = mysqli_query($conexao, $sql);
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
-                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins</a></li>
+                    
             </ul>
         </nav>
     </aside>
