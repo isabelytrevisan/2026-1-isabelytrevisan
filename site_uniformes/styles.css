@@ -23,6 +23,12 @@
 /* =========================================
    3. RESET GLOBAL
 ========================================= */
+/* Zera o padrão do navegador */
+
+html, body{
+    /*height: 100%;*/
+    min-height: 100vh;
+}
 
 * {
     margin: 0;
@@ -60,6 +66,8 @@ header {
     gap: 20px;
 
     position: relative;
+
+    margin: 0;
 }
 
 header h1 {
@@ -128,6 +136,10 @@ header h1 {
 .main {
     display: flex;
     flex: 1;
+    .main, section{
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
 }
 
 /* =========================================
@@ -689,7 +701,7 @@ h2::after {
 ========================================= */
 
 .footer-site {
-    margin-top: 80px;
+    margin-top: 20px;
     padding-top: 50px;
     background: var(--cor-primaria);
     color: white;

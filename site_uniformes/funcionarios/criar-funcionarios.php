@@ -94,8 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h2>Cadastro de Funcionário</h2>
 
-        <?php if ($msg != "")?>
+        <?php if ($msg != "") { ?>
             <p><?= $msg ?></p>
+        <?php } ?>
 
         <form method="POST" class="form-clean">
             <label>Nome:</label>
