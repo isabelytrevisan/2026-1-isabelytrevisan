@@ -3,21 +3,18 @@ session_start();
 include(__DIR__ . "/../verifica-login.php");
 include(__DIR__ . "/../conexao.php");
 
-/* ENTRADAS - VENDAS */
 $sqlEntradas = "SELECT SUM(valor) AS total_entradas FROM vendas";
 $resultadoEntradas = mysqli_query($conexao, $sqlEntradas);
 $dadosEntradas = mysqli_fetch_assoc($resultadoEntradas);
 
 $entradas = $dadosEntradas['total_entradas'] ?? 0;
 
-/* SAÍDAS - ESTOQUE */
 $sqlSaidas = "SELECT SUM(valor_unitario * quantidade) AS total_saidas FROM estoque";
 $resultadoSaidas = mysqli_query($conexao, $sqlSaidas);
 $dadosSaidas = mysqli_fetch_assoc($resultadoSaidas);
 
 $saidas = $dadosSaidas['total_saidas'] ?? 0;
 
-/* VALOR EM CAIXA E SALDO FINAL */
 $valorCaixa = $entradas - $saidas;
 $saldoFinal = $valorCaixa;
 ?>
