@@ -969,3 +969,65 @@ select.campo-filtro{
     color: rgb(255, 0, 0);
     transform: translateY(-2px);
 }
+
+/* BOTÃO EDITAR */
+.btn-editar {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 2px;
+
+    background-color: var(--cor-secundaria);
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    border: none;
+    border-radius: 10px;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: var(--transicao);
+}
+
+.btn-editar:hover {
+    background-color: #6a42a8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(123, 79, 182, 0.25);
+}
+
+/* BOTÃO EXCLUIR */
+.btn-excluir {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 2px;
+
+    background-color: #c0392b;
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    border: none;
+    border-radius: 10px;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: var(--transicao);
+}
+
+.btn-excluir:hover {
+    background-color: #a93226;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(192, 57, 43, 0.25);
+}
+
+.tabela td a {
+    margin-right: 6px;
+}
