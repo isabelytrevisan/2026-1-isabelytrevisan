@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Nome:</label>
             <input type="text" name="nome" placeholder="Nome" required>
 
-            <label>Carga Horária (horas por semana):</label>
+            <label>Carga Horária (horas por dia):</label>
             <input type="time" name="carga_horaria" placeholder="Carga horaria" required>
 
             <label>CPF:</label>
