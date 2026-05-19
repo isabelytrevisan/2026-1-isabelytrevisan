@@ -98,8 +98,10 @@ if (isset($_POST['salvar'])) {
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
                     <li><a href="/2026-1-isabelytrevisan/site_uniformes/caixa/fluxo-de-caixa.php">Fluxo de caixa</a></li>
                     <?php endif; ?>
-                <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
-                <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.php">Login</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/logins/lista-logins.php">Lista de logins cadastrados</a></li>
+                    <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.php">Login</a></li>
+                    
             </ul>
         </nav>
     </aside>
