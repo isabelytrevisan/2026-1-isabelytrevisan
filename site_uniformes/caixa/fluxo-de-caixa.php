@@ -34,15 +34,49 @@ $saldoFinal = $valorCaixa;
 
 <body>
 
-<header>
-    <h1>Fluxo de Caixa</h1>
-</header>
+    <header>
+        <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <h1>Sistema de Uniformes</h1>
+        <div class="user-info">
+            <?php if (isset($_SESSION['nome'])): ?>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
+            <?php endif; ?>
+        </div>
+    </header>
 
-<main class="conteudo">
+    <div class="main">
+
+        <aside class="menu-aside">
+            <nav>
+                    <ul>
+                        <li><a href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Início</a></li>
+                        <?php if (isset($_SESSION['tipo_acesso']) && $_SESSION['tipo_acesso'] == 2): ?>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php">Cadastro de estoque</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/estoque/lista-estoque.php">Lista de estoque</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de vendas</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/lista-vendas.php">Lista de vendas</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/lista-clientes.php">Lista de clientes</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de funcionários</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de funcionários</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/caixa/fluxo-de-caixa.php">Fluxo de caixa</a></li>
+                        <?php endif; ?>
+                        <li><a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastro de cliente</a></li>
+                        <li><a href="/2026-1-isabelytrevisan/site_uniformes/index.php">Login</a></li>
+                    </ul>
+            </nav>
+        </aside>    
+
+
+        <main class="conteudo">
 
     <h2>Relatório de Fluxo de Caixa</h2>
 
-    <table class="resumo">
+    <table class="tabela">
 
         <tr>
             <th>Valor em caixa</th>
@@ -74,48 +108,51 @@ $saldoFinal = $valorCaixa;
 
     </table>
 
-</main>
-
-<footer class="footer-site">
-
-    <div class="footer-container">
-
-        <div class="footer-coluna">
-            <h3>Cores & Padrões</h3>
-            <p>
-                Uniformes que vestem identidades, histórias e conexões.
-            </p>
-        </div>
-
-        <div class="footer-coluna">
-            <div class="footer-coluna-icon">
-                <img src="/site_uniformes/img/iconContato.png">
-                <h3>Contato</h3>
-            </div>
-
-            <p>(49) 99999-9999</p>
-            <p>contato@coresepadroes.com</p>
-            <p>Chapecó - SC</p>
-        </div>
-
-        <div class="footer-coluna">
-            <div class="footer-coluna-icon">
-                <img src="/site_uniformes/img/iconRelogio.png">
-                <h3>Horários</h3>
-            </div>
-
-            <p>Segunda a Sexta</p>
-            <p>08h às 18h</p>
-        </div>
+        </main>
 
     </div>
 
-    <div class="footer-bottom">
-        Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
-        isabely.ot@aluno.ifsc.edu.br
-    </div>
+    <footer class="footer-site">
 
-</footer>
+        <div class="footer-container">
 
+            <div class="footer-coluna">
+                <h3>Cores & Padrões</h3>
+                <p>
+                    Uniformes que vestem identidades, histórias e conexões.
+                </p>
+            </div>
+
+            <div class="footer-coluna">
+                <div class="footer-coluna-icon">
+                    <img src="../img/iconContato.png" alt="Ícone de contato">
+                    <h3>Contato</h3>
+                </div>
+
+                <p>(49) 99999-9999</p>
+                <p>contato@coresepadroes.com</p>
+                <p>Chapecó - SC</p>
+            </div>
+
+            <div class="footer-coluna">
+                <div class="footer-coluna-icon">
+                    <img src="../img/iconRelogio.png" alt="Ícone de horário">
+                    <h3>Horários</h3>
+                </div>
+
+                <p>Segunda a Sexta</p>
+                <p>08h às 18h</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
+            isabely.ot@aluno.ifsc.edu.br
+        </div>
+
+    </footer>
+
+    <script src="../ScriptIndex.js"></script>
 </body>
 </html>
