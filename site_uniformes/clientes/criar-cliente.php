@@ -14,9 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefone = $_POST["telefone"];
     $tipo_acesso = 1;
     $login = $_POST["login"];
+    $senha = $_POST["senha"];
 
-    $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login)
-            VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login')";
+    $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login, senha)
+            VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login', '$senha')";
 
     if (mysqli_query($conexao, $sql)) {
         $msg = "✔ Cliente cadastrado com sucesso!";
@@ -104,6 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>Login:</label>
             <input type="text" name="login" placeholder="Login" required>
+
+            <label>Senha:</label>
+            <input type="password" name="senha" placeholder="Senha" required>
 
             <button class="botao-adicionar" type="submit">Salvar</button>
         </form>
