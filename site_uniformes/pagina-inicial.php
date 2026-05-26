@@ -75,6 +75,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <button class="proximo" onclick="mudarSlide(1)">❯</button>
 
             </div>
+
         </main>
     </div>
 
@@ -86,31 +87,103 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <div class="cards-categorias">
 
-            <div class="card-categoria">
-                <img src="img/MoletomLilas.png">
-                <div class="card-info">
-                    <h3>Moletom</h3>
-                    <p>Conforto e identidade para sua equipe.</p>
+            <!-- CARD 1 -->
+            <div class="card-categoria flip-card">
+
+                <div class="flip-inner">
+
+                    <!-- FRENTE -->
+                    <div class="flip-front">
+
+                        <img src="img/MoletomLilas.png">
+
+                        <div class="card-info">
+                            <h3>Moletom</h3>
+                            <p>Conforto e identidade para sua equipe.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- VERSO -->
+                    <div class="flip-back">
+
+                        <h3>Faça seu pedido</h3>
+
+                        <a href="https://wa.me/5549999999999" target="_blank">
+                            WhatsApp
+                        </a>
+
+                    </div>
+
                 </div>
             </div>
 
-            <div class="card-categoria">
-                <img src="img/CamisetaCasual.png">
-                <div class="card-info">
-                    <h3>Moda Casual</h3>
-                    <p>Peças versáteis e personalizadas.</p>
+            <!-- CARD 2 -->
+            <div class="card-categoria flip-card">
+
+                <div class="flip-inner">
+
+                    <!-- FRENTE -->
+                    <div class="flip-front">
+
+                        <img src="img/CamisetaCasual.png">
+
+                        <div class="card-info">
+                            <h3>Moda Casual</h3>
+                            <p>Peças versáteis e personalizadas.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- VERSO -->
+                    <div class="flip-back">
+
+                        <h3>Faça seu pedido</h3>
+
+                        <a href="https://wa.me/5549999999999" target="_blank">
+                        WhatsApp
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="card-categoria">
-                <img src="img/CalcaPretaMoletom.png">
-                <div class="card-info">
-                    <h3>Esportivo</h3>
-                    <p>Uniformes leves e modernos.</p>
+
+            <!-- CARD 3 -->
+            <div class="card-categoria flip-card">
+
+                <div class="flip-inner">
+
+                    <!-- FRENTE -->
+                    <div class="flip-front">
+
+                        <img src="img/CalcaPretaMoletom.png">
+
+                        <div class="card-info">
+                            <h3>Esportivo</h3>
+                            <p>Uniformes leves e modernos.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- VERSO -->
+                    <div class="flip-back">
+
+                        <h3>Faça seu pedido</h3>
+
+                        <a href="https://wa.me/5549999999999" target="_blank">
+                        WhatsApp
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
 
-        </div>   
+        </div>  
 
     </section>
         
