@@ -1,5 +1,31 @@
-CREATE DATABASE IF NOT EXISTS uniformes;
-USE uniformes;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 26/05/2026 às 19:39
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `uniformes`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cliente`
+--
 
 CREATE TABLE `cliente` (
   `idCliente` int(10) UNSIGNED NOT NULL,
@@ -10,21 +36,21 @@ CREATE TABLE `cliente` (
   `email` varchar(50) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `tipo_acesso` int(10) UNSIGNED DEFAULT NULL,
-  `login` varchar(50) DEFAULT NULL
+  `login` varchar(50) DEFAULT NULL,
   `senha` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `nome`, `cpf`, `data_nasc`, `endereco`, `email`, `telefone`, `tipo_acesso`, `login`) VALUES
-(1, 'Murilo Thomé', '04545689086', '2008-09-27', 'Rua Orelho Estevao Fontana', 'muristop@gmail.com', '54996848291', 2, 'muristop10');
+INSERT INTO `cliente` (`idCliente`, `nome`, `cpf`, `data_nasc`, `endereco`, `email`, `telefone`, `tipo_acesso`, `login`, `senha`) VALUES
+(1, 'Murilo Thomé', '04545689086', '2008-09-27', 'Rua Orelho Estevao Fontana', 'muristop@gmail.com', '54996848291', 2, 'muristop10', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estoque`
+-- Estrutura para tabela `estoque`
 --
 
 CREATE TABLE `estoque` (
@@ -37,7 +63,7 @@ CREATE TABLE `estoque` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `estoque`
+-- Despejando dados para a tabela `estoque`
 --
 
 INSERT INTO `estoque` (`idEstoque`, `nomeProduto`, `quantidade`, `valor_unitario`, `data_compra`, `data_prox_compra`) VALUES
@@ -50,7 +76,7 @@ INSERT INTO `estoque` (`idEstoque`, `nomeProduto`, `quantidade`, `valor_unitario
 -- --------------------------------------------------------
 
 --
--- Table structure for table `funcionario`
+-- Estrutura para tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -65,7 +91,7 @@ CREATE TABLE `funcionario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `funcionario`
+-- Despejando dados para a tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`idFuncionario`, `nome`, `carga_horaria`, `cpf`, `data_nasc`, `endereco`, `email`, `telefone`) VALUES
@@ -74,7 +100,7 @@ INSERT INTO `funcionario` (`idFuncionario`, `nome`, `carga_horaria`, `cpf`, `dat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendas`
+-- Estrutura para tabela `vendas`
 --
 
 CREATE TABLE `vendas` (
@@ -89,7 +115,7 @@ CREATE TABLE `vendas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vendas`
+-- Despejando dados para a tabela `vendas`
 --
 
 INSERT INTO `vendas` (`idVendas`, `Cliente_idCliente`, `idEstoque`, `venda_data`, `valor`, `forma_pag`, `quantidade`, `desconto`) VALUES
@@ -97,29 +123,29 @@ INSERT INTO `vendas` (`idVendas`, `Cliente_idCliente`, `idEstoque`, `venda_data`
 (2, 1, 4, '2026-05-07', 400.00, 4, 2, 0.00);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`idCliente`);
 
 --
--- Indexes for table `estoque`
+-- Índices de tabela `estoque`
 --
 ALTER TABLE `estoque`
   ADD PRIMARY KEY (`idEstoque`);
 
 --
--- Indexes for table `funcionario`
+-- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`idFuncionario`);
 
 --
--- Indexes for table `vendas`
+-- Índices de tabela `vendas`
 --
 ALTER TABLE `vendas`
   ADD PRIMARY KEY (`idVendas`),
@@ -127,42 +153,45 @@ ALTER TABLE `vendas`
   ADD KEY `fk_Vendas_Estoque` (`idEstoque`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `cliente`
+-- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `idCliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `estoque`
+-- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
   MODIFY `idEstoque` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `funcionario`
+-- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   MODIFY `idFuncionario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `vendas`
+-- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
   MODIFY `idVendas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `vendas`
+-- Restrições para tabelas `vendas`
 --
 ALTER TABLE `vendas`
   ADD CONSTRAINT `fk_Vendas_Cliente` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `cliente` (`idCliente`),
   ADD CONSTRAINT `fk_Vendas_Estoque` FOREIGN KEY (`idEstoque`) REFERENCES `estoque` (`idEstoque`);
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
