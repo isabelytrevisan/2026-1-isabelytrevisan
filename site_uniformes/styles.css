@@ -1102,3 +1102,63 @@ select.campo-filtro{
 
     font-weight: bold;
 }
+
+/* MENU SANFONADO */
+
+.menu-grupo {
+    margin-bottom: 12px;
+}
+
+.menu-grupo summary {
+    list-style: none;
+    display: block;
+    padding: 12px 18px;
+    background-color: #707554;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid var(--cor-secundaria);
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.menu-grupo summary:hover {
+    background-color: white;
+    color: var(--cor-secundaria);
+
+    transform: translateX(5px);
+}
+
+/* remove a seta padrão */
+
+.menu-grupo summary::-webkit-details-marker {
+    display: none;
+}
+
+.menu-grupo summary::before {
+    content: "\203A";
+    margin-right: 5px;
+}
+
+.menu-grupo[open] summary::before {
+    content: " ";
+}
+
+.menu-grupo ul {
+    margin-top: 5px;
+}
+
+.menu-grupo ul li {
+    margin-bottom: 5px;
+}
+
+.menu-grupo ul li a {
+    padding-left: 35px;
+    font-size: 0.85rem;
+
+    background-color: rgba(255,255,255,0.08);
+
+    border-left: 2px solid rgba(123,79,182,0.6);
+}
