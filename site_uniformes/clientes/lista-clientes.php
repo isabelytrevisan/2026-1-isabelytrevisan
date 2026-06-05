@@ -142,10 +142,68 @@ if (isset($_POST['salvar'])) {
                 $c = mysqli_fetch_assoc($res);
             ?>
 
-            <div id="modalEditar" class="modal" style="display: block;">
+            <style>
+                .modal {
+                    display: block; /* Força o modal a aparecer */
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .modal-conteudo {
+                    background: #fff;
+                    width: 500px;
+                    max-width: 90%;
+                    padding: 25px;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+                    position: relative;
+                }
+
+                .modal-conteudo label {
+                    display: block;
+                    margin-top: 10px;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    color: #333;
+                    text-align: left;
+                }
+
+                .modal-conteudo input {
+                    width: 100%;
+                    padding: 8px;
+                    margin-bottom: 10px;
+                    box-sizing: border-box;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+
+                .fechar {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    font-size: 28px;
+                    cursor: pointer;
+                    color: #666;
+                    text-decoration: none;
+                }
+                
+                .fechar:hover {
+                    color: #000;
+                }
+            </style>
+
+            <div id="modalEditar" class="modal">
                 <div class="modal-conteudo">
 
-                    <span class="fechar" onclick="fecharModal()">&times;</span>
+                    <a href="lista-clientes.php" class="fechar">&times;</a>
 
                     <h3>Editar Cliente</h3>
 
@@ -174,16 +232,15 @@ if (isset($_POST['salvar'])) {
                         <label>Login</label>
                         <input type="text" name="login" value="<?= $c['login'] ?>">
 
-                        <button type="submit" name="salvar">
-                            Salvar
+                        <button type="submit" name="salvar" style="margin-top: 15px; width: 100%; padding: 10px; cursor: pointer;">
+                            Salvar Alterações
                         </button>
 
                     </form>
 
                 </div>
             </div>
-
-            <?php endif; ?> 
+            <?php endif; ?>
 
             <table class="tabela">
                 <tr>
