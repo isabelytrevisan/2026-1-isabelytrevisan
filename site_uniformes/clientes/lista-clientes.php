@@ -130,17 +130,48 @@ if (isset($_POST['salvar'])) {
             $c = mysqli_fetch_assoc($res);
         ?>
 
-        <h3>Editar Cliente</h3>
-        <form method="POST">
-            <input type="hidden" name="id" value="<?= $c['idCliente'] ?>">
-            <input name="nome" value="<?= $c['nome'] ?>">
-            <input name="email" value="<?= $c['email'] ?>">
-            <input name="telefone" value="<?= $c['telefone'] ?>">
-            <button name="salvar">Salvar</button>
-        </form>
-        <hr>
+        <div id="modalEditar" class="modal">
+            <div class="modal-conteudo">
+                <span class="fechar" onclick="fecharModal()">&times;</span>
+
+
+                    <h3>Editar Cliente</h3>
+                    <form method="POST">
+                        <input type="hidden" name="id" value="<?= $c['idCliente'] ?>">
+                        <input name="nome" value="<?= $c['nome'] ?>">
+                        <input name="cpf" value="<?= $c['cpf'] ?>">
+                        <input name="data_nasc" value="<?= $c['data_nasc'] ?>">
+                        <input name="endereco" value="<?= $c['endereco'] ?>">
+                        <input name="email" value="<?= $c['email'] ?>">
+                        <input name="telefone" value="<?= $c['telefone'] ?>">
+                        <input name="login" value="<?= $c['login'] ?>">
+                        <button name="salvar">Salvar</button>
+                    </form>
+                    <hr>
+            </div>
+        </div>
 
         <?php endif; ?>
+
+        <script>
+            function editarCliente(id, nome, email, telefone) {
+
+                document.getElementById("id").value = id;
+                document.getElementById("nome").value = nome;
+                document.getElementById("cpf").value = cpf;
+                document.getElementById("data_nasc").value = data_nasc;
+                document.getElementById("endereco").value = endereco;
+                document.getElementById("email").value = email;
+                document.getElementById("telefone").value = telefone;
+                document.getElementById("login").value = login;
+
+                document.getElementById("modalEditar").style.display = "block";
+            }
+
+            function fecharModal() {
+                document.getElementById("modalEditar").style.display = "none";
+            }
+        </script>
 
         <table class="tabela">
             <tr>
