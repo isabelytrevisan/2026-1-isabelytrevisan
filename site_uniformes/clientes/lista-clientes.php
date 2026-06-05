@@ -142,7 +142,7 @@ if (isset($_POST['salvar'])) {
                 $c = mysqli_fetch_assoc($res);
             ?>
 
-            <div id="modalEditar" class="modal">
+            <div id="modalEditar" class="modal" style="display: block;">
                 <div class="modal-conteudo">
 
                     <span class="fechar" onclick="fecharModal()">&times;</span>
@@ -183,12 +183,9 @@ if (isset($_POST['salvar'])) {
                 </div>
             </div>
 
-            <script>
-            window.onload = function() {
-                document.getElementById("modalEditar").style.display = "block";
-            }
-            </script>
-            <?php endif; ?> <table class="tabela">
+            <?php endif; ?> 
+
+            <table class="tabela">
                 <tr>
                     <th>Id</th>
                     <th>Nome</th>
@@ -223,7 +220,6 @@ if (isset($_POST['salvar'])) {
                     </tr>";
                 }
             } else {
-                // Correção: Alterado colspan de 6 para 10 para alinhar perfeitamente com o cabeçalho
                 echo "<tr><td colspan='10'>Nenhum cliente cadastrado</td></tr>";
             }
             ?>
