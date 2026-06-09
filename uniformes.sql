@@ -22,8 +22,12 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+  
 --
+
+CREATE DATABASE IF NOT EXISTS `uniformes` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `uniformes`;
+
 -- Estrutura para tabela `cliente`
 --
 
