@@ -1,33 +1,13 @@
-/* CORES & PADRÕES */
-
-/* 1. FONTES */
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap');
-
-/* =========================================
-   2. VARIÁVEIS
-========================================= */
 
 :root {
     --cor-primaria: #4b5320;
     --cor-secundaria: #7b4fb6;
     --cor-fundo: #ffffff;
     --cor-menu: #4b5320;
-
     --cor-texto: #1a1a1adc;
     --cor-texto-claro: #ffffff;
-
     --transicao: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* =========================================
-   3. RESET GLOBAL
-========================================= */
-/* Zera o padrão do navegador */
-
-html, body{
-    /*height: 100%;*/
-    min-height: 100vh;
 }
 
 * {
@@ -41,33 +21,21 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
-
     line-height: 1.6;
 }
-
-/* =========================================
-   4. HEADER
-========================================= */
 
 header {
     background: #aec59dbb;
     color: var(--cor-primaria);
-
     padding: 0.5rem 0.75rem;
-
     border-bottom: 2px solid var(--cor-primaria);
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-
     position: relative;
-
-    margin: 0;
 }
 
 header h1 {
@@ -81,8 +49,6 @@ header h1 {
     color: #452f63d3;
 }
 
-/* LOGO */
-
 .logoTitulo {
     display: block;
 }
@@ -90,19 +56,13 @@ header h1 {
 .header-logo {
     width: 130px;
     height: 130px;
-
     object-fit: contain;
-
     transition: transform var(--transicao);
 }
 
 .header-logo:hover {
     transform: scale(1.1);
 }
-
-/* =========================================
-   5. MENU TOGGLE
-========================================= */
 
 .menu-toggle {
     position: absolute;
@@ -129,53 +89,32 @@ header h1 {
     transform: translateX(5px);
 }
 
-/* =========================================
-   6. LAYOUT PRINCIPAL
-========================================= */
-
 .main {
     display: flex;
     flex: 1;
-    .main, section{
+}
+
+.main, section {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
-}
-
-/* =========================================
-   7. MENU LATERAL
-========================================= */
 
 .menu-aside {
     width: 280px;
-
     background-color: var(--cor-menu);
-
     padding: 3rem 1.5rem;
-
     display: flex;
     flex-direction: column;
-
     border-right: 1px solid #e0e0d0;
-
-    transition:
-        transform var(--transicao),
-        width var(--transicao);
+    transition: transform var(--transicao), width var(--transicao);
 }
-
-/* MENU COLAPSADO */
 
 .menu-aside.collapsed {
     width: 0;
-
     padding: 0;
-
     overflow: hidden;
-
     transform: translateX(-100%);
 }
-
-/* LISTA */
 
 .menu-aside ul {
     list-style: none;
@@ -185,103 +124,61 @@ header h1 {
     margin-bottom: 12px;
 }
 
-/* LINKS */
-
 .menu-aside a {
     display: block;
-
     padding: 12px 18px;
-
     text-decoration: none;
-
     color: white;
     background-color: #707554;
-
     font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-
     border-left: 3px solid var(--cor-secundaria);
-
     transition: var(--transicao);
 }
 
 .menu-aside a:hover {
     background-color: white;
     color: var(--cor-secundaria);
-
     transform: translateX(5px);
 }
 
-/* =========================================
-   8. CONTEÚDO
-========================================= */
-
 .conteudo {
     flex: 1;
-
     padding: 3rem;
-
     background-color: #ffffff;
 }
 
-/* =========================================
-   9. TÍTULOS
-========================================= */
-
 h2 {
     text-align: center;
-
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
-
     color: var(--cor-primaria);
-
     margin-bottom: 30px;
-
     position: relative;
 }
 
-/* LINHA DECORATIVA */
-
 h2::after {
     content: "";
-
     display: block;
-
     width: 60px;
     height: 3px;
-
     background: var(--cor-secundaria);
-
     margin: 10px auto 0;
 }
 
-/* =========================================
-   10. BOTÕES
-========================================= */
-
 .botao-adicionar {
     display: inline-block;
-
     padding: 15px 30px;
-
     border: none;
     border-radius: 4px;
-
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
-
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
-
-/* =========================================
-   12. TABELAS
-========================================= */
 
 .tabela {
     width: 100%;
@@ -310,10 +207,6 @@ h2::after {
     background-color: rgba(123, 79, 182, 0.03);
 }
 
-/* =========================================
-   13. FORMULÁRIOS
-========================================= */
-
 .form-clean {
     width: 100%;
     max-width: 500px;
@@ -323,8 +216,6 @@ h2::after {
     align-items: center;
     gap: 15px;
 }
-
-/* LABEL */
 
 .form-clean label {
     width: 100%;
@@ -336,8 +227,6 @@ h2::after {
     letter-spacing: 1px;
     color: var(--cor-primaria);
 }
-
-/* INPUTS E SELECT */
 
 .form-clean input,
 .form-clean select {
@@ -354,25 +243,17 @@ h2::after {
     transition: var(--transicao);
 }
 
-/* FOCUS */
-
 .form-clean input:focus,
 .form-clean select:focus {
     border-bottom: 2px solid var(--cor-secundaria);
     background-color: rgba(123, 79, 182, 0.02);
 }
 
-/* SELECT */
-
 .form-clean select {
     appearance: none;
     cursor: pointer;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b4fb6' d='M6 8 0 2 1.41 0.59 6 5.17l4.59-4.58L12 2z'/%3E%3C/svg%3E") no-repeat right 15px center;
 }
-
-/* BOTÃO FORM */
 
 .form-clean .botao-adicionar {
     min-width: 200px;
@@ -392,13 +273,8 @@ h2::after {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* =========================================
-   14. LOGIN
-========================================= */
-
 .bodylogin {
     height: 100vh;
-    background: #f3f5f2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -409,8 +285,6 @@ h2::after {
     display: none;
 }
 
-/* CAIXA LOGIN */
-
 .login-box {
     width: 1000px;
     height: 520px;
@@ -420,8 +294,6 @@ h2::after {
     display: flex;
     box-shadow: 0 25px 45px rgba(0,0,0,0.08);
 }
-
-/* ESQUERDA */
 
 .login-left {
     width: 40%;
@@ -447,8 +319,6 @@ h2::after {
     opacity: 0.95;
 }
 
-/* DIREITA */
-
 .login-right {
     width: 60%;
     padding: 80px 100px;
@@ -460,8 +330,6 @@ h2::after {
 .login-right form {
     width: 100%;
 }
-
-/* INPUTS */
 
 .login-right input {
     width: 100%;
@@ -478,8 +346,6 @@ h2::after {
 .login-right input:focus {
     border-bottom: 2px solid var(--cor-secundaria);
 }
-
-/* BOTÃO */
 
 .login-right button {
     width: 70%;
@@ -500,8 +366,6 @@ h2::after {
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
-/* RODAPÉ LOGIN */
-
 .rodape-login {
     margin-top: 60px;
     font-size: 1rem;
@@ -512,10 +376,6 @@ h2::after {
     text-decoration: none;
     font-weight: 600;
 }
-
-/* =========================================
-   15. CARROSSEL
-========================================= */
 
 .carrossel {
     position: relative;
@@ -536,8 +396,6 @@ h2::after {
     object-fit: cover;
 }
 
-/* ANIMAÇÃO */
-
 .fade {
     animation: fade 0.5s;
 }
@@ -546,8 +404,6 @@ h2::after {
     from { opacity: .4; }
     to { opacity: 1; }
 }
-
-/* SETAS */
 
 .anterior,
 .proximo {
@@ -575,10 +431,6 @@ h2::after {
 .proximo:hover {
     background: var(--cor-secundaria);
 }
-
-/* =========================================
-   16. CATEGORIAS
-========================================= */
 
 .categorias {
     margin-top: 20px;
@@ -609,18 +461,12 @@ h2::after {
     transform: translateY(-3px);
 }
 
-/* =========================================
-   17. PRODUTOS
-========================================= */
-
 .produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
-
-/* CARD */
 
 .card-produto,
 .card-categoria {
@@ -636,8 +482,6 @@ h2::after {
     transform: translateY(-8px);
 }
 
-/* IMAGENS */
-
 .card-produto img,
 .card-categoria img {
     width: 100%;
@@ -651,8 +495,6 @@ h2::after {
 .card-categoria img {
     height: 300px;
 }
-
-/* TEXTO */
 
 .card-produto h3,
 .card-info h3 {
@@ -675,13 +517,8 @@ h2::after {
     color: #666;
 }
 
-/* =========================================
-   18. SEÇÃO MODA
-========================================= */
-
 .secao-moda {
-    margin-top: 50px;
-    padding-top: 0px;
+    padding-top: 0;
     margin: 0 30px;
 }
 
@@ -692,13 +529,10 @@ h2::after {
     margin-top: 40px;
 }
 
-.descricao-secao{
+.descricao-secao {
     align-items: center;
     justify-content: center;
 }
-/* =========================================
-   19. FOOTER
-========================================= */
 
 .footer-site {
     margin-top: 20px;
@@ -707,8 +541,6 @@ h2::after {
     color: white;
 }
 
-/* CONTAINER */
-
 .footer-container {
     display: flex;
     justify-content: space-around;
@@ -716,8 +548,6 @@ h2::after {
     gap: 40px;
     padding: 0 40px 40px;
 }
-
-/* COLUNAS */
 
 .footer-coluna {
     max-width: 300px;
@@ -734,17 +564,15 @@ h2::after {
     color: rgba(255,255,255,0.85);
 }
 
-.footer-coluna-icon{
+.footer-coluna-icon {
     display: flex;
 }
 
-.footer-coluna-icon img{
+.footer-coluna-icon img {
     padding: 2px;
     width: 30px;
     height: 30px;
 }
-
-/* FOOTER BOTTOM */
 
 .footer-bottom {
     padding: 20px;
@@ -754,90 +582,56 @@ h2::after {
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
-/* FILTRO SELECT */
-.select-filtro{
-    color:#3e461a;
+.select-filtro {
+    color: #3e461a;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     align-items: center;
-
     background: #ffffff;
     padding: 20px;
     border-radius: 18px;
-
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     margin-bottom: 25px;
 }
 
-/* Campos */
-.campo-filtro{
+.campo-filtro {
     flex: 1 1 180px;
-
     padding: 12px 15px;
     border: 1px solid #dcdcdc;
     border-radius: 12px;
-
     font-size: 15px;
     outline: none;
-
     transition: 0.3s ease;
     background: #f9f9f9;
 }
 
-/* Efeito ao clicar */
-.campo-filtro:focus{
+.campo-filtro:focus {
     border-color: #7c3aed;
     background: #fff;
-
     box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
 }
 
-/* Select */
-select.campo-filtro{
+select.campo-filtro {
     cursor: pointer;
 }
 
-/* Botão */
-.btn-filtro{
+.btn-filtro {
     padding: 12px 25px;
-
     border: none;
     border-radius: 12px;
-
     background: #8051d2df;
     color: white;
-
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
     transition: 0.3s ease;
 }
 
-/* Hover do botão */
-.btn-filtro:hover{
+.btn-filtro:hover {
     background: #6d28d9;
     transform: translateY(-2px);
 }
-
-/* Responsividade */
-@media (max-width: 768px){
-
-    .select-filtro{
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .campo-filtro,
-    .btn-filtro{
-        width: 100%;
-    }
-}
-
-/* =========================================
-   20. USER INFO (HEADER)
-========================================= */
 
 .user-info {
     position: absolute;
@@ -857,7 +651,6 @@ select.campo-filtro{
     position: relative;
 }
 
-/* Pequeno detalhe decorativo antes do nome */
 .user-name::before {
     content: '';
     display: inline-block;
@@ -887,73 +680,49 @@ select.campo-filtro{
     box-shadow: 0 4px 8px rgba(123, 79, 182, 0.2);
 }
 
-/* Responsividade: Esconde ou ajusta em telas pequenas para não sobrepor o título */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        height: auto;
-        padding: 1rem;
-    }
-
-    .user-info {
-        position: static; /* Volta para o fluxo normal em telas pequenas */
-        margin-top: 10px;
-    }
-    
-    header h1 {
-        font-size: 2rem;
-    }
+.select-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    font-family: sans-serif;
 }
 
-/*       CONTAINER PILUAS - SELECT VENDAS          */
+.pill {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    color: #555;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+    user-select: none;
+}
 
-.select-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-        font-family: sans-serif;
-    }
+.pill.active {
+    background-color: #6d28d9;
+    color: white;
+    border-color: #7b4fb6;
+}
 
-    .pill {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        padding: 8px 16px;
-        border-radius: 25px;
-        background-color: #f0f0f0; /* Cor desmarcada */
-        color: #555;
-        cursor: pointer;
-        border: 1px solid #ddd;
-        transition: all 0.2s ease;
-        user-select: none;
-    }
+.pill .close-icon {
+    font-weight: bold;
+    display: none;
+}
 
-    /* Estilo quando selecionado (Igual à imagem) */
-    .pill.active {
-        background-color:#6d28d9; /* Vermelho da imagem */
-        color: white;
-        border-color:#7b4fb6;
-    }
+.pill.active .close-icon {
+    display: inline-block;
+}
 
-    /* O ícone de X */
-    .pill .close-icon {
-        font-weight: bold;
-        display: none;
-    }
-
-    .pill.active .close-icon {
-        display: inline-block;
-    }
-
-    /* Esconde o select original, mas mantém funcional para o PHP */
-    .select-multiplo {
-        display: none;
-    }
+.select-multiplo {
+    display: none;
+}
 
 .btn-voltar {
-    margin: 10px auto;
-    margin-top: 30px;
+    margin: 40px auto 10px;
     color: rgb(180, 55, 55);
     font-size: 15px;
     font-weight: 600;
@@ -970,26 +739,20 @@ select.campo-filtro{
     transform: translateY(-2px);
 }
 
-/* BOTÃO EDITAR */
 .btn-editar {
     display: inline-block;
     padding: 8px 14px;
     margin: 2px;
-
     background-color: var(--cor-secundaria);
     color: white;
-
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-
     border: none;
     border-radius: 10px;
-
     text-decoration: none;
     cursor: pointer;
-
     transition: var(--transicao);
 }
 
@@ -999,26 +762,20 @@ select.campo-filtro{
     box-shadow: 0 6px 12px rgba(123, 79, 182, 0.25);
 }
 
-/* BOTÃO EXCLUIR */
 .btn-excluir {
     display: inline-block;
     padding: 8px 14px;
     margin: 2px;
-
     background-color: #c0392b;
     color: white;
-
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-
     border: none;
     border-radius: 10px;
-
     text-decoration: none;
     cursor: pointer;
-
     transition: var(--transicao);
 }
 
@@ -1032,16 +789,13 @@ select.campo-filtro{
     margin-right: 6px;
 }
 
-
-/* CARD VIRANDO */
-
-.flip-card{
+.flip-card {
     perspective: 1000px;
     cursor: pointer;
     min-height: 420px;
 }
 
-.flip-inner{
+.flip-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -1049,16 +803,12 @@ select.campo-filtro{
     transform-style: preserve-3d;
 }
 
-/* QUANDO CLICAR */
-
-.flip-card.virado .flip-inner{
+.flip-card.virado .flip-inner {
     transform: rotateY(180deg);
 }
 
-/* FRENTE E VERSO */
-
 .flip-front,
-.flip-back{
+.flip-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1067,43 +817,31 @@ select.campo-filtro{
     overflow: hidden;
 }
 
-/* FRENTE */
-
-.flip-front{
+.flip-front {
     background: white;
 }
 
-/* VERSO */
-
-.flip-back{
+.flip-back {
     background: #4b5320;
     color: white;
-
     transform: rotateY(180deg);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 20px;
     padding: 20px;
-
     text-align: center;
 }
 
-.flip-back a{
+.flip-back a {
     background: #25D366;
     color: white;
     text-decoration: none;
-
     padding: 12px 20px;
     border-radius: 10px;
-
     font-weight: bold;
 }
-
-/* MENU SANFONADO */
 
 .menu-grupo {
     margin-bottom: 12px;
@@ -1127,11 +865,8 @@ select.campo-filtro{
 .menu-grupo summary:hover {
     background-color: white;
     color: var(--cor-secundaria);
-
     transform: translateX(5px);
 }
-
-/* remove a seta padrão */
 
 .menu-grupo summary::-webkit-details-marker {
     display: none;
@@ -1157,45 +892,67 @@ select.campo-filtro{
 .menu-grupo ul li a {
     padding-left: 35px;
     font-size: 0.85rem;
-
     background-color: rgba(255,255,255,0.08);
-
     border-left: 2px solid rgba(123,79,182,0.6);
 }
 
-/*==============================*/
-/*MODAL EDITAR*/
-/*===============================*/
-
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-    z-index:1000;
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
 }
 
-.modal-conteudo{
-    background:#fff;
-    width:600px;
-    max-width:90%;
-    margin:50px auto;
-    padding:20px;
-    border-radius:10px;
+.modal-conteudo {
+    background: #fff;
+    width: 600px;
+    max-width: 90%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.modal-conteudo input{
-    width:100%;
-    padding:8px;
-    margin-bottom:10px;
-    box-sizing:border-box;
+.modal-conteudo input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
-.fechar{
-    float:right;
-    font-size:25px;
-    cursor:pointer;
+.fechar {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Responsividade unificada no final do arquivo */
+@media (max-width: 768px) {
+    .select-filtro {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .campo-filtro,
+    .btn-filtro {
+        width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .user-info {
+        position: static;
+        margin-top: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
 }
