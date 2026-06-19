@@ -15,14 +15,20 @@ if (isset($_GET['excluir'])) {
 
 if (isset($_POST['salvar'])) {
     $id = $_POST['id'];
-    $nome = $_POST['nomeProduto'];
+    $nomeProduto = $_POST['nomeProduto'];
     $quantidade = $_POST['quantidade'];
+    $valor_unitario = $_POST['valor_unitario'];
+    $data_compra = $_POST['data_compra'];
+    $data_prox_compra = $_POST['data_prox_compra'];
 
     mysqli_query($conexao, "
         UPDATE Estoque
         SET 
-            nomeProduto = '$nome',
-            quantidade = '$quantidade'
+            nomeProduto = '$nomeProduto',
+            quantidade = '$quantidade',
+            valor_unitario = '$valor_unitario',
+            data_compra = '$data_compra',
+            data_prox_compra = '$data_prox_compra'
         WHERE idEstoque = $id
     ");
 
@@ -42,20 +48,21 @@ if (isset($_POST['salvar'])) {
 
 <body>
 
-<header>
-    <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <h1>Sistema de Uniformes</h1>
-    <div class="user-info">
-        <?php if (isset($_SESSION['nome'])): ?>
-            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
-            <a href="../logoutCheck.php" class="logout-link">Sair</a>
-        <?php endif; ?>
-    </div>
-</header>
+    <header>
+        <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <img src="../img/logotp.png" class="header-logo" alt="Logo Cores & Padrões">
+        <h1>Cores & Padrões</h1>
+        <div class="user-info">
+            <?php if (isset($_SESSION['nome'])): ?>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
+            <?php endif; ?>
+        </div>
+    </header>
 
 <div class="main">
 
@@ -159,6 +166,106 @@ if (isset($_POST['salvar'])) {
             <a href="/2026-1-isabelytrevisan/site_uniformes/estoque/criar-estoque.php" class="botao-adicionar">+ Novo Produto</a>
         </div>
 
+        <?php if (isset($_GET['editar'])):
+                $id = $_GET['editar'];
+                $res = mysqli_query($conexao, "SELECT * FROM estoque WHERE idEstoque = $id");
+                $c = mysqli_fetch_assoc($res);
+        ?>
+
+        <style>
+                .modal {
+                    display: block; /* Força o modal a aparecer */
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .modal-conteudo {
+                    background: #fff;
+                    width: 500px;
+                    max-width: 90%;
+                    padding: 25px;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+                    position: relative;
+                }
+
+                .modal-conteudo label {
+                    display: block;
+                    margin-top: 10px;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    color: #333;
+                    text-align: left;
+                }
+
+                .modal-conteudo input {
+                    width: 100%;
+                    padding: 8px;
+                    margin-bottom: 10px;
+                    box-sizing: border-box;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+
+                .fechar {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    font-size: 28px;
+                    cursor: pointer;
+                    color: #666;
+                    text-decoration: none;
+                }
+                
+                .fechar:hover {
+                    color: #000;
+                }
+        </style>
+
+        <div id="modalEditar" class="modal">
+                <div class="modal-conteudo">
+
+                    <a href="lista-estoque.php" class="fechar">&times;</a>
+
+                    <h3>Editar Estoque</h3>
+
+                    <form method="POST">
+
+                        <input type="hidden" name="id" value="<?= $c['idEstoque'] ?>">
+
+                        <label>Nome</label>
+                        <input type="text" name="nomeProduto" value="<?= $c['nomeProduto'] ?>">
+
+                        <label>Quantidade</label>
+                        <input type="number" name="quantidade" value="<?= $c['quantidade'] ?>">
+
+                        <label>Valor Unitário</label>
+                        <input type="number" name="valor_unitario" value="<?= $c['valor_unitario'] ?>">
+
+                        <label>Data Compra</label>
+                        <input type="date" name="data_compra" value="<?= $c['data_compra'] ?>">
+
+                        <label>Data Próxima Compra</label>
+                        <input type="date" name="data_prox_compra" value="<?= $c['data_prox_compra'] ?>">
+
+                        <button type="submit" name="salvar" style="margin-top: 15px; width: 100%; padding: 10px; cursor: pointer;">
+                            Salvar Alterações
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+            <?php endif; ?>
+
         <table class="tabela">
             <tr>
                 <th>Id</th>
@@ -181,9 +288,8 @@ if (isset($_POST['salvar'])) {
                         <td>{$item['data_compra']}</td>
                         <td>{$item['data_prox_compra']}</td>
                         <td>
-                            <a href='?editar={$item['idEstoque']}'>Editar</a> |
-                            <a href='?excluir={$item['idEstoque']}' 
-                            onclick=\"return confirm('Excluir produto?')\">Excluir</a>
+                            <a href='?editar={$item['idEstoque']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
+                            <a href='?excluir={$item['idEstoque']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir produto?')\">&#128465;</a>
                         </td>
                     </tr>";
                 }

@@ -34,7 +34,7 @@
             <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php">Cadastre-se aqui</a>
         </p>
 
-        <a class="btn-voltar" href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Voltar</a>
+        <a class="btn-voltar" href="/2026-1-isabelytrevisan/site_uniformes/pagina-inicial.php">Entrar como visitante</a>
 
     </div>  
     

@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefone = $_POST["telefone"];
     $tipo_acesso = 1;
     $login = $_POST["login"];
-    $senha = $_POST["senha"];
+    
+    // LINHA ALTERADA: Aplica a criptografia MD5 antes de salvar
+    $senha = md5($_POST["senha"]); 
 
     $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login, senha)
             VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login', '$senha')";
@@ -26,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -38,20 +39,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<header>
-    <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <h1>Sistema de Uniformes</h1>
-    <div class="user-info">
-        <?php if (isset($_SESSION['nome'])): ?>
-            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
-            <a href="../logoutCheck.php" class="logout-link">Sair</a>
-        <?php endif; ?>
-    </div>
-</header>
+    <header>
+        <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <img src="../img/logotp.png" class="header-logo" alt="Logo Cores & Padrões">
+        <h1>Cores & Padrões</h1>
+        <div class="user-info">
+            <?php if (isset($_SESSION['nome'])): ?>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
+            <?php endif; ?>
+        </div>
+    </header>
 
 <div class="main">
 
