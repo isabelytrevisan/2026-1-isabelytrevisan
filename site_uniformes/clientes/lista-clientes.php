@@ -201,14 +201,12 @@ if (isset($_POST['salvar'])) {
                 $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 if (count($resultados) > 0) {
-                    echo "<table border='1' style='margin-top:20px; width:100%; border-collapse: collapse;'>";
-                    echo "<tr><th>Nome</th><th>CPF</th><th>Tipo</th><th>Login</th></tr>";
-                    foreach ($resultados as $usuario) {
+                    foreach ($resultados as $cliente) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($usuario['nome']) . "</td>";
-                        echo "<td>" . htmlspecialchars($usuario['cpf']) . "</td>";
-                        echo "<td>" . ($usuario['tipo_acesso'] == 2 ? 'Funcionário' : 'Cliente') . "</td>";
-                        echo "<td>" . htmlspecialchars($usuario['login']) . "</td>";
+                        echo "<td>" . htmlspecialchars($cliente['nome']) . "</td>";
+                        echo "<td>" . htmlspecialchars($cliente['cpf']) . "</td>";
+                        echo "<td>" . ($cliente['tipo_acesso'] == 2 ? 'Funcionário' : 'Cliente') . "</td>";
+                        echo "<td>" . htmlspecialchars($cliente['login']) . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
