@@ -134,31 +134,88 @@ if (isset($_POST['salvar'])) {
 
         <main class="conteudo">
 
-            <div class="select-filtro">
+            <form action="" method="GET" class="select-filtro">
 
-                <input type="text" placeholder="Buscar id..." class="campo-filtro">
+                <input type="text" name="nome" placeholder="Nome..." class="campo-filtro" 
+                    value="<?php echo isset($_GET['nome']) ? htmlspecialchars($_GET['nome']) : ''; ?>">
 
-                <input type="text" placeholder="Nome..." class="campo-filtro">
+                <input type="text" name="cpf" placeholder="CPF" class="campo-filtro" 
+                    value="<?php echo isset($_GET['cpf']) ? htmlspecialchars($_GET['cpf']) : ''; ?>">
 
-                <input type="text" placeholder="CPF" class="campo-filtro">
-
-                <input type="date" class="campo-filtro">
-
-                <input type="text" placeholder="Email" class="campo-filtro">
-
-                <select class="campo-filtro">
-                    <option>Tipo de Acesso</option>
-                    <option>2 - Funcionario</option>
-                    <option>1 - Cliente</option>
+                <select name="tipo_acesso" class="campo-filtro">
+                    <option value="">Tipo de Acesso</option>
+                    <option value="2" <?php echo (isset($_GET['tipo_acesso']) && $_GET['tipo_acesso'] == '2') ? 'selected' : ''; ?>>2 - Funcionario</option>
+                    <option value="1" <?php echo (isset($_GET['tipo_acesso']) && $_GET['tipo_acesso'] == '1') ? 'selected' : ''; ?>>1 - Cliente</option>
                 </select>
 
-                <input type="text" placeholder="Login" class="campo-filtro">
+                <input type="text" name="login" placeholder="Login" class="campo-filtro" 
+                    value="<?php echo isset($_GET['login']) ? htmlspecialchars($_GET['login']) : ''; ?>">
 
-                <button class="btn-filtro">
+                <button type="submit" class="btn-filtro">
                     Buscar
                 </button>
+                
+                <a href="?" class="btn-limpar" style="text-decoration: none; padding: 5px; background: #eee; border: 1px solid #ccc; margin-left: 5px; color: #333; font-size: 13px;">Limpar</a>
 
-            </div>
+            </form>
+
+            <?php
+
+                $servidor = "localhost";
+                $usuario = "root";
+                $senha = "";
+                $banco = "uniformes";
+
+                try {
+                    $pdo = new PDO("mysql:host=$servidor;dbname=$banco;charset=utf8", $usuario, $senha);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                } catch (PDOException $e) {
+                    die("Erro: " . $e->getMessage());
+                }
+
+                $sql = "SELECT * FROM cliente WHERE 1=1";
+                $params = []; 
+
+                if (!empty($_GET['nome'])) {
+                    $sql .= " AND nome LIKE :nome";
+                    $params[':nome'] = "%" . trim($_GET['nome']) . "%";
+                }
+
+                if (!empty($_GET['cpf'])) {
+                    $sql .= " AND cpf = :cpf";
+                    $params[':cpf'] = trim($_GET['cpf']);
+                }
+
+                if (!empty($_GET['tipo_acesso'])) {
+                    $sql .= " AND tipo_acesso = :tipo_acesso";
+                    $params[':tipo_acesso'] = $_GET['tipo_acesso'];
+                }
+
+                if (!empty($_GET['login'])) {
+                    $sql .= " AND login LIKE :login";
+                    $params[':login'] = "%" . trim($_GET['login']) . "%";
+                }
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($params);
+                $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (count($resultados) > 0) {
+                    echo "<table border='1' style='margin-top:20px; width:100%; border-collapse: collapse;'>";
+                    echo "<tr><th>Nome</th><th>CPF</th><th>Tipo</th><th>Login</th></tr>";
+                    foreach ($resultados as $usuario) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($usuario['nome']) . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['cpf']) . "</td>";
+                        echo "<td>" . ($usuario['tipo_acesso'] == 2 ? 'Funcionário' : 'Cliente') . "</td>";
+                        echo "<td>" . htmlspecialchars($usuario['login']) . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "<p style='margin-top:20px;'>Nenhum usuário encontrado com os filtros aplicados.</p>";
+                }
+            ?>
 
             <h2>Lista de Clientes</h2>
 
