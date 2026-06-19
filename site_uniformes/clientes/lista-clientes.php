@@ -152,7 +152,7 @@ if (isset($_POST['salvar'])) {
                     Buscar
                 </button>
                 
-                <button type="button" class="btn-limpar" onclick="limparFiltros()" style="padding: 5px; background: #eee; border: 1px solid #ccc; margin-left: 5px; color: #333; font-size: 13px; cursor: pointer; border-radius: 4px;">Limpar</button>
+                <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
             </div>
 
             <h2>Lista de Clientes</h2>
