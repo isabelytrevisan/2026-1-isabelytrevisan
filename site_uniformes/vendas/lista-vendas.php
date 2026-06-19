@@ -53,20 +53,21 @@ if (isset($_POST['salvar'])) {
 
 <body>
 
-<header>
-    <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <h1>Sistema de Uniformes</h1>
-    <div class="user-info">
-        <?php if (isset($_SESSION['nome'])): ?>
-            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
-            <a href="../logoutCheck.php" class="logout-link">Sair</a>
-        <?php endif; ?>
-    </div>
-</header>
+    <header>
+        <button id="toggleMenu" class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <img src="../img/logotp.png" class="header-logo" alt="Logo Cores & Padrões">
+        <h1>Cores & Padrões</h1>
+        <div class="user-info">
+            <?php if (isset($_SESSION['nome'])): ?>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
+            <?php endif; ?>
+        </div>
+    </header>
 
 <div class="main">
 
