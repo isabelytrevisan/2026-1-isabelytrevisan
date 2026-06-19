@@ -59,11 +59,12 @@ if (isset($_POST['salvar'])) {
             <span></span>
             <span></span>
         </button>
-        <h1>Sistema de Uniformes</h1>
+        <img src="../img/logotp.png" class="header-logo" alt="Logo Cores & Padrões">
+        <h1>Cores & Padrões</h1>
         <div class="user-info">
             <?php if (isset($_SESSION['nome'])): ?>
-            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
-            <a href="../logoutCheck.php" class="logout-link">Sair</a>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
             <?php endif; ?>
         </div>
     </header>
