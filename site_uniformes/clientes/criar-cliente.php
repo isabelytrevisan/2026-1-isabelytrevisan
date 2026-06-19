@@ -6,12 +6,12 @@ $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nome = $_POST["nome"];
-    $cpf = $_POST["cpf"];
+    $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $nome);
+    $cpf = preg_replace('/\D/', '', $cpf);
     $data_nasc = $_POST["data_nasc"];
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
-    $telefone = $_POST["telefone"];
+    $telefone = preg_replace('/\D/', '', $telefone);
     $tipo_acesso = 1;
     $login = $_POST["login"];
     
@@ -129,10 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="POST" class="form-clean">
             <label>Nome:</label>
-            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="nome" placeholder="Nome" required
+                oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')">
 
             <label>CPF:</label>
-            <input type="text" name="cpf" placeholder="CPF" required>
+            <input type="text" name="cpf" placeholder="CPF" required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <label>Data de Nascimento:</label>
             <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
@@ -144,7 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="email" placeholder="Email" required>
 
             <label>Telefone:</label>
-            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="telefone" placeholder="Telefone" required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <label>Login:</label>
             <input type="text" name="login" placeholder="Login" required>
