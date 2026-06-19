@@ -146,6 +146,112 @@ if (isset($_POST['salvar'])) {
             <a href="criar-funcionarios.php" class="botao-adicionar">+ Novo Funcionário</a>
         </div>
 
+        <?php if (isset($_GET['editar'])):
+            $id = $_GET['editar'];
+            $res = mysqli_query($conexao, "SELECT * FROM funcionario WHERE idFuncionario = $id");
+            $c = mysqli_fetch_assoc($res);
+        ?>
+
+        <style>
+                .modal {
+                    display: block; /* Força o modal a aparecer */
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .modal-conteudo {
+                    background: #fff;
+                    width: 500px;
+                    max-width: 90%;
+                    padding: 25px;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+                    position: relative;
+                }
+
+                .modal-conteudo label {
+                    display: block;
+                    margin-top: 10px;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    color: #333;
+                    text-align: left;
+                }
+
+                .modal-conteudo input {
+                    width: 100%;
+                    padding: 8px;
+                    margin-bottom: 10px;
+                    box-sizing: border-box;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+
+                .fechar {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    font-size: 28px;
+                    cursor: pointer;
+                    color: #666;
+                    text-decoration: none;
+                }
+                
+                .fechar:hover {
+                    color: #000;
+                }
+            </style>
+
+        <div id="modalEditar" class="modal">
+                <div class="modal-conteudo">
+
+                    <a href="lista-funcionarios.php" class="fechar">&times;</a>
+
+                    <h3>Editar Funcionário</h3>
+
+                    <form method="POST">
+
+                        <input type="hidden" name="id" value="<?= $c['idFuncionario'] ?>">
+
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="<?= $c['nome'] ?>">
+
+                        <label>Carga Horária</label>
+                        <input type="text" name="carga_horaria" value="<?= $c['carga_horaria'] ?>">
+
+                        <label>CPF</label>
+                        <input type="text" name="cpf" value="<?= $c['cpf'] ?>">
+
+                        <label>Data de Nascimento</label>
+                        <input type="date" name="data_nasc" value="<?= $c['data_nasc'] ?>">
+
+                        <label>Endereço</label>
+                        <input type="text" name="endereco" value="<?= $c['endereco'] ?>">
+
+                        <label>Email</label>
+                        <input type="email" name="email" value="<?= $c['email'] ?>">
+
+                        <label>Telefone</label>
+                        <input type="text" name="telefone" value="<?= $c['telefone'] ?>">
+
+                        <button type="submit" name="salvar" style="margin-top: 15px; width: 100%; padding: 10px; cursor: pointer;">
+                            Salvar Alterações
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+            <?php endif; ?>
+
         <table class="tabela">
             <tr>
                 <th>Id</th>
@@ -156,6 +262,7 @@ if (isset($_POST['salvar'])) {
                 <th>Endereço</th>
                 <th>Email</th>
                 <th>Telefone</th>
+                <th>Ações</th>
             </tr>
 
             <?php
@@ -171,9 +278,8 @@ if (isset($_POST['salvar'])) {
                         <td>{$item['email']}</td>
                         <td>{$item['telefone']}</td>
                         <td>
-                            <a href='?editar={$item['idFuncionario']}'>Editar</a> |
-                            <a href='?excluir={$item['idFuncionario']}' 
-                            onclick=\"return confirm('Excluir funcionário?')\">Excluir</a>
+                            <a href='?editar={$item['idFuncionario']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
+                            <a href='?excluir={$item['idFuncionario']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir funcionário?')\">&#128465;</a>
                         </td>
                     </tr>";
                 }
