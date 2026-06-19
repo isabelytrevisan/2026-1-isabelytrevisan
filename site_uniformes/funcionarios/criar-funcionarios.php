@@ -142,13 +142,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="POST" class="form-clean">
             <label>Nome:</label>
-            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="text" name="nome" placeholder="Nome" required
+                oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')">
 
             <label>Carga Horária (horas por dia):</label>
             <input type="time" name="carga_horaria" placeholder="Carga horaria" required>
 
             <label>CPF:</label>
-            <input type="number" name="cpf" placeholder="CPF" required>
+            <input type="text" name="cpf" placeholder="CPF" required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <label>Data de Nascimento:</label>
             <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
@@ -160,7 +162,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="email" placeholder="Email" required>
 
             <label>Telefone:</label>
-            <input type="number" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="telefone" placeholder="Telefone" required
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <button class="botao-adicionar" type="submit">Salvar</button>
         </form>
