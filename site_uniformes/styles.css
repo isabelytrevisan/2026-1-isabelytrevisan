@@ -136,11 +136,13 @@ header h1 {
 .main {
     display: flex;
     flex: 1;
-    .main, section{
+}
+
+.main section {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
-}
+
 
 /* =========================================
    7. MENU LATERAL
