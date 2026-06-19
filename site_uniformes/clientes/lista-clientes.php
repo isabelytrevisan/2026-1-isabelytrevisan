@@ -59,11 +59,12 @@ if (isset($_POST['salvar'])) {
             <span></span>
             <span></span>
         </button>
-        <h1>Sistema de Uniformes</h1>
+        <img src="../img/logotp.png" class="header-logo" alt="Logo Cores & Padrões">
+        <h1>Cores & Padrões</h1>
         <div class="user-info">
             <?php if (isset($_SESSION['nome'])): ?>
-            <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
-            <a href="../logoutCheck.php" class="logout-link">Sair</a>
+                <span class="user-name"><?php echo $_SESSION['nome']; ?></span>
+                <a href="../logoutCheck.php" class="logout-link">Sair</a>
             <?php endif; ?>
         </div>
     </header>
@@ -135,36 +136,29 @@ if (isset($_POST['salvar'])) {
         <main class="conteudo">
 
             <div class="select-filtro">
+                <input type="text" id="filtro-nome" placeholder="Nome..." class="campo-filtro">
 
-                <input type="text" placeholder="Buscar id..." class="campo-filtro">
+                <input type="text" id="filtro-cpf" placeholder="CPF" class="campo-filtro">
 
-                <input type="text" placeholder="Nome..." class="campo-filtro">
-
-                <input type="text" placeholder="CPF" class="campo-filtro">
-
-                <input type="date" class="campo-filtro">
-
-                <input type="text" placeholder="Email" class="campo-filtro">
-
-                <select class="campo-filtro">
-                    <option>Tipo de Acesso</option>
-                    <option>2 - Funcionario</option>
-                    <option>1 - Cliente</option>
+                <select id="filtro-tipo" class="campo-filtro">
+                    <option value="">Tipo de Acesso</option>
+                    <option value="2">2 - Funcionario</option>
+                    <option value="1">1 - Cliente</option>
                 </select>
 
-                <input type="text" placeholder="Login" class="campo-filtro">
+                <input type="text" id="filtro-login" placeholder="Login" class="campo-filtro">
 
-                <button class="btn-filtro">
+                <button type="button" class="btn-filtro" onclick="filtrarTabela()">
                     Buscar
                 </button>
-
+                
+                <button type="button" class="btn-limpar" onclick="limparFiltros()" style="padding: 5px; background: #eee; border: 1px solid #ccc; margin-left: 5px; color: #333; font-size: 13px; cursor: pointer; border-radius: 4px;">Limpar</button>
             </div>
 
             <h2>Lista de Clientes</h2>
 
             <div style="margin-bottom: 15px;">
-                <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+
-                    Novo Cliente</a>
+                <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+ Novo Cliente</a>
             </div>
 
             <?php if (isset($_GET['editar'])):
@@ -175,13 +169,13 @@ if (isset($_POST['salvar'])) {
 
             <style>
                 .modal {
-                    display: block; /* Força o modal a aparecer */
+                    display: block;
                     position: fixed;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+                    background: rgba(0, 0, 0, 0.6);
                     z-index: 1000;
                     display: flex;
                     justify-content: center;
@@ -273,44 +267,47 @@ if (isset($_POST['salvar'])) {
             </div>
             <?php endif; ?>
 
-            <table class="tabela">
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Data de Nascimento</th>
-                    <th>Endereço</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Tipo de acesso</th>
-                    <th>Login</th>
-                    <th>Ações</th>
-                </tr>
-
+            <table class="tabela" id="tabela-clientes">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th>Endereço</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Tipo de acesso</th>
+                        <th>Login</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
-            if (mysqli_num_rows($resultado) > 0) {
-                while ($item = mysqli_fetch_assoc($resultado)) {
-                    echo "<tr>
-                        <td>{$item['idCliente']}</td>
-                        <td>{$item['nome']}</td>
-                        <td>{$item['cpf']}</td>
-                        <td>{$item['data_nasc']}</td>
-                        <td>{$item['endereco']}</td>
-                        <td>{$item['email']}</td>
-                        <td>{$item['telefone']}</td>
-                        <td>{$item['tipo_acesso']}</td>
-                        <td>{$item['login']}</td>
-                        <td>
-                            <a href='?editar={$item['idCliente']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
-                            <a href='?excluir={$item['idCliente']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir cliente?')\">&#128465;</a>
-                        </td>
-                    </tr>";
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($item = mysqli_fetch_assoc($resultado)) {
+                        // Injetamos as classes necessárias para o JavaScript mapear as colunas corretas
+                        echo "<tr class='linha-usuario'>
+                            <td>{$item['idCliente']}</td>
+                            <td class='celula-nome'>{$item['nome']}</td>
+                            <td class='celula-cpf'>{$item['cpf']}</td>
+                            <td>{$item['data_nasc']}</td>
+                            <td>{$item['endereco']}</td>
+                            <td>{$item['email']}</td>
+                            <td>{$item['telefone']}</td>
+                            <td class='celula-tipo' data-tipo='{$item['tipo_acesso']}'>{$item['tipo_acesso']}</td>
+                            <td class='celula-login'>{$item['login']}</td>
+                            <td>
+                                <a href='?editar={$item['idCliente']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
+                                <a href='?excluir={$item['idCliente']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir cliente?')\">&#128465;</a>
+                            </td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='10'>Nenhum cliente cadastrado</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='10'>Nenhum cliente cadastrado</td></tr>";
-            }
-            ?>
-
+                ?>
+                </tbody>
             </table>
 
         </main>
@@ -322,9 +319,7 @@ if (isset($_POST['salvar'])) {
 
             <div class="footer-coluna">
                 <h3>Cores & Padrões</h3>
-                <p>
-                    Uniformes que vestem identidades, histórias e conexões.
-                </p>
+                <p>Uniformes que vestem identidades, histórias e conexões.</p>
             </div>
 
             <div class="footer-coluna">
@@ -349,11 +344,56 @@ if (isset($_POST['salvar'])) {
         </div>
 
         <div class="footer-bottom">
-            Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
-            isabely.ot@aluno.ifsc.edu.br
+            Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas — isabely.ot@aluno.ifsc.edu.br
         </div>
 
     </footer>
+
+    <script>
+        function filtrarTabela() {
+            const filtroNome = document.getElementById('filtro-nome').value.toLowerCase().trim();
+            const filtroCpf = document.getElementById('filtro-cpf').value.replace(/\D/g, ''); 
+            const filtroTipo = document.getElementById('filtro-tipo').value;
+            const filtroLogin = document.getElementById('filtro-login').value.toLowerCase().trim();
+
+            // Mapeia as linhas de dentro da sua tabela
+            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
+
+            linhas.forEach(linha => {
+                const nomeTxt = linha.querySelector('.celula-nome').textContent.toLowerCase();
+                const cpfTxt = linha.querySelector('.celula-cpf').textContent.replace(/\D/g, ''); 
+                const tipoTxt = linha.querySelector('.celula-tipo').getAttribute('data-tipo');
+                const loginTxt = linha.querySelector('.celula-login').textContent.toLowerCase();
+
+                const bateuNome = filtroNome === '' || nomeTxt.includes(filtroNome);
+                const bateuCpf = filtroCpf === '' || cpfTxt.includes(filtroCpf);
+                const bateuTipo = filtroTipo === '' || tipoTxt === filtroTipo;
+                const bateuLogin = filtroLogin === '' || loginTxt.includes(filtroLogin);
+
+                if (bateuNome && bateuCpf && bateuTipo && bateuLogin) {
+                    linha.style.display = ''; 
+                    linha.style.backgroundColor = '#e2f0d9'; // Destaca levemente a linha encontrada
+                } else {
+                    linha.style.display = 'none'; 
+                }
+            });
+        }
+
+        function limparFiltros() {
+            // Limpa os campos do formulário
+            document.getElementById('filtro-nome').value = '';
+            document.getElementById('filtro-cpf').value = '';
+            document.getElementById('filtro-tipo').value = '';
+            document.getElementById('filtro-login').value = '';
+
+            // Torna todas as linhas visíveis novamente e remove a cor de fundo de destaque
+            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
+            linhas.forEach(linha => {
+                linha.style.display = '';
+                linha.style.backgroundColor = '';
+            });
+        }
+    </script>
     <script src="../ScriptIndex.js"></script>
 </body>
 
