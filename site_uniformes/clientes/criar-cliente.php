@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefone = $_POST["telefone"];
     $tipo_acesso = 1;
     $login = $_POST["login"];
-    $senha = $_POST["senha"];
+    
+    // LINHA ALTERADA: Aplica a criptografia MD5 antes de salvar
+    $senha = md5($_POST["senha"]); 
 
     $sql = "INSERT INTO cliente (nome, cpf, data_nasc, endereco, email, telefone, tipo_acesso, login, senha)
             VALUES ('$nome', '$cpf', '$data_nasc', '$endereco', '$email', '$telefone', '$tipo_acesso', '$login', '$senha')";
@@ -26,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
