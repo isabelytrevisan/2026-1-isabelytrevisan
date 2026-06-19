@@ -49,7 +49,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nome`, `cpf`, `data_nasc`, `endereco`, `email`, `telefone`, `tipo_acesso`, `login`, `senha`) VALUES
-(1, 'Murilo Thomé', '04545689086', '2008-09-27', 'Rua Orelho Estevao Fontana', 'muristop@gmail.com', '54996848291', 2, 'muristop10', '');
+(1, 'ADM', '999999999', '9999/01/01', 'Rua Das Orquídeas', 'adm@gmail.com', '9999999999', 2, 'adm', 'adm');
 
 -- --------------------------------------------------------
 
