@@ -301,9 +301,8 @@ if (isset($_POST['salvar'])) {
                         <td>{$item['tipo_acesso']}</td>
                         <td>{$item['login']}</td>
                         <td>
-                            <a href='?editar={$item['idCliente']}'>Editar</a> |
-                            <a href='?excluir={$item['idCliente']}' 
-                            onclick=\"return confirm('Excluir cliente?')\">Excluir</a>
+                            <a href='?editar={$item['idCliente']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
+                            <a href='?excluir={$item['idCliente']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir cliente?')\">&#128465;</a>
                         </td>
                     </tr>";
                 }
