@@ -633,6 +633,23 @@ select.campo-filtro {
     transform: translateY(-2px);
 }
 
+.btn-limpar {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #8051d2df;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-limpar:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
 .user-info {
     position: absolute;
     right: 25px;
