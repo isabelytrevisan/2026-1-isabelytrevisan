@@ -370,6 +370,8 @@ h2::after {
 .rodape-login {
     margin-top: 60px;
     font-size: 1rem;
+    width: 100%;
+    text-align: center;
 }
 
 .rodape-login a {
