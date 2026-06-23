@@ -142,8 +142,6 @@ if (isset($_POST['salvar'])) {
                 <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
             </div>
 
-            <h2>Lista de estoque</h2>
-
             <div style="margin-bottom: 15px;">
                 <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+ Novo Cliente</a>
             </div>
