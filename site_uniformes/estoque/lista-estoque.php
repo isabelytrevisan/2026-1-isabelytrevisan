@@ -130,35 +130,21 @@ if (isset($_POST['salvar'])) {
 
     <main class="conteudo">
 
-        <div class="select-filtro">
+       <div class="select-filtro">
+                <input type="text" id="filtro-nomeProduto" placeholder="Nome Do Produto" class="campo-filtro">
 
-            <input type="text"
-                placeholder="Buscar produto..."
-                class="campo-filtro">
+                <input type="text" id="filtro-valor_unitario" placeholder="Valor" class="campo-filtro">
 
-            <input type="text"
-                placeholder="Cliente..."
-                class="campo-filtro">
+                <button type="button" class="btn-filtro" onclick="filtrarTabela()">
+                    Buscar
+                </button>
+                
+                <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
+            </div>
 
-            <input type="date"
-                class="campo-filtro">
-
-            <select class="campo-filtro">
-                <option>Categoria</option>
-                <option>Camiseta</option>
-                <option>Moletom</option>
-                <option>Esportivo</option>
-            </select>
-
-            <input type="number"
-                placeholder="Quantidade mínima"
-                class="campo-filtro">
-
-            <button class="btn-filtro">
-                Buscar
-            </button>
-
-        </div>
+            <div style="margin-bottom: 15px;">
+                <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+ Novo Cliente</a>
+            </div>
 
         <h2>Lista de Estoque</h2>
 
