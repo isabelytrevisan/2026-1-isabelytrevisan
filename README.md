@@ -1,5 +1,6 @@
 sistema-uniformes-ifsc
 
+(PrintTelaInicialProjeto.png)
 
 📁 Sistema de Gerenciamento de Uniformes
 
