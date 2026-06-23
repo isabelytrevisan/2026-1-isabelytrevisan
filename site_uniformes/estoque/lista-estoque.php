@@ -142,9 +142,6 @@ if (isset($_POST['salvar'])) {
                 <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <a href="/2026-1-isabelytrevisan/site_uniformes/clientes/criar-cliente.php" class="botao-adicionar">+ Novo Cliente</a>
-            </div>
 
         <h2>Lista de Estoque</h2>
 
@@ -326,6 +323,44 @@ if (isset($_POST['salvar'])) {
             </div>
 
      </footer>
+     <script>
+        function filtrarTabela() {
+            const filtroNomeProduto = document.getElementById('filtro-nomeProduto').value.toLowerCase().trim();
+            const filtroValor = document.getElementById('filtro-valor_unitario').value.replace(/\D/g, ''); 
+
+            // Mapeia as linhas de dentro da sua tabela
+            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
+
+            linhas.forEach(linha => {
+                const nomeTxt = linha.querySelector('.celula-nomeProduto').textContent.toLowerCase();
+                const cpfTxt = linha.querySelector('.celula-valor').textContent.replace(/\D/g, ''); 
+               
+
+                const bateuNome = filtroNomeProduto === '' || nomeTxt.includes(filtroNomeProduto);
+                const bateuCpf = filtroValor === '' || cpfTxt.includes(filtroValor);
+
+                if (bateuNomeProduto && bateuValor) {
+                    linha.style.display = ''; 
+                    linha.style.backgroundColor = '#e2f0d9'; // Destaca levemente a linha encontrada
+                } else {
+                    linha.style.display = 'none'; 
+                }
+            });
+        }
+
+        function limparFiltros() {
+            // Limpa os campos do formulário
+            document.getElementById('filtro-nomeProduto').value = '';
+            document.getElementById('filtro-valor_unitario').value = '';
+
+            // Torna todas as linhas visíveis novamente e remove a cor de fundo de destaque
+            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
+            linhas.forEach(linha => {
+                linha.style.display = '';
+                linha.style.backgroundColor = '';
+            });
+        }
+    </script>
       <script src="../ScriptIndex.js"></script>
 </body>
 </html>
