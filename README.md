@@ -5,7 +5,7 @@ sistema-uniformes-ifsc
 
 Um sistema web completo para gerenciamento de vendas, estoque e organização administrativa de uma loja digital de uniformes. Desenvolvido como projeto prático por estudantes do IFSC Campus Chapecó.
 
-
+![Capa do Projeto](PrintTelaInicialProjeto.png)
 🚀 Sobre o Projeto
 
 O Sistema de Uniformes é uma aplicação web interativa desenvolvida para solucionar os problemas reais de gerenciamento de uma loja de uniformes totalmente digital. Uma plataforma automatizada para o controle de estoque, registro de vendas, cadastro de clientes e acompanhamento administrativo.
@@ -65,7 +65,7 @@ Antes de começar, você precisará de um ambiente de servidor local que suporte
 - Crie um novo banco de dados com o nome uniformes.
 - Importe o arquivo uniformes.sql (disponível no repositório) para gerar as tabelas automaticamente.
 
-3. Configurar o Back-End e Executar o Front-End
+1. Configurar o Back-End e Executar o Front-End
 - Mova a pasta clonada do projeto para o diretório de arquivos públicos do seu servidor local (geralmente a pasta htdocs no XAMPP ou www no WampServer).
 - Abra o navegador e acesse: http://localhost/2026-1-isabelytrevisan/sistema_uniformes/index.php
 - Utilize a tela de login para acessar com as credenciais administrativas de teste.
