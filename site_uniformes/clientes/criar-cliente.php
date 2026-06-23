@@ -6,12 +6,12 @@ $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $nome);
-    $cpf = preg_replace('/\D/', '', $cpf);
+    $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $_POST["nome"]);
+    $cpf = preg_replace('/\D/', '', $_POST["cpf"]);
     $data_nasc = $_POST["data_nasc"];
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
-    $telefone = preg_replace('/\D/', '', $telefone);
+    $telefone = preg_replace('/\D/', '', $_POST["telefone"]);
     $tipo_acesso = 1;
     $login = $_POST["login"];
     
