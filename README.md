@@ -84,3 +84,5 @@ Desenvolvido como projeto prático integrador para o sistema de gestão escolar.
 Clientes/Stakeholders: Professor Marcos e Professora Lara 
 Instituição: Instituto Federal de Santa Catarina (IFSC) — Campus Chapecó 
 Ano: 2026 
+
+*Uso de IA-Gemini para escrever o Readme
