@@ -21,13 +21,13 @@ $msg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $nome);
+    $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $_POST["nome"]);
     $carga_horaria = $_POST["carga_horaria"];
-    $cpf = preg_replace('/\D/', '', $cpf);
+    $cpf = preg_replace('/\D/', '', $_POST["cpf"]);
     $data_nasc = $_POST["data_nasc"];
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
-    $telefone = preg_replace('/\D/', '', $telefone);
+    $telefone = preg_replace('/\D/', '', $_POST["telefone"]);
 
     $sql = "INSERT INTO funcionario 
             (nome, carga_horaria, cpf, data_nasc, endereco, email, telefone)
