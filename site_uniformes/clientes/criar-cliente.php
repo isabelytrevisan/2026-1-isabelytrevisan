@@ -9,6 +9,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = preg_replace('/[^a-zA-ZÀ-ÿ\s]/', '', $_POST["nome"]);
     $cpf = preg_replace('/\D/', '', $_POST["cpf"]);
     $data_nasc = $_POST["data_nasc"];
+    // Calcula a idade
+    $dataNascimento = new DateTime($data_nasc);
+    $hoje = new DateTime();
+    $idade = $hoje->diff($dataNascimento)->y;
+    if ($idade < 18) {
+        $msg = "Apenas maiores de 18 anos podem se cadastrar.";
+    } else {
+        $msg = "Erro: " . mysqli_error($conexao);
+    }
     $endereco = $_POST["endereco"];
     $email = $_POST["email"];
     $telefone = preg_replace('/\D/', '', $_POST["telefone"]);
@@ -126,27 +135,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($msg != ""): ?>
             <p><?= $msg ?></p>
         <?php endif; ?>
-
+        <?php
+            $dataMaxima = date('Y-m-d', strtotime('-18 years'));
+        ?>
         <form method="POST" class="form-clean">
             <label>Nome:</label>
             <input type="text" name="nome" placeholder="Nome" required
                 oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')">
 
             <label>CPF:</label>
-            <input type="text" name="cpf" placeholder="CPF" required
+            <input type="text" name="cpf" placeholder="CPF" maxlength="11" required
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <label>Data de Nascimento:</label>
-            <input type="date" name="data_nasc" placeholder="Data de nascimento" required>
+            <input type="date" name="data_nasc"  max="<?= $dataMaxima ?>" required>
 
             <label>Endereço:</label>
             <input type="text" name="endereco" placeholder="Endereço" required>
 
             <label>Email:</label>
-            <input type="text" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email" required>
 
             <label>Telefone:</label>
-            <input type="text" name="telefone" placeholder="Telefone" required
+            <input type="text" name="telefone" placeholder="Telefone"  maxlength="14" required
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
             <label>Login:</label>
