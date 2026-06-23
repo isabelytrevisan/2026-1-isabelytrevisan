@@ -323,44 +323,52 @@ if (isset($_POST['salvar'])) {
             </div>
 
      </footer>
-     <script>
-        function filtrarTabela() {
-            const filtroNomeProduto = document.getElementById('filtro-nomeProduto').value.toLowerCase().trim();
-            const filtroValor = document.getElementById('filtro-valor_unitario').value.replace(/\D/g, ''); 
+   <script>
+function filtrarTabela() {
+    // 1. Pega os valores dos inputs e limpa espaços vazios
+    const filtroNomeProduto = document.getElementById('filtro-nomeProduto').value.toLowerCase().trim();
+    const filtroValor = document.getElementById('filtro-valor_unitario').value.trim(); 
 
-            // Mapeia as linhas de dentro da sua tabela
-            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
+    // 2. Seleciona apenas as linhas de dados dentro do tbody
+    const linhas = document.querySelectorAll('#tabela-estoque tbody tr');
 
-            linhas.forEach(linha => {
-                const nomeTxt = linha.querySelector('.celula-nomeProduto').textContent.toLowerCase();
-                const cpfTxt = linha.querySelector('.celula-valor').textContent.replace(/\D/g, ''); 
-               
+    linhas.forEach(linha => {
+        const celulaNome = linha.querySelector('.celula-nomeProduto');
+        const celulaValor = linha.querySelector('.celula-valor_unitario');
 
-                const bateuNome = filtroNomeProduto === '' || nomeTxt.includes(filtroNomeProduto);
-                const bateuCpf = filtroValor === '' || cpfTxt.includes(filtroValor);
+        // Verifica se a linha realmente contém as células antes de filtrar
+        if (celulaNome && celulaValor) {
+            const nomeTxt = celulaNome.textContent.toLowerCase();
+            const valorTxt = celulaValor.textContent.trim(); 
 
-                if (bateuNomeProduto && bateuValor) {
-                    linha.style.display = ''; 
-                    linha.style.backgroundColor = '#e2f0d9'; // Destaca levemente a linha encontrada
-                } else {
-                    linha.style.display = 'none'; 
-                }
-            });
+            // 3. Comparações corrigidas (procura o texto exato digitado)
+            const bateuNome = filtroNomeProduto === '' || nomeTxt.includes(filtroNomeProduto);
+            const bateuValor = filtroValor === '' || valorTxt.includes(filtroValor);
+
+            // 4. Mostra ou esconde a linha baseado no resultado
+            if (bateuNome && bateuValor) {
+                linha.style.display = ''; 
+                linha.style.backgroundColor = '#e2f0d9'; // Destaca a linha encontrada
+            } else {
+                linha.style.display = 'none'; 
+            }
         }
+    });
+}
 
-        function limparFiltros() {
-            // Limpa os campos do formulário
-            document.getElementById('filtro-nomeProduto').value = '';
-            document.getElementById('filtro-valor_unitario').value = '';
-
-            // Torna todas as linhas visíveis novamente e remove a cor de fundo de destaque
-            const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
-            linhas.forEach(linha => {
-                linha.style.display = '';
-                linha.style.backgroundColor = '';
-            });
-        }
-    </script>
+function limparFiltros() {
+    // Limpa os campos de texto
+    document.getElementById('filtro-nomeProduto').value = '';
+    document.getElementById('filtro-valor_unitario').value = '';
+    
+    // Restaura a visibilidade de todas as linhas
+    const linhas = document.querySelectorAll('#tabela-estoque tbody tr');
+    linhas.forEach(linha => {
+        linha.style.display = '';
+        linha.style.backgroundColor = '';
+    });
+}
+</script>
       <script src="../ScriptIndex.js"></script>
 </body>
 </html>
