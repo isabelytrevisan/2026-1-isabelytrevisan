@@ -118,51 +118,56 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="select-filtro">
 
             <input type="text"
-                placeholder="Buscar id..."
-                class="campo-filtro">
-
-            <input type="text"
+                id="filtro-nome"
                 placeholder="Nome..."
                 class="campo-filtro">
 
             <input type="text"
-                class="Login">
+                id="filtro-login"
+                placeholder="Login..."
+                class="campo-filtro Login">
             
-            <button class="btn-filtro">
+            <button type="button" class="btn-filtro" onclick="filtrarTabela()">
                 Buscar
+            </button>
+
+            <button type="button" class="btn-limpar" onclick="limparFiltros()">
+                Limpar
             </button>
 
         </div>
 
         <h2>Lista de Logins</h2>
 
-        <table class="tabela">
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Login</th>
-            </tr>
-
-            <?php
-            if (mysqli_num_rows($resultado) > 0) {
-                while ($item = mysqli_fetch_assoc($resultado)) {
-                    echo "<tr>
-                        <td>{$item['idCliente']}</td>
-                        <td>{$item['nome']}</td>
-                        <td>{$item['login']}</td>
-                    </tr>";
+        <table class="tabela" id="tabela-logins">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Login</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($item = mysqli_fetch_assoc($resultado)) {
+                        echo "<tr class='linha-usuario'>
+                            <td class='celula-id'>{$item['idCliente']}</td>
+                            <td class='celula-nome'>{$item['nome']}</td>
+                            <td class='celula-login'>{$item['login']}</td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum cliente cadastrado</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='6'>Nenhum cliente cadastrado</td></tr>";
-            }
-            ?>
-
+                ?>
+            </tbody>
         </table>
 
     </main>
 
 </div>
-          <footer class="footer-site">
+     <footer class="footer-site">
 
         <div class="footer-container">
 
@@ -200,5 +205,41 @@ $resultado = mysqli_query($conexao, $sql);
             </div>
 
      </footer>
+
+    <script>
+        function filtrarTabela() {
+            const filtroNome = document.getElementById('filtro-nome').value.toLowerCase().trim();
+            const filtroLogin = document.getElementById('filtro-login').value.toLowerCase().trim();
+
+            const linhas = document.querySelectorAll('#tabela-logins tbody .linha-usuario');
+
+            linhas.forEach(linha => {
+                const nomeTxt = linha.querySelector('.celula-nome').textContent.toLowerCase();
+                const loginTxt = linha.querySelector('.celula-login').textContent.toLowerCase();
+
+                const bateuNome = filtroNome === '' || nomeTxt.includes(filtroNome);
+                const bateuLogin = filtroLogin === '' || loginTxt.includes(filtroLogin);
+
+                if (bateuNome && bateuLogin) {
+                    linha.style.display = ''; 
+                    linha.style.backgroundColor = '#e2f0d9'; 
+                } else {
+                    linha.style.display = 'none'; 
+                }
+            });
+        }
+
+        function limparFiltros() {
+            document.getElementById('filtro-nome').value = '';
+            document.getElementById('filtro-login').value = '';
+
+            const linhas = document.querySelectorAll('#tabela-logins tbody .linha-usuario');
+            linhas.forEach(linha => {
+                linha.style.display = '';
+                linha.style.backgroundColor = '';
+            });
+        }
+    </script>
+    <script src="../ScriptIndex.js"></script>
 </body>
 </html>
