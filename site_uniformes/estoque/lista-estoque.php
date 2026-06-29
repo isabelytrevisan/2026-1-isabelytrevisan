@@ -157,13 +157,13 @@ if (isset($_POST['salvar'])) {
 
         <style>
                 .modal {
-                    display: block; /* Força o modal a aparecer */
+                    display: block; 
                     position: fixed;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+                    background: rgba(0, 0, 0, 0.6); 
                     z-index: 1000;
                     display: flex;
                     justify-content: center;
@@ -249,25 +249,28 @@ if (isset($_POST['salvar'])) {
             </div>
             <?php endif; ?>
 
-        <table class="tabela">
-            <tr>
-                <th>Id</th>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Valor Unit.</th>
-                <th>Data Última Compra</th>
-                <th>Data Próxima Compra</th>
-                <th>Ações</th>
-            </tr>
-
+        <table class="tabela" id="tabela-estoque">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unit.</th>
+                    <th>Data Última Compra</th>
+                    <th>Data Próxima Compra</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
             <?php
             if (mysqli_num_rows($resultado) > 0) {
                 while ($item = mysqli_fetch_assoc($resultado)) {
-                    echo "<tr>
+                    // CLASSES ADICIONADAS ABAIXO NA TD DO NOME E DO VALOR
+                    echo "<tr class='linha-produto'>
                         <td>{$item['idEstoque']}</td>
-                        <td>{$item['nomeProduto']}</td>
+                        <td class='celula-nomeProduto'>{$item['nomeProduto']}</td>
                         <td>{$item['quantidade']}</td>
-                        <td>{$item['valor_unitario']}</td>
+                        <td class='celula-valor_unitario'>{$item['valor_unitario']}</td>
                         <td>{$item['data_compra']}</td>
                         <td>{$item['data_prox_compra']}</td>
                         <td>
@@ -277,98 +280,86 @@ if (isset($_POST['salvar'])) {
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>Nenhum produto cadastrado</td></tr>";
+                echo "<tr><td colspan='7'>Nenhum produto cadastrado</td></tr>";
             }
             ?>
+            </tbody>
         </table>
 
     </main>
 
 </div>
-          <footer class="footer-site">
+<footer class="footer-site">
 
-        <div class="footer-container">
+    <div class="footer-container">
 
-            <div class="footer-coluna">
-                <h3>Cores & Padrões</h3>
-                <p>
-                    Uniformes que vestem identidades, histórias e conexões.
-                </p>
+        <div class="footer-coluna">
+            <h3>Cores & Padrões</h3>
+            <p>Uniformes que vestem identidades, histórias e conexões.</p>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-coluna-icon">
+            <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconContato.png">
+            <h3>Contato</h3>
             </div>
+            <p>(49) 99999-9999</p>
+            <p>contato@coresepadroes.com</p>
+            <p>Chapecó - SC</p>
+        </div>
 
-            <div class="footer-coluna">
-                <div class="footer-coluna-icon">
-                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconContato.png">
-                <h3>Contato</h3>
-                </div>
-                <p>(49) 99999-9999</p>
-                <p>contato@coresepadroes.com</p>
-                <p>Chapecó - SC</p>
+        <div class="footer-coluna">
+            <div class="footer-coluna-icon">
+            <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconRelogio.png">
+            <h3>Horários</h3>
             </div>
+            <p>Segunda a Sexta</p>
+            <p>08h às 18h</p>
+        </div>
 
-            <div class="footer-coluna">
-                <div class="footer-coluna-icon">
-                <img src="\2026-1-isabelytrevisan\site_uniformes\img\iconRelogio.png">
-                <h3>Horários</h3>
-                </div>
-                <p>Segunda a Sexta</p>
-                <p>08h às 18h</p>
-            </div>
+    </div>
 
-            </div>
+    <div class="footer-bottom">
+        Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas — isabely.ot@aluno.ifsc.edu.br
+    </div>
 
-            <div class="footer-bottom">
-                Sistema desenvolvido por estudantes do Técnico em Desenvolvimento de Sistemas —
-                isabely.ot@aluno.ifsc.edu.br
-            </div>
+</footer>
 
-     </footer>
-   <script>
+<script>
 function filtrarTabela() {
-    // 1. Pega os valores dos inputs e limpa espaços vazios
     const filtroNomeProduto = document.getElementById('filtro-nomeProduto').value.toLowerCase().trim();
-    const filtroValor = document.getElementById('filtro-valor_unitario').value.trim(); 
+    const filtroValor = document.getElementById('filtro-valor_unitario').value.trim();
 
-    // 2. Seleciona apenas as linhas de dados dentro do tbody
-    const linhas = document.querySelectorAll('#tabela-estoque tbody tr');
+    const linhas = document.querySelectorAll('#tabela-estoque tbody .linha-produto');
 
     linhas.forEach(linha => {
-        const celulaNome = linha.querySelector('.celula-nomeProduto');
-        const celulaValor = linha.querySelector('.celula-valor_unitario');
+        const nomeProdutoTxt = linha.querySelector('.celula-nomeProduto').textContent.toLowerCase();
+        const valorTxt = linha.querySelector('.celula-valor_unitario').textContent.trim();
 
-        // Verifica se a linha realmente contém as células antes de filtrar
-        if (celulaNome && celulaValor) {
-            const nomeTxt = celulaNome.textContent.toLowerCase();
-            const valorTxt = celulaValor.textContent.trim(); 
+        const bateuNomeProduto = filtroNomeProduto === '' || nomeProdutoTxt.includes(filtroNomeProduto);
+        const bateuValor = filtroValor === '' || valorTxt.includes(filtroValor);
 
-            // 3. Comparações corrigidas (procura o texto exato digitado)
-            const bateuNome = filtroNomeProduto === '' || nomeTxt.includes(filtroNomeProduto);
-            const bateuValor = filtroValor === '' || valorTxt.includes(filtroValor);
-
-            // 4. Mostra ou esconde a linha baseado no resultado
-            if (bateuNome && bateuValor) {
-                linha.style.display = ''; 
-                linha.style.backgroundColor = '#e2f0d9'; // Destaca a linha encontrada
-            } else {
-                linha.style.display = 'none'; 
-            }
+        if (bateuNomeProduto && bateuValor) {
+            linha.style.display = '';
+            linha.style.backgroundColor = '#e2f0d9'; 
+        } else {
+            linha.style.display = 'none';
+            linha.style.backgroundColor = '';
         }
     });
 }
 
 function limparFiltros() {
-    // Limpa os campos de texto
     document.getElementById('filtro-nomeProduto').value = '';
     document.getElementById('filtro-valor_unitario').value = '';
-    
-    // Restaura a visibilidade de todas as linhas
-    const linhas = document.querySelectorAll('#tabela-estoque tbody tr');
+
+    const linhas = document.querySelectorAll('#tabela-estoque tbody .linha-produto');
     linhas.forEach(linha => {
         linha.style.display = '';
         linha.style.backgroundColor = '';
     });
 }
 </script>
-      <script src="../ScriptIndex.js"></script>
+    <script src="../ScriptIndex.js"></script>
 </body>
 </html>

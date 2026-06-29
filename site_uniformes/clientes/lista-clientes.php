@@ -286,7 +286,7 @@ if (isset($_POST['salvar'])) {
                 <?php
                 if (mysqli_num_rows($resultado) > 0) {
                     while ($item = mysqli_fetch_assoc($resultado)) {
-                        // Injetamos as classes necessárias para o JavaScript mapear as colunas corretas
+    
                         echo "<tr class='linha-usuario'>
                             <td>{$item['idCliente']}</td>
                             <td class='celula-nome'>{$item['nome']}</td>
@@ -356,7 +356,6 @@ if (isset($_POST['salvar'])) {
             const filtroTipo = document.getElementById('filtro-tipo').value;
             const filtroLogin = document.getElementById('filtro-login').value.toLowerCase().trim();
 
-            // Mapeia as linhas de dentro da sua tabela
             const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
 
             linhas.forEach(linha => {
@@ -372,7 +371,7 @@ if (isset($_POST['salvar'])) {
 
                 if (bateuNome && bateuCpf && bateuTipo && bateuLogin) {
                     linha.style.display = ''; 
-                    linha.style.backgroundColor = '#e2f0d9'; // Destaca levemente a linha encontrada
+                    linha.style.backgroundColor = '#e2f0d9'; // 
                 } else {
                     linha.style.display = 'none'; 
                 }
@@ -380,13 +379,11 @@ if (isset($_POST['salvar'])) {
         }
 
         function limparFiltros() {
-            // Limpa os campos do formulário
             document.getElementById('filtro-nome').value = '';
             document.getElementById('filtro-cpf').value = '';
             document.getElementById('filtro-tipo').value = '';
             document.getElementById('filtro-login').value = '';
 
-            // Torna todas as linhas visíveis novamente e remove a cor de fundo de destaque
             const linhas = document.querySelectorAll('#tabela-clientes tbody .linha-usuario');
             linhas.forEach(linha => {
                 linha.style.display = '';
