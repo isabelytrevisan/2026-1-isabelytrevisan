@@ -136,26 +136,16 @@ if (isset($_POST['salvar'])) {
     <main class="conteudo">
 
         <div class="select-filtro">
+            <input type="text" id="filtro-cliente" placeholder="Cliente" class="campo-filtro">
+            <input type="text" id="filtro-produto" placeholder="Produto" class="campo-filtro">
+            <input type="date" id="filtro-data" class="campo-filtro">
+            <input type="text" id="filtro-forma-pag" placeholder="Forma de Pagamento" class="campo-filtro">
 
-            <input type="text" placeholder="Buscar Id..." class="campo-filtro">
-            <input type="text" placeholder="Cliente..." class="campo-filtro">
-            <input type="text" placeholder="Id produto..." class="campo-filtro">
-            <input type="date" class="campo-filtro">
-            <input type="number" step="0.01" min="0" placeholder="Valor.." class="campo-filtro">
+            <button type="button" class="btn-filtro" onclick="filtrarTabela()">
+                Buscar
+            </button>
 
-            <select class="campo-filtro">
-                <option>Forma de Pagamento</option>
-                <option>Pix</option>
-                <option>Cartão crédito</option>
-                <option>Cartão debito</option>
-                <option>Boleto</option>
-            </select>
-
-            <input type="number" placeholder="Quantidade mínima" class="campo-filtro">
-            <input type="number" step="0.01" min="0" placeholder="Desconto" class="campo-filtro">
-
-            <button class="btn-filtro">Buscar</button>
-
+            <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
         </div>
 
         <h2>Lista de Vendas</h2>
@@ -265,43 +255,44 @@ if (isset($_POST['salvar'])) {
             </div>
             <?php endif; ?>
 
-        <table class="tabela">
-            <tr>
-                <th>Id</th>
-                <th>Cliente</th>
-                <th>Id. Produto</th>    
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Forma Pag.</th>
-                <th>Quantidade</th>
-                <th>Desconto (%)</th>
-                <th>Ações</th>
-            </tr>
-
-            <?php
-            if (mysqli_num_rows($resultado) > 0) {
-                while ($item = mysqli_fetch_assoc($resultado)) {
-                    echo "<tr>
-                        <td>{$item['idVendas']}</td>
-                        <td>{$item['Cliente_idCliente']}</td>
-                        <td>{$item['idEstoque']}</td>
-                        <td>{$item['venda_data']}</td>
-                        <td>{$item['valor']}</td>
-                        <td>{$item['forma_pag']}</td>
-                        <td>{$item['quantidade']}</td>
-                        <td>{$item['desconto']}</td>
-                        <td>
-                            <a href='?editar={$item['idVendas']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
-                            <a href='?excluir={$item['idVendas']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir venda?')\">&#128465;</a>
-                        </td>
-                    </tr>";
+        <table class="tabela" id="tabela-vendas">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Cliente</th>
+                    <th>Id. Produto</th>    
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Forma Pag.</th>
+                    <th>Quantidade</th>
+                    <th>Desconto (%)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($item = mysqli_fetch_assoc($resultado)) {
+                        echo "<tr class='linha-venda'>
+                            <td class='celula-idVendas'>{$item['idVendas']}</td>
+                            <td class='celula-cliente'>{$item['Cliente_idCliente']}</td>
+                            <td class='celula-produto'>{$item['idEstoque']}</td>
+                            <td class='celula-data' data-data-original='{$item['venda_data']}'>" . (!empty($item              ['venda_data']) ? date('d/m/Y', strtotime($item['venda_data'])) : '') . "</td>
+                            <td class='celula-valor'>{$item['valor']}</td>
+                            <td class='celula-forma-pag'>{$item['forma_pag']}</td>
+                            <td class='celula-quantidade'>{$item['quantidade']}</td>
+                            <td class='celula-desconto'>{$item['desconto']}</td>
+                            <td>
+                                <a href='?editar={$item['idVendas']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
+                                <a href='?excluir={$item['idVendas']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir venda?')\">&#128465;</a>
+                            </td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='9' style='text-align:center;'>Nenhuma venda cadastrada</td></tr>";
                 }
-            } else {
-                // CORREÇÃO AQUI: colspan alterado de 6 para 9 para cobrir todas as colunas
-                echo "<tr><td colspan='9' style='text-align:center;'>Nenhuma venda cadastrada</td></tr>";
-            }
-            ?>
-
+                ?>
+            </tbody>
         </table>
 
     </main>
@@ -343,6 +334,49 @@ if (isset($_POST['salvar'])) {
             </div>
 
      </footer>
+     <script>
+function filtrarTabela() {
+    const filtroCliente = document.getElementById('filtro-cliente').value.toLowerCase().trim();
+    const filtroProduto = document.getElementById('filtro-produto').value.toLowerCase().trim();
+    const filtroData = document.getElementById('filtro-data').value.trim();
+    const filtroFormaPag = document.getElementById('filtro-forma-pag').value.toLowerCase().trim();
+
+    const linhas = document.querySelectorAll('#tabela-vendas tbody .linha-venda');
+
+    linhas.forEach(linha => {
+        const clienteTxt = linha.querySelector('.celula-cliente').textContent.toLowerCase();
+        const produtoTxt = linha.querySelector('.celula-produto').textContent.toLowerCase();
+        const dataTxt = linha.querySelector('.celula-data').getAttribute('data-data-original') || '';
+        const formaPagTxt = linha.querySelector('.celula-forma-pag').textContent.toLowerCase();
+
+        const bateuCliente = filtroCliente === '' || clienteTxt.includes(filtroCliente);
+        const bateuProduto = filtroProduto === '' || produtoTxt.includes(filtroProduto);
+        const bateuData = filtroData === '' || dataTxt.includes(filtroData);
+        const bateuFormaPag = filtroFormaPag === '' || formaPagTxt.includes(filtroFormaPag);
+
+        if (bateuCliente && bateuProduto && bateuData && bateuFormaPag) {
+            linha.style.display = '';
+            linha.style.backgroundColor = '#e2f0d9';
+        } else {
+            linha.style.display = 'none';
+            linha.style.backgroundColor = '';
+        }
+    });
+}
+
+function limparFiltros() {
+    document.getElementById('filtro-cliente').value = '';
+    document.getElementById('filtro-produto').value = '';
+    document.getElementById('filtro-data').value = '';
+    document.getElementById('filtro-forma-pag').value = '';
+
+    const linhas = document.querySelectorAll('#tabela-vendas tbody .linha-venda');
+    linhas.forEach(linha => {
+        linha.style.display = '';
+        linha.style.backgroundColor = '';
+    });
+}
+</script>
       <script src="../ScriptIndex.js"></script>
 </body>
 </html>

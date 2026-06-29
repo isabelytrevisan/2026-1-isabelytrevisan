@@ -291,7 +291,7 @@ if (isset($_POST['salvar'])) {
                             <td>{$item['idCliente']}</td>
                             <td class='celula-nome'>{$item['nome']}</td>
                             <td class='celula-cpf'>{$item['cpf']}</td>
-                            <td>{$item['data_nasc']}</td>
+                            <td class='celula-data-nasc' data-data-original='{$item['data_nasc']}'>" . (!empty($item['data_nasc']) ? implode('/', array_reverse(explode('-', $item['data_nasc']))) : '') . "</td>
                             <td>{$item['endereco']}</td>
                             <td>{$item['email']}</td>
                             <td>{$item['telefone']}</td>

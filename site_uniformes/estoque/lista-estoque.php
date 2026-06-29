@@ -271,8 +271,8 @@ if (isset($_POST['salvar'])) {
                         <td class='celula-nomeProduto'>{$item['nomeProduto']}</td>
                         <td>{$item['quantidade']}</td>
                         <td class='celula-valor_unitario'>{$item['valor_unitario']}</td>
-                        <td>{$item['data_compra']}</td>
-                        <td>{$item['data_prox_compra']}</td>
+                        <td class='celula-data-compra' data-data-original='{$item['data_compra']}'>" . (!empty($item['data_compra']) ? implode('/', array_reverse(explode('-', $item['data_compra']))) : '') . "</td>
+                        <td class='celula-data-prox-compra' data-data-original='{$item['data_prox_compra']}'>" . (!empty($item['data_prox_compra']) ? implode('/', array_reverse(explode('-', $item['data_prox_compra']))) : '') . "</td>
                         <td>
                             <a href='?editar={$item['idEstoque']}' style='text-decoration: none; color: #0064c8; font-size: 18px;'>&#9998;</a>
                             <a href='?excluir={$item['idEstoque']}' style='text-decoration: none; color: #ba0c00; font-size: 20px;' onclick=\"return confirm('Excluir produto?')\">&#128465;</a>
