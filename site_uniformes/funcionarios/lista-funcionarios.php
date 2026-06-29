@@ -142,8 +142,6 @@ if (isset($_POST['salvar'])) {
             <div class="select-filtro">
                 <input type="text" id="filtro-nome" placeholder="Nome..." class="campo-filtro">
                 <input type="text" id="filtro-cpf" placeholder="CPF" class="campo-filtro">
-                <input type="text" id="filtro-cargo" placeholder="Cargo" class="campo-filtro">
-                <input type="text" id="filtro-login" placeholder="Login" class="campo-filtro">
 
                 <button type="button" class="btn-filtro" onclick="filtrarTabela()">Buscar</button>
                 <button type="button" class="btn-limpar" onclick="limparFiltros()">Limpar</button>
@@ -219,21 +217,24 @@ if (isset($_POST['salvar'])) {
 
                         <label>Nome</label>
                         <input type="text" name="nome" value="<?= $f['nome'] ?>">
+                        
+                        <label>Carga Horária</label>
+                        <input type="text" name="carga_horaria" value="<?= $f['carga_horaria'] ?>">
 
                         <label>CPF</label>
                         <input type="text" name="cpf" value="<?= $f['cpf'] ?>">
 
-                        <label>Cargo</label>
-                        <input type="text" name="cargo" value="<?= $f['cargo'] ?>">
+                        <label>Data de Nascimento</label>
+                        <input type="date" name="data_nasc" value="<?= $f['data_nasc'] ?>">
+
+                        <label>Endereço</label>
+                        <input type="text" name="endereco" value="<?= $f['endereco'] ?>">
 
                         <label>Email</label>
                         <input type="email" name="email" value="<?= $f['email'] ?>">
 
                         <label>Telefone</label>
                         <input type="text" name="telefone" value="<?= $f['telefone'] ?>">
-
-                        <label>Login</label>
-                        <input type="text" name="login" value="<?= $f['login'] ?>">
 
                         <button type="submit" name="salvar" style="margin-top: 15px; width: 100%; padding: 10px; cursor: pointer;">
                             Salvar Alterações
