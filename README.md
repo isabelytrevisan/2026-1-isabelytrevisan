@@ -4,7 +4,7 @@ sistema-uniformes-ifsc
 
 Um sistema web completo para gerenciamento de vendas, estoque e organização administrativa de uma loja digital de uniformes. Desenvolvido como projeto prático por estudantes do IFSC Campus Chapecó.
 
-![Capa do Projeto](PrintTelaInicialProjeto.png)
+![Capa do Projeto](organizacao_Readme/PrintTelaInicialProjeto.png)
 🚀 Sobre o Projeto
 
 O Sistema de Uniformes é uma aplicação web interativa desenvolvida para solucionar os problemas reais de gerenciamento de uma loja de uniformes totalmente digital. Uma plataforma automatizada para o controle de estoque, registro de vendas, cadastro de clientes e acompanhamento administrativo.
