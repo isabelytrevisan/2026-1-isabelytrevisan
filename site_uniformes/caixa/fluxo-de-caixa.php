@@ -40,28 +40,34 @@ $saldoFinal = $valorCaixa;
             margin-top: 20px;
         }
         .card-fin {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background-color: #ffffff; 
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .card-fin h3 {
             margin: 0 0 10px 0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #ccc;
+            color: var(--cor-primaria);
+            font-weight: 600;
         }
         .card-fin p {
             margin: 0;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
         }
-        .positivo { color: #4edf7e; }
-        .negativo { color: #ff6b6b; }
-        .neutro { color: #4da3ff; }
+        .positivo { color: #27ae60; }
+        .negativo { color: #c0392b; }
+        .neutro { color: var(--cor-secundaria); }
+
+        .tabela th, 
+        .tabela td {
+            border-bottom: none !important;
+        }
     </style>
 </head>
 
