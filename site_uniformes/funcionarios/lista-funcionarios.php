@@ -92,14 +92,6 @@ if (isset($_POST['salvar'])) {
 
                     <?php if (isset($_SESSION['tipo_acesso']) && $_SESSION['tipo_acesso'] == 2): ?>
 
-                    <details class="menu-grupo" open>
-                        <summary>Funcionários</summary>
-                        <ul>
-                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de Funcionários</a></li>
-                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de Funcionários</a></li>
-                        </ul>
-                    </details>
-
                     <details class="menu-grupo">
                         <summary>Estoque</summary>
                         <ul>
@@ -113,6 +105,14 @@ if (isset($_POST['salvar'])) {
                         <ul>
                             <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/criar-venda.php">Cadastro de Venda</a></li>
                             <li><a href="/2026-1-isabelytrevisan/site_uniformes/vendas/lista-vendas.php">Lista de Vendas</a></li>
+                        </ul>
+                    </details>
+
+                    <details class="menu-grupo" open>
+                        <summary>Funcionários</summary>
+                        <ul>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/criar-funcionarios.php">Cadastro de Funcionários</a></li>
+                            <li><a href="/2026-1-isabelytrevisan/site_uniformes/funcionarios/lista-funcionarios.php">Lista de Funcionários</a></li>
                         </ul>
                     </details>
 
